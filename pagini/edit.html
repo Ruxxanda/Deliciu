@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <title>Editare profil</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script src="../scripts/edit.js" defer></script>
+</head>
+<body>
+  <h1>Editează profilul</h1>
+
+  <div id="info"></div>
+
+  <form id="editForm">
+    <label>Nume<br><input name="nume" id="nume"></label><br>
+    <label>Email<br><input name="email" id="email" type="email"></label><br>
+    <label>Telefon<br><input name="telefon" id="telefon"></label><br>
+    <label>Adresă<br><input name="adresa" id="adresa"></label><br>
+    <label>Poză (opțional)<br>
+      <input type="file" id="pozaFile" accept="image/*">
+    </label><br><br>
+
+    <button type="submit">Salvează</button>
+    <button type="button" id="cancel">Anulează</button>
+  </form>
+
+  <!-- link înapoi la profil -->
+  <p><a href="../pagini/user.html">Înapoi la profil</a></p>
+</body>
+</html>

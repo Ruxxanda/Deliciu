@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Panou</title>
+    <script src="../scripts/admin.js" defer></script>
+</head>
+
+<body>
+    <h2>Panou Admin</h2>
+    <div id="adminInfo"></div>
+    <button id="logoutBtn">Deconectare</button>
+
+    <h2>Toți userii</h2>
+    <div id="users"></div>
+
+    <h2>Toate comentariile</h2>
+    <div id="coms"></div>
+
+    <a href="produse.html">produse</a>
+
+
+    <h2>Adaugă produs</h2>
+    <div class="container">
+        <form method="post" action="" name="contact-form">
+            <input type="text" name="imagine" placeholder="Imagine">
+            <input type="text" name="nume" placeholder="Nume">
+            <input type="number" name="pret" placeholder="Preț">
+            <textarea name="descriere" rows="7" placeholder="Descriere"></textarea>
+            <input type="number" name="cantitate" placeholder="Cantitate">
+            <textarea name="sloiuri" rows="7" placeholder="Sloiuri"></textarea>
+            <input type="submit" value="Submit" id="submit">
+        </form>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxF2L9iCJfZIG8XcBaQcCs_U4k0zWHbXf0P3NruquPgpyOe9mh3usUgUOb2T0KkPefXVw/exec'
+
+        const form = document.forms['contact-form']
+
+        form.addEventListener('submit', e => {
+
+            e.preventDefault()
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => alert("Thank you! Form is submitted"))
+                .then(() => { window.location.reload(); })
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+
+    <style>
+
+    </style>
+</body>
+
+</html>

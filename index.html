@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Deliciu</title>
+<script type="module" src="scripts/firebase.js"></script>
+</head>
+<body>
+<h1>Bine ai venit pe Deliciu!</h1>
+
+<!-- BUTON PERSISTENT -->
+<button id="googleLogin">Logare cu Google</button>
+
+<a id="userLink" href="#" style="display:none;">Profilul meu</a>
+
+<h2>Comentarii publice</h2>
+<div id="comentarii"></div>
+
+<script>
+async function incarcaComentarii() {
+  const res = await fetch("http://localhost:3000/comentarii");
+  const data = await res.json();
+  document.getElementById("comentarii").innerHTML = data.map(c => `
+    <div style='border:1px solid #ccc;margin:5px;padding:5px'>
+      <img src="${c.poza}" width="40" style="border-radius:50%"> 
+      <b>${c.nume}</b>: ${c.text}
+    </div>`).join("");
+}
+incarcaComentarii();
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Produse</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f2f2f2; padding: 20px; }
+        .produs { background: #fff; padding: 15px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
+        .produs img { max-width: 200px; display: block; margin-bottom: 10px; }
+        .produs h3 { margin: 5px 0; }
+        .produs p { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>Produse</h1>
+    <div id="produse-container"></div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxF2L9iCJfZIG8XcBaQcCs_U4k0zWHbXf0P3NruquPgpyOe9mh3usUgUOb2T0KkPefXVw/exec';
+
+        async function getProduse() {
+            try {
+                const response = await fetch(scriptURL);
+                const data = await response.json();
+                const container = document.getElementById('produse-container');
+
+                data.forEach(item => {
+                    const div = document.createElement('div');
+                    div.classList.add('produs');
+
+                    div.innerHTML = `
+                        <img src="${item.imagine}" alt="${item.nume}">
+                        <h3>${item.nume}</h3>
+                        <p><strong>Preț:</strong> ${item.pret} MDL</p>
+                        <p><strong>Cantitate:</strong> ${item.cantitate}</p>
+                        <p><strong>Descriere:</strong> ${item.descriere}</p>
+                        <p><strong>Sloiuri:</strong> ${item.sloiuri}</p>
+                    `;
+                    container.appendChild(div);
+                });
+            } catch (err) {
+                console.error('Eroare la preluarea produselor:', err);
+            }
+        }
+
+        getProduse();
+    </script>
+</body>
+</html>
