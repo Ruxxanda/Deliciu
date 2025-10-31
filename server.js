@@ -160,30 +160,27 @@ const PORT = process.env.PORT || 3000;
 
 
 
-
-
-
-
-
-
-
-
+// ENDPOINT: upload imagine produs în pozeProduse
 const multerProd = require("multer");
-const path = require("path");
+const pathProd = require("path");
 
+// configurare multer pentru folder pozeProduse
 const uploadProd = multer({
   storage: multer.diskStorage({
-    destination: path.join(__dirname, "pagini", "pozeProduse"),
+    destination: pathProd.join(__dirname, "pagini", "pozeProduse"),
     filename: (req, file, cb) => {
-      const ext = path.extname(file.originalname);
+      const ext = pathProd.extname(file.originalname);
       const name = file.fieldname + "-" + Date.now() + ext;
       cb(null, name);
     }
   })
 });
 
-app.post("/uploadProdus", uploadProd.single("file"), (req,res)=>{
-  if(!req.file) return res.status(400).json({error:"no file"});
-  const filePath = `/pagini/pozeProduse/${req.file.filename}`;
-  res.json({path:filePath});
+app.post("/uploadProdus", uploadProd.single("file"), (req, res) => {
+  if (!req.file) return res.status(400).json({ error: "no file" });
+
+  // link relativ pentru admin + produse.html
+  const filePath = `pozeProduse/${req.file.filename}`;
+  res.json({ path: filePath });
 });
+
