@@ -19,7 +19,7 @@ async function afiseazaProduse(){
   produse.forEach(p=>{
     const card = document.createElement("div");
     card.innerHTML = `
-      <img src="${p.imagine}" width="200"><br>
+      <img src="${p.imagine}" width="200" alt="produs"><br>
       <h3>${p.denumire}</h3>
       <p>${p.descriere}</p>
       <p>${p.pret} Lei</p>
