@@ -148,3 +148,42 @@ app.post("/updateComentariu/:id", (req,res)=>{
 
 
 const PORT = process.env.PORT || 3000;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const multerProd = require("multer");
+const path = require("path");
+
+const uploadProd = multer({
+  storage: multer.diskStorage({
+    destination: path.join(__dirname, "pagini", "pozeProduse"),
+    filename: (req, file, cb) => {
+      const ext = path.extname(file.originalname);
+      const name = file.fieldname + "-" + Date.now() + ext;
+      cb(null, name);
+    }
+  })
+});
+
+app.post("/uploadProdus", uploadProd.single("file"), (req,res)=>{
+  if(!req.file) return res.status(400).json({error:"no file"});
+  const filePath = `/pagini/pozeProduse/${req.file.filename}`;
+  res.json({path:filePath});
+});

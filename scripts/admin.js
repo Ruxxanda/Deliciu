@@ -57,3 +57,8 @@ window.deleteComent = async (id) => {
   await fetch(`http://localhost:3000/stergeComentariu/${id}`,{method:"DELETE"});
   loadAll();
 }
+
+
+
+
+
