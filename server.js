@@ -163,7 +163,6 @@ const PORT = process.env.PORT || 3000;
 
 
 // ENDPOINT: upload imagine produs în pozeProduse
-const multerProd = require("multer");
 const pathProd = require("path");
 
 // configurare multer pentru folder pozeProduse
