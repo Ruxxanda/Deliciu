@@ -21,27 +21,13 @@
     <a href="produse.html">Produse</a>
 
     <h2>Adaugă / Editează produs</h2>
-    <form id="prodForm">
-        <input type="file" id="imagine" accept="image/*"><br>
-        <input type="text" id="denumire" placeholder="Denumire" required><br>
-        <input type="number" id="pret" placeholder="Pret" required><br>
-        <input type="text" id="descriere" placeholder="Descriere" required><br>
-        <input type="number" id="cantitate" placeholder="Cantitate kg" required><br>
-        <input type="text" id="sloiuri" placeholder="Sloiuri separate prin virgula" required><br>
-        <button type="submit">Adauga / Salveaza</button>
-    </form>
-
-    <h2>Lista produse</h2>
-    <div id="produseList"></div>
-
-    <script>
-        const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxBfrTMSIv_HXNc7WLwUwWnMKCW-K7rjxA9Cql-mexVhW29Ug7Uy5cvrpqHjpGsn10Kpg/exec";
+    <script defer>
         let produse = [];
         let editId = null;
 
         // incarcare produse
         async function incarcaProduse() {
-            const res = await fetch(WEBAPP_URL);
+            const res = await fetch("/api/produse");
             produse = await res.json();
             afiseazaProduse();
         }
@@ -54,7 +40,7 @@
                 const div = document.createElement("div");
                 div.innerHTML = `
             <strong>ID:</strong> ${p.id}<br>
-            <img src="${p.imagine}" width="100"><br>
+            <img src="${p.imagine}" width="100" alt="produs"><br>
             <strong>${p.denumire}</strong> - ${p.pret} Lei<br>
             ${p.descriere}<br>
             Cantitate: ${p.cantitate} kg<br>
@@ -69,12 +55,13 @@
 
         // sterge produs
         async function sterge(id) {
-            const res = await fetch(WEBAPP_URL, {
+            const res = await fetch("/api/produs", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ action: "sterge", id })
             });
-            await res.json();
+            const data = await res.json();
+            console.log(data);
             incarcaProduse();
         }
 
@@ -89,64 +76,75 @@
             document.getElementById("sloiuri").value = p.sloiuri.join(", ");
         }
 
-        // upload imagine local + returneaza link relativ
-        async function uploadImagineLocal(file) {
+        // upload imagine
+        async function uploadImagine(file) {
             const formData = new FormData();
             formData.append("file", file);
-
-            const res = await fetch("http://127.0.0.1:3000/uploadProdus", {
-                method: "POST",
-                body: formData
-            });
+            const res = await fetch("/uploadProdus", { method: "POST", body: formData });
             const data = await res.json();
-            return `pozeProduse/${data.path.split("/").pop()}`;
+            return data.path;
         }
 
         // submit formular
-        document.getElementById("prodForm").addEventListener("submit", async e => {
-            e.preventDefault();
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("prodForm");
+            form.addEventListener("submit", async e => {
+                e.preventDefault();
 
-            const file = document.getElementById("imagine").files[0];
-            let linkImagine = "";
+                let file = document.getElementById("imagine").files[0];
+                let linkImagine = "";
 
-            if (file) {
-                linkImagine = await uploadImagineLocal(file);
-            } else if (editId) {
-                linkImagine = produse.find(p => p.id == editId).imagine;
-            } else {
-                alert("Trebuie să alegi o imagine!");
-                return;
-            }
+                if (file) {
+                    linkImagine = await uploadImagine(file);
+                } else if (editId) {
+                    linkImagine = produse.find(p => p.id == editId).imagine;
+                }
 
-            const denumire = document.getElementById("denumire").value;
-            const pret = parseFloat(document.getElementById("pret").value);
-            const descriere = document.getElementById("descriere").value;
-            const cantitate = parseFloat(document.getElementById("cantitate").value);
-            const sloiuri = document.getElementById("sloiuri").value.split(",").map(s => s.trim());
+                const denumire = document.getElementById("denumire").value;
+                const pret = parseFloat(document.getElementById("pret").value);
+                const descriere = document.getElementById("descriere").value;
+                const cantitate = parseFloat(document.getElementById("cantitate").value);
+                const sloiuri = document.getElementById("sloiuri").value.split(",").map(s => s.trim());
 
-            const res = await fetch(WEBAPP_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    action: editId ? "editeaza" : "adauga",
-                    id: editId,
-                    imagine: linkImagine,
-                    denumire,
-                    pret,
-                    descriere,
-                    cantitate,
-                    sloiuri
-                })
+                const res = await fetch("/api/produs", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        action: editId ? "editeaza" : "adauga",
+                        id: editId,
+                        imagine: linkImagine,
+                        denumire,
+                        pret,
+                        descriere,
+                        cantitate,
+                        sloiuri
+                    })
+                });
+                const data = await res.json();
+                console.log(data);
+
+                form.reset();
+                editId = null;
+                incarcaProduse();
             });
-            await res.json();
 
-            e.target.reset();
-            editId = null;
             incarcaProduse();
         });
-
-        incarcaProduse();
     </script>
+
+    <h2>Adaugă / Editează produs</h2>
+    <form id="prodForm">
+        <input type="file" id="imagine" accept="image/*"><br>
+        <input type="text" id="denumire" placeholder="Denumire" required><br>
+        <input type="number" id="pret" placeholder="Pret" required><br>
+        <input type="text" id="descriere" placeholder="Descriere" required><br>
+        <input type="number" id="cantitate" placeholder="Cantitate kg" required><br>
+        <input type="text" id="sloiuri" placeholder="Sloiuri separate prin virgula" required><br>
+        <button type="submit">Adauga / Salveaza</button>
+    </form>
+
+    <h2>Lista produse</h2>
+    <div id="produseList"></div>
 
 </body>
 

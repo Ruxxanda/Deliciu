@@ -3,6 +3,8 @@ const sqlite3 = require("sqlite3").verbose();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
+const multer = require("multer");
+const fetch = require("node-fetch");
 
 const app = express();
 app.use(cors());
@@ -167,20 +169,55 @@ const pathProd = require("path");
 // configurare multer pentru folder pozeProduse
 const uploadProd = multer({
   storage: multer.diskStorage({
-    destination: pathProd.join(__dirname, "pagini", "pozeProduse"),
+    destination: path.join(__dirname, "pagini", "pozeProduse"),
     filename: (req, file, cb) => {
-      const ext = pathProd.extname(file.originalname);
+      const ext = path.extname(file.originalname);
       const name = file.fieldname + "-" + Date.now() + ext;
       cb(null, name);
     }
   })
 });
 
-app.post("/uploadProdus", uploadProd.single("file"), (req, res) => {
-  if (!req.file) return res.status(400).json({ error: "no file" });
+app.post("/uploadProdus", uploadProd.single("file"), (req,res)=>{
+    if(!req.file) return res.status(400).json({error:"no file"});
+    const filePath = `pagini/pozeProduse/${req.file.filename}`; // link relativ
+    res.json({path: filePath});
+});
 
-  // link relativ pentru admin + produse.html
-  const filePath = `pozeProduse/${req.file.filename}`;
-  res.json({ path: filePath });
+
+
+const fetch = require("node-fetch"); // dacă nu ai deja
+
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxBfrTMSIv_HXNc7WLwUwWnMKCW-K7rjxA9Cql-mexVhW29Ug7Uy5cvrpqHjpGsn10Kpg/exec";
+
+// proxy POST pentru adaugare/editeaza/sterge
+
+// GET produse
+app.get("/api/produse", async (req,res)=>{
+    try{
+        const response = await fetch(WEBAPP_URL);
+        const data = await response.json();
+        res.json(data);
+    }catch(e){
+        console.log(e);
+        res.status(500).json({error:e.message});
+    }
+});
+
+// proxy GET pentru listare produse
+
+app.post("/api/produs", async (req,res)=>{
+    try{
+        const response = await fetch(WEBAPP_URL, {
+            method:"POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify(req.body)
+        });
+        const data = await response.json();
+        res.json(data);
+    }catch(e){
+        console.log(e);
+        res.status(500).json({error:e.message});
+    }
 });
 

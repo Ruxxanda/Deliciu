@@ -3,33 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <title>Produse</title>
+<script defer>
+async function afiseazaProduse(){
+    const res = await fetch("/api/produse");
+    const produse = await res.json();
+    const div = document.getElementById("produseDisplay");
+    div.innerHTML = "";
+    produse.forEach(p=>{
+        const card = document.createElement("div");
+        card.innerHTML = `
+            <img src="${p.imagine}" alt="produs" width="200"><br>
+            <h3>${p.denumire}</h3>
+            <p>${p.descriere}</p>
+            <p>${p.pret} Lei</p>
+            <p>Cantitate: ${p.cantitate} kg</p>
+        `;
+        div.appendChild(card);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", afiseazaProduse);
+</script>
 </head>
 <body>
 <h2>Produse</h2>
 <div id="produseDisplay"></div>
-
-<script>
-const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxBfrTMSIv_HXNc7WLwUwWnMKCW-K7rjxA9Cql-mexVhW29Ug7Uy5cvrpqHjpGsn10Kpg/exec";
-
-async function afiseazaProduse(){
-  const res = await fetch(WEBAPP_URL);
-  const produse = await res.json();
-  const div = document.getElementById("produseDisplay");
-  div.innerHTML = "";
-  produse.forEach(p=>{
-    const card = document.createElement("div");
-    card.innerHTML = `
-      <img src="${p.imagine}" width="200" alt="produs"><br>
-      <h3>${p.denumire}</h3>
-      <p>${p.descriere}</p>
-      <p>${p.pret} Lei</p>
-      <p>Cantitate: ${p.cantitate} kg</p>
-    `;
-    div.appendChild(card);
-  });
-}
-
-afiseazaProduse();
-</script>
 </body>
 </html>
