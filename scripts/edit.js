@@ -39,7 +39,7 @@ form.addEventListener("submit", async (e) => {
     body: JSON.stringify(payload)
   });
 
-  alert("Date salvate");
+  console.log("Date salvate");
   location.href = "../pagini/user.html";
 });
 

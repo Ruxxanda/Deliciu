@@ -47,8 +47,7 @@ loginBtn.addEventListener("click", async () => {
     else window.location.href = "../pagini/user.html";
 
   } catch(err) {
-    alert("Eroare la logare!");
-    console.log(err);
+    console.error("Eroare la logare!", err);
   }
 });
 
