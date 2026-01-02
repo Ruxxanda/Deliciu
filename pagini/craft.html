@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CakeCraft</title>
+    <style>
+        body { font-family: Arial; display: flex; }
+        .left { width: 50%; padding: 20px; }
+        .right { width: 50%; padding: 20px; border-left: 1px solid #ccc; }
+        select, button { margin: 5px 0; }
+        #decorOptions label { display: block; }
+    </style>
+</head>
+<body>
+    <div class="left">
+        <h2>Creează-ți tortul personalizat</h2>
+        
+        <h3>1. Bază (blat)</h3>
+        <select id="select-base"></select>
+        <button onclick="addLayer('base')">+</button>
+        
+        <h3>2. Cremă între straturi</h3>
+        <select id="select-cream"></select>
+        <button onclick="addLayer('cream')">+</button>
+        
+        <h3>3. Umplutură (opțional)</h3>
+        <select id="select-filling"></select>
+        <button onclick="addLayer('filling')">+</button>
+        
+        <h3>4. Exteriorul tortului</h3>
+        <h4>Îmbrăcare (glazură)</h4>
+        <select id="select-exterior"></select>
+        <button onclick="addLayer('exterior')">+</button>
+        <h4>Culoare</h4>
+        <select id="select-color"></select>
+        <input type="color" id="colorPicker" style="display:none;">
+        <button onclick="addLayer('color')">+</button>
+        
+        <h3>5. Textură / stil</h3>
+        <select id="select-texture"></select>
+        <button onclick="addLayer('texture')">+</button>
+        
+        <h3>6. Decor</h3>
+        <div id="decorOptions"></div>
+        <button onclick="addDecor()">+</button>
+    </div>
+    <div class="right" id="summary"></div>
+    
+    <script>
+        const layerData = {
+            base: [
+                {name: 'Vanilie', price: 50, qty: '500g'},
+                {name: 'Ciocolată', price: 55, qty: '500g'},
+                {name: 'Red velvet', price: 60, qty: '500g'},
+                {name: 'Lămâie', price: 45, qty: '500g'},
+                {name: 'Morcov', price: 40, qty: '500g'},
+                {name: 'Fistic', price: 70, qty: '500g'},
+                {name: 'Nucă', price: 65, qty: '500g'},
+                {name: 'Oreo', price: 75, qty: '500g'}
+            ],
+            cream: [
+                {name: 'Cremă de vanilie', price: 30, qty: '200g'},
+                {name: 'Cremă de ciocolată', price: 35, qty: '200g'},
+                {name: 'Cremă mascarpone', price: 40, qty: '200g'},
+                {name: 'Cremă de brânză (cream cheese)', price: 38, qty: '200g'},
+                {name: 'Cremă de fructe (căpșuni, zmeură, mango, fructe de pădure)', price: 45, qty: '200g'},
+                {name: 'Ganache de ciocolată', price: 50, qty: '200g'},
+                {name: 'Cremă de caramel sărat', price: 42, qty: '200g'}
+            ],
+            filling: [
+                {name: 'Căpșuni proaspete', price: 25, qty: '150g'},
+                {name: 'Zmeură', price: 28, qty: '150g'},
+                {name: 'Afine', price: 30, qty: '150g'},
+                {name: 'Vișine', price: 26, qty: '150g'},
+                {name: 'Mango', price: 32, qty: '150g'},
+                {name: 'Banane', price: 20, qty: '150g'},
+                {name: 'Gem de fructe', price: 15, qty: '150g'},
+                {name: 'Caramel', price: 22, qty: '150g'},
+                {name: 'Sos de ciocolată', price: 18, qty: '150g'}
+            ],
+            exterior: [
+                {name: 'Cremă de unt', price: 25, qty: '300g'},
+                {name: 'Cremă mascarpone', price: 30, qty: '300g'},
+                {name: 'Ciocolată oglindă', price: 40, qty: '300g'},
+                {name: 'Glazură simplă', price: 20, qty: '300g'},
+                {name: 'Fondant', price: 35, qty: '300g'}
+            ],
+            color: [
+                {name: 'Alb', price: 0, qty: '0g'},
+                {name: 'Pastel (roz, bleu, lila etc.)', price: 10, qty: '0g'},
+                {name: 'Culori personalizate', price: 15, qty: '0g'}
+            ],
+            texture: [
+                {name: 'Neted', price: 0, qty: '0g'},
+                {name: 'Rustic', price: 5, qty: '0g'},
+                {name: 'Drip cake (ciocolată curgătoare)', price: 20, qty: '0g'},
+                {name: 'Ombre', price: 15, qty: '0g'},
+                {name: 'Semi-naked', price: 10, qty: '0g'}
+            ],
+            decor: [
+                {name: 'Fructe proaspete', price: 15, qty: '100g'},
+                {name: 'Flori comestibile', price: 20, qty: '50g'},
+                {name: 'Macarons', price: 25, qty: '100g'},
+                {name: 'Bomboane', price: 12, qty: '100g'},
+                {name: 'Ciocolată', price: 18, qty: '100g'},
+                {name: 'Nuci / alune', price: 10, qty: '100g'},
+                {name: 'Sprinkles', price: 8, qty: '50g'}
+            ]
+        };
+        
+        let selected = [];
+        
+        document.addEventListener("DOMContentLoaded", () => {
+            for (const type in layerData) {
+                if (type === 'decor') continue;
+                const select = document.getElementById(`select-${type}`);
+                layerData[type].forEach(item => {
+                    const option = document.createElement('option');
+                    option.text = item.name;
+                    select.appendChild(option);
+                });
+            }
+            // For decor
+            const decorDiv = document.getElementById('decorOptions');
+            layerData.decor.forEach(item => {
+                const label = document.createElement('label');
+                label.innerHTML = `<input type="checkbox" value="${item.name}"> ${item.name}`;
+                decorDiv.appendChild(label);
+            });
+            // Color picker
+            document.getElementById('select-color').onchange = function() {
+                const picker = document.getElementById('colorPicker');
+                if (this.value === 'Culori personalizate') {
+                    picker.style.display = 'block';
+                } else {
+                    picker.style.display = 'none';
+                }
+            };
+            updateSummary();
+        });
+        
+        function addLayer(type) {
+            const select = document.getElementById(`select-${type}`);
+            const selectedValue = select.value;
+            let item;
+            if (type === 'color' && selectedValue === 'Culori personalizate') {
+                const color = document.getElementById('colorPicker').value;
+                item = {name: 'Culoare personalizată: ' + color, price: 15, qty: '0g'};
+            } else {
+                item = layerData[type].find(i => i.name === selectedValue);
+            }
+            if (item) {
+                selected.push({...item, type});
+                updateSummary();
+            }
+        }
+        
+        function addDecor() {
+            const checkboxes = document.querySelectorAll('#decorOptions input:checked');
+            checkboxes.forEach(cb => {
+                const item = layerData.decor.find(i => i.name === cb.value);
+                selected.push({...item, type: 'decor'});
+                cb.checked = false;
+            });
+            updateSummary();
+        }
+        
+        function updateSummary() {
+            const div = document.getElementById('summary');
+            div.innerHTML = '<h3>Sloiuri alese:</h3>';
+            if (selected.length === 0) {
+                div.innerHTML += '<p>Nimic selectat.</p>';
+                return;
+            }
+            let totalPrice = 0;
+            let totalQty = 0;
+            selected.forEach((item, index) => {
+                const qtyNum = parseInt(item.qty) || 0;
+                totalPrice += item.price;
+                totalQty += qtyNum;
+                div.innerHTML += `<div>${item.name} - ${item.price} Lei - ${item.qty} <button onclick="removeLayer(${index})">Șterge</button></div>`;
+            });
+            div.innerHTML += `<p><strong>Preț total: ${totalPrice} Lei</strong></p>`;
+            div.innerHTML += `<p><strong>Cantitate totală: ${totalQty / 1000} kg</strong></p>`;
+            div.innerHTML += `<label>Denumire tort: <input id="cakeName" type="text" placeholder="Ex: Tortul meu fantastic"></label><br>`;
+            div.innerHTML += `<button onclick="addToCart()">Adauga in cos</button> <button onclick="reset()">Începe de la zero</button>`;
+        }
+        
+        function removeLayer(index) {
+            selected.splice(index, 1);
+            updateSummary();
+        }
+        
+        function reset() {
+            selected = [];
+            updateSummary();
+        }
+        
+        async function addToCart() {
+            const nume = document.getElementById('cakeName').value.trim() || 'Tort personalizat';
+            const pret = selected.reduce((sum, item) => sum + item.price, 0);
+            const descriere = '<ul>' + selected.map(s => `<li>${s.name}: ${s.price} Lei, ${s.qty}</li>`).join('') + '</ul>';
+            const uid = localStorage.getItem("uid");
+            if (!uid) {
+                console.error("Trebuie să fiți logat pentru a adăuga în coș.");
+                return;
+            }
+            if (selected.length === 0) {
+                console.error("Selectați măcar un sloi.");
+                return;
+            }
+            await fetch("http://localhost:3000/adaugaCos", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ uid, nume, cantitate: 1, pret, descriere })
+            });
+            console.log("Tort adăugat în coș!");
+            reset();
+        }
+    </script>
+</body>
+</html>

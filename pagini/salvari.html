@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Salvări</title>
+    <style>
+        .pret-vechi {
+            color: #777;
+            font-size: 14px;
+            text-decoration: line-through;
+            text-decoration-color: red;
+        }
+
+        .pret-redus {
+            color: red;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .badge-reducere {
+            color: red;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+    </style>
+    <script defer>
+        async function afiseazaSalvări() {
+            const uid = localStorage.getItem("uid");
+            if (!uid) {
+                document.getElementById("error").innerText = "Trebuie să fiți logat pentru a vedea salvările.";
+                return;
+            }
+            const resSalv = await fetch(`http://localhost:3000/salvari/${uid}`);
+            const salvariNume = await resSalv.json();
+            const resProd = await fetch("http://localhost:3000/api/produse");
+            const data = await resProd.json();
+            const produse = data.products;
+            const salvariProd = produse.filter(p => salvariNume.includes(p.nume));
+            const div = document.getElementById("salvariDisplay");
+            div.innerHTML = "";
+            salvariProd.forEach(p => {
+                const areReducere = p.reducere != null && p.reducere !== "" && p.pretRedus != null && p.pretRedus !== "";
+                let pretHTML = "";
+                if (!areReducere) {
+                    pretHTML = `<span>${p.pret} Lei</span>`;
+                } else {
+                    pretHTML = `
+<div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <div class="pret-vechi">${p.pret} Lei</div>
+        <div class="pret-redus">${p.pretRedus} Lei</div>
+    </div>
+    <div class="badge-reducere">-${p.reducere}% reducere</div>
+</div>
+`;
+                }
+                const card = document.createElement("div");
+                card.innerHTML = `
+            <img src="http://localhost:3000/${p.imagine}" alt="produs" width="200"><br>
+            <h3>${p.nume}</h3>
+            <p>${p.descriere}</p>
+            <p>${pretHTML}</p>
+            <i class="fa fa-heart" style="color: red; cursor: pointer;" onclick="toggleSalvare('${p.nume}')"></i>`;
+                div.appendChild(card);
+            });
+        }
+
+        async function toggleSalvare(nume) {
+            const uid = localStorage.getItem("uid");
+            if (!uid) return;
+            await fetch(`http://localhost:3000/stergeSalvare/${uid}/${encodeURIComponent(nume)}`, { method: "DELETE" });
+            afiseazaSalvări();
+        }
+
+        document.addEventListener("DOMContentLoaded", afiseazaSalvări);
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <h2>Salvări</h2>
+    <p id="error"></p>
+    <div id="salvariDisplay"></div>
+</body>
+
+</html>

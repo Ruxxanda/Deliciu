@@ -5,6 +5,44 @@
     <meta charset="UTF-8">
     <title>Admin - Panou</title>
     <script src="../scripts/admin.js" defer></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            width: 90%;
+            max-width: 700px;
+            margin: 20px auto
+        }
+
+        input,
+        button,
+        textarea {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0
+        }
+
+        img.thumb {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin: 6px
+        }
+
+        .prod {
+            border: 1px solid #ddd;
+            padding: 8px;
+            margin: 8px 0;
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .prod .info {
+            flex: 1
+        }
+    </style>
 </head>
 
 <body>
@@ -18,133 +56,35 @@
     <h2>Toate comentariile</h2>
     <div id="coms"></div>
 
+    <h2>Comenzi</h2>
+    <div id="orders"></div>
+
+    <h2>Comenzi efectuate</h2>
+    <div id="completedOrders"></div>
+
     <a href="produse.html">Produse</a>
 
-    <h2>Adaugă / Editează produs</h2>
-    <script defer>
-        let produse = [];
-        let editId = null;
+    <h2>Adaugă produs</h2>
 
-        // incarcare produse
-        async function incarcaProduse() {
-            const res = await fetch("/api/produse");
-            produse = await res.json();
-            afiseazaProduse();
-        }
+    <form id="prodForm" enctype="multipart/form-data">
+        <label>Denumirea produsului:</label><br>
+        <input type="text" id="nume" required><br><br>
 
-        // afiseaza produse
-        function afiseazaProduse() {
-            const list = document.getElementById("produseList");
-            list.innerHTML = "";
-            produse.forEach(p => {
-                const div = document.createElement("div");
-                div.innerHTML = `
-            <strong>ID:</strong> ${p.id}<br>
-            <img src="${p.imagine}" width="100" alt="produs"><br>
-            <strong>${p.denumire}</strong> - ${p.pret} Lei<br>
-            ${p.descriere}<br>
-            Cantitate: ${p.cantitate} kg<br>
-            Sloiuri: ${p.sloiuri.join(", ")}<br>
-            <button onclick="incepeEdit(${p.id})">Editeaza</button>
-            <button onclick="sterge(${p.id})">Sterge</button>
-            <hr>
-        `;
-                list.appendChild(div);
-            });
-        }
+        <label>Imagine (opțional):</label><br>
+        <input type="file" id="imagine" accept="image/*"><br><br>
 
-        // sterge produs
-        async function sterge(id) {
-            const res = await fetch("/api/produs", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ action: "sterge", id })
-            });
-            const data = await res.json();
-            console.log(data);
-            incarcaProduse();
-        }
+        <label>Descriere:</label><br>
+        <textarea id="descriere" required></textarea><br><br>
 
-        // incepe edit
-        function incepeEdit(id) {
-            const p = produse.find(x => x.id == id);
-            editId = id;
-            document.getElementById("denumire").value = p.denumire;
-            document.getElementById("pret").value = p.pret;
-            document.getElementById("descriere").value = p.descriere;
-            document.getElementById("cantitate").value = p.cantitate;
-            document.getElementById("sloiuri").value = p.sloiuri.join(", ");
-        }
+        <label>Preț (MDL/kg):</label><br>
+        <input type="number" id="pret" required><br><br>
 
-        // upload imagine
-        async function uploadImagine(file) {
-            const formData = new FormData();
-            formData.append("file", file);
-            const res = await fetch("/uploadProdus", { method: "POST", body: formData });
-            const data = await res.json();
-            return data.path;
-        }
-
-        // submit formular
-        document.addEventListener("DOMContentLoaded", () => {
-            const form = document.getElementById("prodForm");
-            form.addEventListener("submit", async e => {
-                e.preventDefault();
-
-                let file = document.getElementById("imagine").files[0];
-                let linkImagine = "";
-
-                if (file) {
-                    linkImagine = await uploadImagine(file);
-                } else if (editId) {
-                    linkImagine = produse.find(p => p.id == editId).imagine;
-                }
-
-                const denumire = document.getElementById("denumire").value;
-                const pret = parseFloat(document.getElementById("pret").value);
-                const descriere = document.getElementById("descriere").value;
-                const cantitate = parseFloat(document.getElementById("cantitate").value);
-                const sloiuri = document.getElementById("sloiuri").value.split(",").map(s => s.trim());
-
-                const res = await fetch("/api/produs", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        action: editId ? "editeaza" : "adauga",
-                        id: editId,
-                        imagine: linkImagine,
-                        denumire,
-                        pret,
-                        descriere,
-                        cantitate,
-                        sloiuri
-                    })
-                });
-                const data = await res.json();
-                console.log(data);
-
-                form.reset();
-                editId = null;
-                incarcaProduse();
-            });
-
-            incarcaProduse();
-        });
-    </script>
-
-    <h2>Adaugă / Editează produs</h2>
-    <form id="prodForm">
-        <input type="file" id="imagine" accept="image/*"><br>
-        <input type="text" id="denumire" placeholder="Denumire" required><br>
-        <input type="number" id="pret" placeholder="Pret" required><br>
-        <input type="text" id="descriere" placeholder="Descriere" required><br>
-        <input type="number" id="cantitate" placeholder="Cantitate kg" required><br>
-        <input type="text" id="sloiuri" placeholder="Sloiuri separate prin virgula" required><br>
-        <button type="submit">Adauga / Salveaza</button>
+        <button type="submit">Adaugă</button>
     </form>
 
-    <h2>Lista produse</h2>
-    <div id="produseList"></div>
+    
+
+    <script src="../scripts/send.js"></script>
 
 </body>
 
