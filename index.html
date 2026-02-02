@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Deliciu</title>
+  <script type="module" src="scripts/firebase.js"></script>
+  <script src="scripts/applyReductions.js" defer></script>
+  <script src="scripts/index.js" defer></script>
+  <script src="scripts/stats.js" defer></script>
+  <script src="scripts/comentarii-public.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/8a1f01fb65.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <header class="index">
+    <nav>
+      <div class="linkuri">
+        <a href="index.html">Acasă</a>
+        <a href="pagini/despre.html">Despre Noi</a>
+        <a href="pagini/produse.html">Catalog</a>
+        <a href="pagini/craft.html">Creează</a>
+        <a href="#">Galerie</a>
+        <a href="#">Contacte</a>
+      </div>
+      <img class="logo" src="imagini/logo.png" alt="logo">
+      <div class="inf">
+        <div class="limba">
+          <p>Limba</p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 48 32">
+            <defs>
+              <clipPath id="rounded">
+                <rect x="0" y="0" width="48" height="32" rx="4" ry="4" />
+              </clipPath>
+            </defs>
+
+            <g clip-path="url(#rounded)">
+              <!-- Albastru -->
+              <rect x="0" y="0" width="16" height="32" fill="#003F87" />
+              <!-- Galben -->
+              <rect x="16" y="0" width="16" height="32" fill="#FFD100" />
+              <!-- Roșu -->
+              <rect x="32" y="0" width="16" height="32" fill="#CE1126" />
+            </g>
+          </svg>
+        </div>
+        <div class="nr">
+          <i class="fa-solid fa-phone-volume"></i>
+        </div>
+        <a class="cos" href="cos.html">
+          <i class="fa-solid fa-basket-shopping"></i>
+          <div class="stat-value" id="cartCount">0</div>
+        </a>
+
+        <a class="salv" href="salvari.html">
+          <i class="fa-solid fa-heart"></i>
+          <div class="stat-value" id="savedCount">0</div>
+        </a>
+
+        <button class="logoogle" id="googleLogin"><i class="fa-brands fa-google"></i></button>
+        <a id="userLink" href="#" style="display:none;"><i class="fa-regular fa-user"></i></a>
+      </div>
+    </nav>
+
+
+
+    <div class="helo">
+      <div class="text">
+        <p>Arome irezistibile, decoruri spectaculoase.</p>
+        <h1>Descoperă Tortul Perfect pentru Tine!</h1>
+        <button>Vezi catalogul</button>
+      </div>
+      <img src="imagini/marina.jpg" alt="tort">
+    </div>
+  </header>
+
+
+  <!-- Torturi Populare -->
+  <section class="tort-popular">
+    <h2>Torturi Populare</h2>
+    <hr class="linie">
+    <p>Descoperă torturile noastre cele mai populare, pregătite cu ingrediente de calitate. Fiecare tort este o
+      combinație perfectă de arome și texturi, creat special pentru momentele tale speciale!</p>
+    <div class="trei"></div>
+  </section>
+
+
+  <!-- reducere -->
+  <section class="reducere" id="activeReduction"></section>
+
+
+  <!-- comentarii -->
+  <section class="coment">
+    <h2>Comentarii publice</h2>
+    <div class="carousel-container">
+      <button class="carousel-btn carousel-btn-prev" id="prevBtn" aria-label="Anterior">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="comentarii"></div>
+      </div>
+      <button class="carousel-btn carousel-btn-next" id="nextBtn" aria-label="Următorul">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+    <div class="carousel-dots" id="carouselDots" aria-hidden="false"></div>
+  </section>
+
+
+
+  <!-- craft -->
+  <section class="crafti">
+    <div class="text">
+      <h2>Creează-ți Tortul Personalizat!</h2>
+      <p>Alege blatul, crema și decorul preferat și lasă-ne pe noi să îl transformăm în realitate! Creează un tort unic,
+        exact cum îți dorești.</p>
+      <a href="pagini/craft.html">
+        <button>Creează Tortul!</button>
+      </a>
+    </div>
+    <img src="imagini/poza 2.png" alt="tort">
+  </section>
+
+  <!-- footer -->
+  <footer>
+    <div class="footer-container">
+      <!-- Informații despre companie -->
+      <div class="footer-section">
+        <h3>Despre Noi</h3>
+        <p>Produse tradiționale din lapte de la ferma noastră locală, preparate cu drag pentru tine.</p>
+      </div>
+
+      <!-- Link-uri utile -->
+      <div class="footer-section">
+        <h3>Link-uri utile</h3>
+        <ul>
+          <li><a href="index.html">Acasă</a></li>
+          <li><a href="pagini/#">Despre Noi</a></li>
+          <li><a href="pagini/produse.html">Catalog</a></li>
+          <li><a href="pagini/craft.html">Creează</a></li>
+          <li><a href="pagini/#">Galerie</a></li>
+          <li><a href="pagini/#">Contacte</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <a href="tel:+373 605 09 918">Telefon: 0 605 09 918</a><br>
+        <a href="mailto:cornescu1985@mail.ru">Email: cornescu1985@mail.ru</a>
+        <p>Adresă: Str. Mihai Eminescu, Mălcăuți, SR, Moldova</p>
+        <a href="https://maps.app.goo.gl/Z4EDt2am6xYVY1X1A" target="_blank">Vezi pe hartă</a>
+      </div>
+
+      <!-- Rețele sociale -->
+      <div class="footer-section">
+        <h3>Urmărește-ne</h3>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=100039241286586" target="_blank"><i
+              class="fab fa-facebook"></i></a>
+          <a href="https://www.instagram.com/cascaval_de_malcauti/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com/@gustul_de_la_tara?si=kOSCzFddsHMPs4cv" target="_blank"><i
+              class="fab fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@cascaval_de_malcauti?_t=8jYCxCiSgHV&_r=1" target="_blank"><i
+              class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="ani-container"></span> Deliciu. Acest website a fost realizat în
+        cadrul competiției ”Tekwill
+        Junior Ambassadors” organizată de proiectul ”Tekwill în Fiecare Școală” și nu reflectă neapărat opinia
+        proiectului.</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>
