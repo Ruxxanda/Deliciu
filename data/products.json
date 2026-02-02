@@ -1,0 +1,65 @@
+[
+  {
+    "nume": "Exemplu Produs",
+    "descriere": "Descriere produs de test",
+    "categoria": "tort",
+    "linkImagine": "./imagini/poza 1.png",
+    "imagine": "./imagini/poza 1.png",
+    "pret": 1500,
+    "detalii": [
+      "Material: Bumbac 100%",
+      "Dimensiuni: 30x40 cm",
+      "Greutate: 250g",
+      "Culoare: Multicolor",
+      "Întreținere: Spălare la 30°C"
+    ]
+  },
+
+  {
+    "nume": "Tort",
+    "descriere": "Descriere produs de test",
+    "categoria": "tort",
+    "linkImagine": "./imagini/poza 1.png",
+    "imagine": "./imagini/poza 1.png",
+    "pret": 2000,
+    "detalii": [
+      "Ingrediente: Făină, ouă, lapte",
+      "Alergeni: Gluten, lactică",
+      "Termen de consum: 5 zile",
+      "Depozitare: Frigider 2-8°C",
+      "Calorii: 250kcal/100g"
+    ]
+  },
+
+  {
+    "nume": "Ciotca",
+    "descriere": "Descriere produs de test",
+    "categoria": "chec",
+    "linkImagine": "./imagini/poza 1.png",
+    "imagine": "./imagini/poza 1.png",
+    "pret": 1100,
+    "detalii": [
+      "Material: Ceramică artizanală",
+      "Volum: 500ml",
+      "Stil: Tradițional românesc",
+      "Finisaj: Glazurat manual",
+      "Sigur pentru lavatrițe: Nu"
+    ]
+  },
+
+  {
+    "nume": "Marama",
+    "descriere": "Descriere produs de test",
+    "categoria": "tarte",
+    "linkImagine": "./imagini/poza 1.png",
+    "imagine": "./imagini/poza 1.png",
+    "pret": 1150,
+    "detalii": [
+      "Țesătură: Mătase naturală",
+      "Dimensiuni: 150x150 cm",
+      "Greutate: 120g",
+      "Model: Broderie tradițională",
+      "Culoare: Roșu cu auriu"
+    ]
+  }
+]
