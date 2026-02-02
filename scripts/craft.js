@@ -1,0 +1,216 @@
+const layerData = {
+    base: [
+        {name: 'Vanilie', price: 50, qty: '500g', image: '../imagini/craft/blat vanilie.png'},
+        {name: 'Ciocolată', price: 55, qty: '500g', image: '../imagini/craft/blat ciocolata.png'},
+        {name: 'Red velvet', price: 60, qty: '500g', image: '../imagini/craft/blat red velvet.png'},
+        {name: 'Lămâie', price: 45, qty: '500g', image: '../imagini/craft/blat lamaie.png'},
+        {name: 'Morcov', price: 40, qty: '500g', image: '../imagini/craft/blat morcov.png'},
+        {name: 'Fistic', price: 70, qty: '500g', image: '../imagini/craft/blat fistic.png'},
+        {name: 'Nucă', price: 65, qty: '500g', image: '../imagini/craft/blat nuca.png'},
+        {name: 'Oreo', price: 75, qty: '500g', image: '../imagini/craft/blat oreo.png'}
+    ],
+    cream: [
+        {name: 'Cremă de vanilie', price: 30, qty: '200g', image: '../imagini/craft/crema vanilie.png'},
+        {name: 'Cremă de ciocolată', price: 35, qty: '200g', image: '../imagini/craft/crema ciocolata.png'},
+        {name: 'Cremă mascarpone', price: 40, qty: '200g', image: '../imagini/craft/crema mascarpone.png'},
+        {name: 'Cremă de brânză (cream cheese)', price: 38, qty: '200g', image: '../imagini/craft/crema branza.png'},
+        {name: 'Cremă de fructe (căpșuni, zmeură, mango, fructe de pădure)', price: 45, qty: '200g', image: '../imagini/craft/crema fructe.png'},
+        {name: 'Ganache de ciocolată', price: 50, qty: '200g', image: '../imagini/craft/ganache ciocolata.png'},
+        {name: 'Cremă de caramel sărat', price: 42, qty: '200g', image: '../imagini/craft/crema caramel.png'}
+    ],
+    filling: [
+        {name: 'Căpșuni proaspete', price: 25, qty: '150g', image: '../imagini/craft/capsuni.png'},
+        {name: 'Zmeură', price: 28, qty: '150g', image: '../imagini/craft/zmeura.png'},
+        {name: 'Afine', price: 30, qty: '150g', image: '../imagini/craft/afine.png'},
+        {name: 'Vișine', price: 26, qty: '150g', image: '../imagini/craft/visine.png'},
+        {name: 'Mango', price: 32, qty: '150g', image: '../imagini/craft/mango.png'},
+        {name: 'Banane', price: 20, qty: '150g', image: '../imagini/craft/banane.png'},
+        {name: 'Gem de fructe', price: 15, qty: '150g', image: '../imagini/craft/gem fructe.png'},
+        {name: 'Caramel', price: 22, qty: '150g', image: '../imagini/craft/caramel.png'},
+        {name: 'Sos de ciocolată', price: 18, qty: '150g', image: '../imagini/craft/sos.png'}
+    ],
+    exterior: [
+        {name: 'Cremă de unt', price: 25, qty: '300g'},
+        {name: 'Cremă mascarpone', price: 30, qty: '300g'},
+        {name: 'Ciocolată oglindă', price: 40, qty: '300g'},
+        {name: 'Glazură simplă', price: 20, qty: '300g'},
+        {name: 'Fondant', price: 35, qty: '300g'}
+    ],
+    color: [
+        {name: 'Alb', price: 0, qty: '0g'},
+        {name: 'Pastel (roz, bleu, lila etc.)', price: 10, qty: '0g'},
+        {name: 'Culori personalizate', price: 15, qty: '0g'}
+    ],
+    texture: [
+        {name: 'Neted', price: 0, qty: '0g'},
+        {name: 'Rustic', price: 5, qty: '0g'},
+        {name: 'Drip cake (ciocolată curgătoare)'},
+        {name: 'Ombre', price: 15, qty: '0g'},
+        {name: 'Semi-naked', price: 10, qty: '0g'}
+    ],
+    decor: [
+        {name: 'Fructe proaspete', price: 15, qty: '100g'},
+        {name: 'Flori comestibile', price: 20, qty: '50g'},
+        {name: 'Macarons', price: 25, qty: '100g'},
+        {name: 'Bomboane', price: 12, qty: '100g'},
+        {name: 'Ciocolată', price: 18, qty: '100g'},
+        {name: 'Nuci / alune', price: 10, qty: '100g'},
+        {name: 'Sprinkles', price: 8, qty: '50g'}
+    ]
+};
+
+let selected = [];
+
+function getImagePath(item) {
+    // Use the image property from the item if it exists
+    return item.image || null;
+}
+
+function updatePreview() {
+    const rightPanel = document.querySelector('.right');
+    rightPanel.innerHTML = '';
+    // Display selected layers in reverse order (first selected appears at back with highest z-index)
+    selected.forEach((item, index) => {
+        const imagePath = getImagePath(item);
+        // Only show image if path is defined
+        if (!imagePath) {
+            return;
+        }
+        const img = document.createElement('img');
+        img.src = imagePath;
+        img.alt = item.name;
+        img.classList.add(item.type);
+
+        if (index === 0) {
+            img.style.marginBottom = '0';
+        } else {
+            img.style.marginTop = '-80px'; // Overlap with previous image
+            img.style.marginBottom = '0';
+        }
+        img.style.zIndex = selected.length - index; // Later items have lower z-index
+        img.onerror = function() {
+            console.error(`Imagine not found: ${this.src}`);
+            this.style.border = '2px solid #ff6666';
+            this.style.padding = '10px';
+            this.style.background = '#ffe6e6';
+            this.alt = `Imagine indisponibilă: ${item.name}`;
+        };
+        img.onload = function() {
+            console.log(`Imagine loaded successfully: ${this.src}`);
+        };
+        rightPanel.appendChild(img);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    for (const type in layerData) {
+        if (type === 'decor') continue;
+        const select = document.getElementById(`select-${type}`);
+        layerData[type].forEach(item => {
+            const option = document.createElement('option');
+            option.text = item.name;
+            select.appendChild(option);
+        });
+    }
+    // For decor
+    const decorDiv = document.getElementById('decorOptions');
+    layerData.decor.forEach(item => {
+        const label = document.createElement('label');
+        label.innerHTML = `<input type="checkbox" value="${item.name}"> ${item.name}`;
+        decorDiv.appendChild(label);
+    });
+    // Color picker
+    document.getElementById('select-color').onchange = function() {
+        const picker = document.getElementById('colorPicker');
+        if (this.value === 'Culori personalizate') {
+            picker.style.display = 'block';
+        } else {
+            picker.style.display = 'none';
+        }
+    };
+    updateSummary();
+});
+
+function addLayer(type) {
+    const select = document.getElementById(`select-${type}`);
+    const selectedValue = select.value;
+    let item;
+    if (type === 'color' && selectedValue === 'Culori personalizate') {
+        const color = document.getElementById('colorPicker').value;
+        item = {name: 'Culoare personalizată: ' + color, price: 15, qty: '0g'};
+    } else {
+        item = layerData[type].find(i => i.name === selectedValue);
+    }
+    if (item) {
+        selected.push({...item, type});
+        updateSummary();
+        updatePreview();
+    }
+}
+
+function addDecor() {
+    const checkboxes = document.querySelectorAll('#decorOptions input:checked');
+    checkboxes.forEach(cb => {
+        const item = layerData.decor.find(i => i.name === cb.value);
+        selected.push({...item, type: 'decor'});
+        cb.checked = false;
+    });
+    updateSummary();
+    updatePreview();
+}
+
+function updateSummary() {
+    const div = document.getElementById('summary');
+    div.innerHTML = '<h3>Sloiuri alese:</h3>';
+    if (selected.length === 0) {
+        div.innerHTML += '<p>Nimic selectat.</p>';
+        return;
+    }
+    let totalPrice = 0;
+    let totalQty = 0;
+    selected.forEach((item, index) => {
+        const qtyNum = parseInt(item.qty) || 0;
+        totalPrice += item.price;
+        totalQty += qtyNum;
+        div.innerHTML += `<div>${item.name} - ${item.price} Lei - ${item.qty} <button onclick="removeLayer(${index})">Șterge</button></div>`;
+    });
+    div.innerHTML += `<p><strong>Preț total: ${totalPrice} Lei</strong></p>`;
+    div.innerHTML += `<p><strong>Cantitate totală: ${totalQty / 1000} kg</strong></p>`;
+    div.innerHTML += `<label>Denumire tort: <br> <input id="cakeName" type="text" placeholder="Ex: Tortul meu fantastic"></label><br>`;
+    div.innerHTML += `<button class="adauga" onclick="addToCart()">Adauga in cos</button> <button class="incepe" onclick="reset()">Începe de la zero</button>`;
+}
+
+function removeLayer(index) {
+    selected.splice(index, 1);
+    updateSummary();
+    updatePreview();
+}
+
+function reset() {
+    selected = [];
+    updateSummary();
+    updatePreview();
+}
+
+async function addToCart() {
+    const nume = document.getElementById('cakeName').value.trim() || 'Tort personalizat';
+    const pret = selected.reduce((sum, item) => sum + item.price, 0);
+    const descriere = '<ul>' + selected.map(s => `<li>${s.name}: ${s.price} Lei, ${s.qty}</li>`).join('') + '</ul>';
+    const uid = localStorage.getItem("uid");
+    if (!uid) {
+        console.error("Trebuie să fiți logat pentru a adăuga în coș.");
+        return;
+    }
+    if (selected.length === 0) {
+        console.error("Selectați măcar un sloi.");
+        return;
+    }
+    // add custom cake to localStorage cart
+    const cartKey = `cart_${uid}`;
+    const cart = JSON.parse(localStorage.getItem(cartKey) || '[]');
+    cart.push({ nume, cantitate: 1, pret, descriere });
+    localStorage.setItem(cartKey, JSON.stringify(cart));
+    console.log("Tort adăugat în coș (localStorage)!");
+    try { if (typeof loadStats === 'function') loadStats(); else if (window && window.loadStats) window.loadStats(); else setTimeout(()=>{ if (typeof loadStats === 'function') loadStats(); }, 200); } catch(e){}
+    reset();
+}
