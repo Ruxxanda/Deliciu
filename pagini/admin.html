@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Panou</title>
+    <script src="../scripts/admin.js" defer></script>
+    <script src="../scripts/comentarii-admin.js" defer></script>
+    <link rel="stylesheet" href="../style.css">
+    <script type="module" src="../scripts/firebase.js"></script>
+    <script src="../scripts/index.js" defer></script>
+    <script src="https://kit.fontawesome.com/8a1f01fb65.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <div class="linkuri">
+                <a href="../index.html">Acasă</a>
+                <a href="despre.html">Despre Noi</a>
+                <a href="produse.html">Catalog</a>
+                <a href="craft.html">Creează</a>
+                <a href="#">Galerie</a>
+                <a href="#">Contacte</a>
+            </div>
+            <img class="logo" src="../imagini/logo.png" alt="logo">
+            <div class="inf">
+                <div class="limba">
+                    <p>Limba</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 48 32">
+                        <defs>
+                            <clipPath id="rounded">
+                                <rect x="0" y="0" width="48" height="32" rx="4" ry="4" />
+                            </clipPath>
+                        </defs>
+
+                        <g clip-path="url(#rounded)">
+                            <!-- Albastru -->
+                            <rect x="0" y="0" width="16" height="32" fill="#003F87" />
+                            <!-- Galben -->
+                            <rect x="16" y="0" width="16" height="32" fill="#FFD100" />
+                            <!-- Roșu -->
+                            <rect x="32" y="0" width="16" height="32" fill="#CE1126" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="nr">
+                    <i class="fa-solid fa-phone-volume"></i>
+                </div>
+                <a class="cos" href="cos.html">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <div class="stat-value" id="cartCount">0</div>
+                </a>
+
+                <a class="salv" href="salvari.html">
+                    <i class="fa-solid fa-heart"></i>
+                    <div class="stat-value" id="savedCount">0</div>
+                </a>
+
+                <button class="logoogle" id="googleLogin"><i class="fa-brands fa-google"></i></button>
+                <a id="userLink" href="#" style="display:none;"><i class="fa-regular fa-user"></i></a>
+            </div>
+        </nav>
+
+
+    </header>
+
+
+    <section class="admin">
+        <div class="info">
+            <h2>Panou Admin</h2>
+            <div id="adminInfo"></div>
+            <button class="deconectare" id="logoutBtn">Deconectare</button>
+        </div>
+    </section>
+
+    <section class="useri" style="display:none;">
+        <h2>Toți userii</h2>
+        <div id="users" aria-hidden="true"></div>
+    </section>
+
+    <section class="comentarii">
+        <h2>Toate comentariile</h2>
+        <div class="date">
+            <div id="coms"></div>
+            <button id="toggleComments">Mai multe</button>
+        </div>
+    </section>
+
+    <section class="comenzi">
+        <h2>Comenzi</h2>
+        <div id="orders"></div>
+    </section>
+
+    <section class="com-efect">
+        <h2>Comenzi efectuate</h2>
+        <div id="completedOrders"></div>
+    </section>
+
+
+    <section class="ad-reducere">
+        <h2>Adaugă reducere</h2>
+        <form id="reductionForm">
+            <label>Denumirea reducerii:</label>
+            <input type="text" id="reductionName" required>
+
+            <label>Detalii:</label>
+            <textarea id="reductionDetails" required></textarea>
+
+            <label>Procent reducere (%):</label>
+            <input type="number" id="reductionPercent" min="0" max="100" required>
+
+            <label>Selectează produsele pentru reducere:</label>
+            <div id="productsCheckboxes"></div>
+
+            <div class="end-start">
+                <div class="start">
+                    <label>Data start:</label>
+                    <input type="date" id="dataStart" required>
+                </div>
+
+                <div class="end">
+                    <label>Data end:</label>
+                    <input type="date" id="dataEnd" required>
+                </div>
+            </div>
+
+            <button type="submit">Adaugă reducere</button>
+        </form>
+    </section>
+
+
+
+
+
+    <!-- removed missing send.js to avoid 404 -->
+
+</body>
+
+</html>

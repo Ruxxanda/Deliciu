@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Produse</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../scripts/applyReductions.js" defer></script>
+    <script src="../scripts/produse.js" defer></script>
+    <script src="../scripts/stats.js" defer></script>
+    <script type="module" src="../scripts/firebase.js"></script>
+    <script src="../scripts/index.js" defer></script>
+    <script src="https://kit.fontawesome.com/8a1f01fb65.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="linkuri">
+                <a href="../index.html">Acasă</a>
+                <a href="despre.html">Despre Noi</a>
+                <a href="produse.html">Catalog</a>
+                <a href="craft.html">Creează</a>
+                <a href="#">Galerie</a>
+                <a href="#">Contacte</a>
+            </div>
+            <img class="logo" src="../imagini/logo.png" alt="logo">
+            <div class="inf">
+                <div class="limba">
+                    <p>Limba</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 48 32">
+                        <defs>
+                            <clipPath id="rounded">
+                                <rect x="0" y="0" width="48" height="32" rx="4" ry="4" />
+                            </clipPath>
+                        </defs>
+
+                        <g clip-path="url(#rounded)">
+                            <!-- Albastru -->
+                            <rect x="0" y="0" width="16" height="32" fill="#003F87" />
+                            <!-- Galben -->
+                            <rect x="16" y="0" width="16" height="32" fill="#FFD100" />
+                            <!-- Roșu -->
+                            <rect x="32" y="0" width="16" height="32" fill="#CE1126" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="nr">
+                    <i class="fa-solid fa-phone-volume"></i>
+                </div>
+                <a class="cos" href="cos.html">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <div class="stat-value" id="cartCount">0</div>
+                </a>
+
+                <a class="salv" href="salvari.html">
+                    <i class="fa-solid fa-heart"></i>
+                    <div class="stat-value" id="savedCount">0</div>
+                </a>
+
+                <button class="logoogle" id="googleLogin"><i class="fa-brands fa-google"></i></button>
+                <a id="userLink" href="#" style="display:none;"><i class="fa-regular fa-user"></i></a>
+            </div>
+        </nav>
+
+
+    </header>
+
+    <section class="produse">
+        <div id="filterPanel" class="filter-panel">
+            <h3>Filtrare produse</h3>
+            <div class="filter-inputs">
+                <input type="text" id="searchName" placeholder="Cauta dupa nume..." />
+                <input type="number" id="minPrice" placeholder="Pret minim..." min="0" />
+                <input type="number" id="maxPrice" placeholder="Pret maxim..." min="0" />
+                <select id="filterReduction">
+                    <option value="">Toate produsele</option>
+                    <option value="with">Doar cu reducere</option>
+                    <option value="without">Doar fara reducere</option>
+                </select>
+                            <select id="filterType">
+                                <option value="">Toate tipurile</option>
+                                <option value="tort">Torturi</option>
+                                <option value="chec">Checuri</option>
+                                <option value="tarte">Tarte</option>
+                            </select>
+                            <button type="button" id="resetFiltersBtn">Elimina filtre</button>
+            </div>
+        </div>
+        <h2 id="titleTort">Torturi</h2>
+        <div id="produseDisplayTort" class="produse-category"></div>
+        <h2 id="titleChec">Checuri</h2>
+        <div id="produseDisplayChec" class="produse-category"></div>
+        <h2 id="titleTarte">Tarte</h2>
+        <div id="produseDisplayTarte" class="produse-category"></div>
+        <div id="produseDisplayNoCategory" class="produse-category"></div>
+    </section>
+</body>
+
+</html>

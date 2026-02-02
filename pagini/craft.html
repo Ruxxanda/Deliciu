@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CakeCraft</title>
+    <script src="../scripts/stats.js" defer></script>
+    <script src="../scripts/craft.js" defer></script>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://kit.fontawesome.com/8a1f01fb65.js" crossorigin="anonymous"></script>
+    <script type="module" src="../scripts/firebase.js"></script>
+    <script src="../scripts/index.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <div class="linkuri">
+                <a href="../index.html">Acasă</a>
+                <a href="despre.html">Despre Noi</a>
+                <a href="produse.html">Catalog</a>
+                <a href="craft.html">Creează</a>
+                <a href="#">Galerie</a>
+                <a href="#">Contacte</a>
+            </div>
+            <img class="logo" src="../imagini/logo.png" alt="logo">
+            <div class="inf">
+                <div class="limba">
+                    <p>Limba</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 48 32">
+                        <defs>
+                            <clipPath id="rounded">
+                                <rect x="0" y="0" width="48" height="32" rx="4" ry="4" />
+                            </clipPath>
+                        </defs>
+
+                        <g clip-path="url(#rounded)">
+                            <!-- Albastru -->
+                            <rect x="0" y="0" width="16" height="32" fill="#003F87" />
+                            <!-- Galben -->
+                            <rect x="16" y="0" width="16" height="32" fill="#FFD100" />
+                            <!-- Roșu -->
+                            <rect x="32" y="0" width="16" height="32" fill="#CE1126" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="nr">
+                    <i class="fa-solid fa-phone-volume"></i>
+                </div>
+                <a class="cos" href="cos.html">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <div class="stat-value" id="cartCount">0</div>
+                </a>
+
+                <a class="salv" href="salvari.html">
+                    <i class="fa-solid fa-heart"></i>
+                    <div class="stat-value" id="savedCount">0</div>
+                </a>
+
+                <button class="logoogle" id="googleLogin"><i class="fa-brands fa-google"></i></button>
+                <a id="userLink" href="#" style="display:none;"><i class="fa-regular fa-user"></i></a>
+            </div>
+        </nav>
+
+
+    </header>
+    <section class="craft">
+        <div class="left">
+            <h2>Creează-ți tortul personalizat</h2>
+
+            <h3>1. Bază (blat)</h3>
+            <select id="select-base"></select>
+            <button onclick="addLayer('base')">+ Adaugă blat</button>
+
+            <h3>2. Cremă între straturi</h3>
+            <select id="select-cream"></select>
+            <button onclick="addLayer('cream')">+ Adaugă cremă</button>
+
+            <h3>3. Umplutură (opțional)</h3>
+            <select id="select-filling"></select>
+            <button onclick="addLayer('filling')">+ Adaugă umplutură</button>
+
+            <h3>4. Exteriorul tortului</h3>
+            <h4>Îmbrăcare (glazură)</h4>
+            <select id="select-exterior"></select>
+            <button onclick="addLayer('exterior')">+ Adaugă glazură</button>
+            <h4>Culoare</h4>
+            <select id="select-color"></select>
+            <input type="color" id="colorPicker" style="display:none;">
+            <button onclick="addLayer('color')">+ Alege culoare</button>
+
+            <h3>5. Textură / stil</h3>
+            <select id="select-texture"></select>
+            <button onclick="addLayer('texture')">+ Adaugă textură</button>
+
+            <h3>6. Decor</h3>
+            <div id="decorOptions"></div>
+            <button onclick="addDecor()">+ Adaugă decor</button>
+
+            <div class="total" id="summary"></div>
+        </div>
+        <div class="right"></div>
+    </section>
+</body>
+</body>
