@@ -53,11 +53,27 @@ async function incarcaReducereActiva() {
     console.log('Active reduction:', activeReduction);
 
     if (activeReduction) {
-      // Fetch products from local JSON
-      const res = await fetch("data/products.json");
-      if (!res.ok) throw new Error(await res.text());
-      const data = await res.json();
-      const allProducts = Array.isArray(data) ? data : [];
+      // Fetch products from local JSON (try multiple possible relative paths)
+      const allProducts = await (async () => {
+        const candidates = [
+          'data/products.json',
+          '../data/products.json',
+          '/Deliciu/data/products.json',
+          window.location.origin + '/Deliciu/data/products.json'
+        ];
+        for (const url of candidates) {
+          try {
+            const r = await fetch(url);
+            if (!r.ok) continue;
+            const j = await r.json();
+            return Array.isArray(j) ? j : [];
+          } catch (e) {
+            // try next
+          }
+        }
+        // final fallback: empty list
+        return [];
+      })();
 
       // Get affected products
       const affectedNames = Array.isArray(activeReduction.produse) ? activeReduction.produse.slice(0, 3) : [];
@@ -123,7 +139,7 @@ async function incarcaReducereActiva() {
     }
   } catch (error) {
     console.error('Eroare la incarcare reducere activa:', error);
-    document.getElementById('activeReduction').style.display = 'none';
+    const arCatch = document.getElementById('activeReduction'); if (arCatch) arCatch.style.display = 'none';
   }
   // miscarea textului la reducere
     const textTop = document.querySelector('.text-top');
@@ -131,11 +147,9 @@ async function incarcaReducereActiva() {
 
     window.addEventListener('scroll', () => {
       const scrollPosition = window.scrollY;
-
       const moveAmount = scrollPosition * 0.2;
-
-      textTop.style.transform = `translateX(-${moveAmount}px)`;
-      textBottom.style.transform = `translateX(-${moveAmount}px)`;
+      if (textTop) textTop.style.transform = `translateX(-${moveAmount}px)`;
+      if (textBottom) textBottom.style.transform = `translateX(-${moveAmount}px)`;
     });
 }
 incarcaReducereActiva();
@@ -189,10 +203,17 @@ function startCountdown(endDateStr, reductionId) {
 // Încarcă 3 torturi populare
 async function incarcaTorturiPopulare() {
   try {
-    const res = await fetch('data/products.json');
-    if (!res.ok) throw new Error('Eroare la loading produse');
-    let data = await res.json();
-    let produse = Array.isArray(data) ? data : [];
+    // Try several relative paths to support being served from subfolders (GitHub Pages)
+    const candidates = ['data/products.json', '../data/products.json', '/Deliciu/data/products.json', window.location.origin + '/Deliciu/data/products.json'];
+    let produse = [];
+    for (const url of candidates) {
+      try {
+        const r = await fetch(url);
+        if (!r.ok) continue;
+        const j = await r.json();
+        if (Array.isArray(j)) { produse = j; break; }
+      } catch (e) { /* try next */ }
+    }
 
     // Aplică reduceri active din Firestore
     if (typeof applyActiveReductions === 'function') {

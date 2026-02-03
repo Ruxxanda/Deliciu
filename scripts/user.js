@@ -15,23 +15,32 @@ async function incarcaDate() {
   const poza = user.poza || user.photoURL || "../imagini/poza.png";
   // Handle both HTTP URLs (from Google) and local paths
   const imgSrc = (poza && poza.startsWith('http')) ? poza : (poza || "../imagini/poza.png");
-  document.getElementById("info").innerHTML = `
-    <img src="${imgSrc}" class="poza"><br>
-    <b>${user.nume || user.email || uid}</b><br>
-    ${user.email || ''}
-  `;
+  const infoEl = document.getElementById("info");
+  if (infoEl) {
+    infoEl.innerHTML = `
+      <img src="${imgSrc}" class="poza"><br>
+      <b>${user.nume || user.email || uid}</b><br>
+      ${user.email || ''}
+    `;
+  }
 }
 incarcaDate();
 
-document.getElementById("logoutBtn").onclick = async () => {
-  localStorage.removeItem("uid");
-  localStorage.removeItem("email");
-  window.location.href = "../index.html";
-};
+const logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+  logoutBtn.onclick = async () => {
+    localStorage.removeItem("uid");
+    localStorage.removeItem("email");
+    window.location.href = "../index.html";
+  };
+}
 
-document.getElementById("trimiteComentariu").onclick = async () => {
-  const text = document.getElementById("comentariuText").value;
-  if(!text) return;
+const trimiteBtn = document.getElementById("trimiteComentariu");
+if (trimiteBtn) {
+  trimiteBtn.onclick = async () => {
+    const comentInput = document.getElementById("comentariuText");
+    const text = comentInput ? comentInput.value : '';
+    if(!text) return;
   // save comment locally
   const stored = localStorage.getItem(`user_${uid}`) || localStorage.getItem(`profile_${uid}`) || null;
   let user = null;
@@ -47,7 +56,7 @@ document.getElementById("trimiteComentariu").onclick = async () => {
       comentarii.push({ id, ...payload });
       localStorage.setItem('comentarii', JSON.stringify(comentarii));
     }
-    document.getElementById("comentariuText").value="";
+    if (document.getElementById("comentariuText")) document.getElementById("comentariuText").value="";
     incarcaComentarii();
   } catch (err) {
     console.error('Eroare la trimitere comentariu', err);
