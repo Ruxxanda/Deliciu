@@ -254,8 +254,8 @@ async function incarcaTorturiPopulare() {
         </div>
         <h3>${p.nume}</h3>
         <p>${p.descriere}</p>${pretHTML}
-        <div style="text-align: center;">
-          <a href="pagini/produse.html" class="btn-detalii" style="padding: 8px 16px; background: #d4007e; color: white; text-decoration: none; border-radius: 4px; display: inline-block;">Vezi în catalog</a>
+        <div>
+          <a href="pagini/produse.html" class="btn-detalii">Vezi în catalog</a>
         </div>
       `;
       div.appendChild(card);

@@ -103,14 +103,19 @@
     <section class="ad-reducere">
         <h2>Adaugă reducere</h2>
         <form id="reductionForm">
-            <label>Denumirea reducerii:</label>
-            <input type="text" id="reductionName" required>
+            <div class="end-start">
+                <div class="start">
+                    <label>Denumirea reducerii:</label>
+                    <input type="text" id="reductionName" required>
+                </div>
+                <div class="end">
+                    <label>Procent reducere (%):</label>
+                    <input type="number" id="reductionPercent" min="0" max="100" required>
+                </div>
+            </div>
 
             <label>Detalii:</label>
             <textarea id="reductionDetails" required></textarea>
-
-            <label>Procent reducere (%):</label>
-            <input type="number" id="reductionPercent" min="0" max="100" required>
 
             <label>Selectează produsele pentru reducere:</label>
             <div id="productsCheckboxes"></div>
@@ -132,11 +137,59 @@
     </section>
 
 
+    <!-- footer -->
+    <footer>
+        <div class="footer-container">
+            <!-- Informații despre companie -->
+            <div class="footer-section">
+                <h3>Despre Noi</h3>
+                <p>Deliciu este o mică afacere dedicată creării torturilor artizanale, realizate cu grijă, ingrediente
+                    de
+                    calitate și multă pasiune.</p>
+            </div>
 
+            <!-- Link-uri utile -->
+            <div class="footer-section">
+                <h3>Link-uri utile</h3>
+                <ul>
+                    <li><a href="index.html">Acasă</a></li>
+                    <li><a href="despre.html">Despre Noi</a></li>
+                    <li><a href="produse.html">Catalog</a></li>
+                    <li><a href="craft.html">Creează</a></li>
+                    <li><a href="#">Galerie</a></li>
+                    <li><a href="#">Contacte</a></li>
+                </ul>
+            </div>
 
+            <!-- Contact -->
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <a href="tel:+37367287004">Telefon: +37367287004</a><br>
+                <a href="mailto:marinalabliuc@mail.com">Email: marinalabliuc@mail.com</a>
+                <p>Adresă: Tătărăuca Nouă, Moldova</p>
+                <a href="https://maps.app.goo.gl/3ERSc52ZgkMVsj8w7" target="_blank">Vezi pe hartă</a>
+            </div>
 
-    <!-- removed missing send.js to avoid 404 -->
+            <!-- Rețele sociale -->
+            <div class="footer-section">
+                <h3>Urmărește-ne</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/marina.ursu.262841" target="_blank"><i
+                            class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/marinaursu916?igsh=czIxNnI5aTlhZGNx" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                </div>
+            </div>
 
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; <span id="ani-container"></span> Deliciu. Acest website a fost realizat în
+                cadrul competiției ”Tekwill
+                Junior Ambassadors” organizată de proiectul ”Tekwill în Fiecare Școală” și nu reflectă neapărat opinia
+                proiectului.</p>
+        </div>
+    </footer>
 </body>
 
 </html>

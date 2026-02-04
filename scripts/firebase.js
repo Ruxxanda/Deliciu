@@ -151,7 +151,8 @@ window.firestore = {
 const loginBtn = document.getElementById("googleLogin");
 const userLink = document.getElementById("userLink");
 
-loginBtn.addEventListener("click", async () => {
+if (loginBtn) {
+  loginBtn.addEventListener("click", async () => {
   try {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
@@ -173,20 +174,23 @@ loginBtn.addEventListener("click", async () => {
       console.warn('Could not persist user to localStorage', err);
     }
 
-    if (user.email === "ruxanda.cujba07@gmail.com") userLink.href = "../pagini/admin.html";
-    else userLink.href = "../pagini/user.html";
-    userLink.style.display = "inline";
-
-    if (user.email === "ruxanda.cujba07@gmail.com") window.location.href = "../pagini/admin.html";
-    else window.location.href = "../pagini/user.html";
+    if (user.email === "ruxanda.cujba07@gmail.com") {
+      if (userLink) userLink.href = "../pagini/admin.html";
+      window.location.href = "../pagini/admin.html";
+    } else {
+      if (userLink) userLink.href = "../pagini/user.html";
+      window.location.href = "../pagini/user.html";
+    }
 
   } catch(err) {
     console.error("Eroare la logare!", err);
   }
-});
+  });
+}
 
 // Starea autentificării se folosește doar pentru linkul profil/admin
 onAuthStateChanged(auth, (user) => {
+  const ul = document.getElementById("userLink");
   if(user){
     const userData = {
       uid: user.uid,
@@ -201,13 +205,13 @@ onAuthStateChanged(auth, (user) => {
     } catch (err) {
       console.warn('Could not persist auth user to localStorage', err);
     }
-    userLink.style.display = "inline";
-    if(user.email === "ruxanda.cujba07@gmail.com") userLink.href="../pagini/admin.html";
-    else userLink.href="../pagini/user.html";
+    if (ul) ul.style.display = "inline";
+    if(user.email === "ruxanda.cujba07@gmail.com") { if (ul) ul.href="../pagini/admin.html"; }
+    else { if (ul) ul.href="../pagini/user.html"; }
   } else {
     localStorage.removeItem("uid");
     localStorage.removeItem("email");
-    userLink.style.display = "none";
+    if (ul) ul.style.display = "none";
   }
 });
 
@@ -216,6 +220,7 @@ window.logout = async () => {
   await signOut(auth);
   localStorage.removeItem("uid");
   localStorage.removeItem("email");
-  userLink.style.display = "none";
+  const ul = document.getElementById("userLink");
+  if (ul) ul.style.display = "none";
   // BUTONUL GOOGLE RAMANE VIZIBIL
 };

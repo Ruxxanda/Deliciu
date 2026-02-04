@@ -140,9 +140,20 @@ async function incarcaComenzi(){
     const ouid = o.uid || '';
     return (ouserEmail && ouserEmail.toLowerCase() === userEmail) || (ouid && ouid === uid);
   });
-  const resProd = await fetch('../data/products.json');
-  const data = await resProd.json();
-  const produse = Array.isArray(data) ? data : [];
+  let produse = [];
+  try {
+    const resProd = await fetch('../data/products.json');
+    if (!resProd.ok) {
+      console.warn('products.json not found (user):', resProd.status);
+      produse = [];
+    } else {
+      const data = await resProd.json();
+      produse = Array.isArray(data) ? data : [];
+    }
+  } catch (e) {
+    console.warn('Error fetching products.json (user):', e);
+    produse = [];
+  }
   const htmlArr = await Promise.all(orders.map(o => generateOrderHTMLUser(o, produse)));
   document.getElementById("orders").innerHTML = htmlArr.length > 0 ? htmlArr.join("") : '<div style="padding:20px; text-align:center; color:#999;">Nu aveți comenzi.</div>';
   // Add toggle listeners for products

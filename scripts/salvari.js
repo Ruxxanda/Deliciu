@@ -5,7 +5,19 @@ async function afiseazaSalvări() {
         return;
     }
     const salvariNume = JSON.parse(localStorage.getItem(`salvari_${uid}`) || '[]');
-    let data = await fetch('../data/products.json').then(r => r.json());
+    let data = [];
+    try {
+        const resp = await fetch('../data/products.json');
+        if (!resp.ok) {
+            console.warn('products.json not found (salvari):', resp.status);
+            data = [];
+        } else {
+            data = await resp.json();
+        }
+    } catch (e) {
+        console.warn('Error fetching products.json (salvari):', e);
+        data = [];
+    }
     let produse = Array.isArray(data) ? data : [];
     
     // Apply active reductions from Firestore
@@ -97,10 +109,19 @@ async function adaugaInCosDinSalvări(nume) {
         return;
     }
     const cantitate = 1; // Default quantity
-    const product = await fetch('../data/products.json').then(res => res.json()).then(data => {
-        const produse = Array.isArray(data) ? data : [];
-        return produse.find(p => p.nume === nume);
-    });
+    let product = null;
+    try {
+        const resp = await fetch('../data/products.json');
+        if (resp.ok) {
+            const all = await resp.json();
+            const produseAll = Array.isArray(all) ? all : [];
+            product = produseAll.find(p => p.nume === nume);
+        } else {
+            console.warn('products.json not found (adaugaInCosDinSalvari):', resp.status);
+        }
+    } catch (e) {
+        console.warn('Error fetching products.json (adaugaInCosDinSalvari):', e);
+    }
     const pret = product ? (product.pretRedus || product.pret) : 0;
     const descriere = product ? product.descriere : '';
     // add to cart stored in localStorage

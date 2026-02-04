@@ -37,14 +37,13 @@ select {
 }
 
 button {
-    background-color: #FF9A8B;
     background-image: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
     color: #FFFFFF;
     border: none;
-    padding: 5px 10px;
+    padding: 10px 5px;
     font-size: 12px;
     cursor: pointer;
-    border-radius: 7px;
+    border-radius: 5%;
     font-weight: 800;
 }
 
@@ -101,25 +100,26 @@ header nav {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 13%;
-    background: rgba(255, 255, 255, 0.95);
+    padding: 10px 13%;
+    border-bottom: 1px solid rgba(255, 154, 139, 0.119);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 154, 139, 0.1);
     box-shadow: 0 2px 20px rgba(255, 154, 139, 0.1);
     z-index: 1000;
     transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.373);
 }
 
 header nav .linkuri {
     display: flex;
     flex-direction: row;
-    gap: px;
+    gap: 5px;
     align-items: center;
 }
 
 header nav .linkuri a {
     text-decoration: none;
-    color: #333;
+    color: #000000;
     font-weight: 800;
     font-size: 16px;
     position: relative;
@@ -176,7 +176,7 @@ header nav .inf .limba {
     flex-direction: row;
     align-items: center;
     gap: 8px;
-    color: #666;
+    color: #000000;
     font-size: 14px;
     padding: 8px 12px;
     border-radius: 20px;
@@ -194,7 +194,7 @@ header nav .inf .nr {
     flex-direction: row;
     align-items: center;
     gap: 8px;
-    color: #666;
+    color: #000000;
     font-size: 14px;
     padding: 8px 12px;
     border-radius: 20px;
@@ -262,55 +262,68 @@ header nav .inf button {
     padding: 0;
 }
 
+header.index {
+    background:
+        linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)),
+        url("/imagini/header.jpg") center / cover no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+}
+
 header .helo {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     min-height: calc(100vh - 80px);
     padding: 80px 13% 40px;
     gap: 60px;
     max-width: 1400px;
-    margin: 70px auto 0;
+    margin: 0 auto;
 }
 
 header .helo .text {
     flex: 1;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 20px;
+    text-align: center;
 }
 
 header .helo .text p {
     font-size: 24px;
-    color: #FF6A88;
+    color: #ffffff;
     font-weight: 300;
     font-style: italic;
     opacity: 0.9;
 }
 
-header .helo .text h2 {
+header .helo .text h1 {
     font-family: "Playfair Display";
     font-size: 56px;
     font-weight: 700;
-    color: #333;
+    color: #ffffff;
     line-height: 1.2;
     margin-bottom: 10px;
 }
 
 header .helo .text button {
     width: 220px;
-    background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 50%, #FF99AC 100%);
-    color: #FFFFFF;
+    background: #FFFFFF;
+    color: #FF6A88;
     border: none;
-    padding: 16px 32px;
+    padding: 10px 5px;
     font-size: 18px;
     cursor: pointer;
-    border-radius: 50px;
+    border-radius: 10px;
     font-weight: 600;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(255, 154, 139, 0.3);
-    align-self: flex-start;
 }
 
 header .helo .text button:hover {
@@ -374,14 +387,11 @@ section.tort-popular .trei {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
 }
 
 section.tort-popular .trei .produs {
     background: white;
-    border-radius: 25px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -403,7 +413,7 @@ section.tort-popular .trei .produs:hover {
 section.tort-popular .trei .produs .img-wrapper {
     position: relative;
     width: 100%;
-    height: 280px;
+    height: 200px;
     overflow: hidden;
     border-radius: 25px 25px 0 0;
     object-fit: cover;
@@ -496,22 +506,21 @@ section.tort-popular .trei .produs span {
 
 section.tort-popular .trei .produs .btn-detalii {
     margin: 10px 15px;
-    padding: 10px 20px !important;
-    background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 50%, #FF99AC 100%) !important;
-    color: white !important;
-    text-decoration: none !important;
-    border-radius: 25px !important;
-    display: inline-block !important;
-    font-weight: 600 !important;
-    font-size: 14px !important;
-    transition: all 0.3s ease !important;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 50%, #FF99AC 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(255, 106, 136, 0.3) !important;
+    box-shadow: 0 4px 12px rgba(255, 106, 136, 0.3);
 }
 
 section.tort-popular .trei .produs .btn-detalii:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(255, 106, 136, 0.4) !important;
+    box-shadow: 0 8px 20px rgba(255, 106, 136, 0.4);
 }
 
 /* reducere */
@@ -519,7 +528,7 @@ section.reducere {
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 600px;
+    height: 500px;
     background-color: #FF9A8B;
     background-image: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
     margin: 0;
@@ -527,7 +536,7 @@ section.reducere {
     padding: 5% 10%;
 }
 
-section.reducere .reduc .text-top, 
+section.reducere .reduc .text-top,
 section.reducere .reduc .text-bottom {
     position: absolute;
     white-space: nowrap;
@@ -558,12 +567,12 @@ section.reducere .reduc .continut .text {
 section.reducere .reduc .continut .text h2 {
     color: white;
     margin-bottom: 5px;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 800;
 }
 
 section.reducere .reduc .continut .text p {
-    font-size: 18px;
+    font-size: 17px;
     color: #ffffff;
 }
 
@@ -579,14 +588,14 @@ section.reducere .reduc .continut .text button {
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(255, 154, 139, 0.3);
     position: relative;
-    z-index: 1000;
+    z-index: 800;
 }
 
 section.reducere .reduc .continut .timer {
     text-align: end;
     position: absolute;
     right: 10%;
-    margin-top: 120px;
+    margin-top: 50px;
     width: 100%;
 }
 
@@ -597,8 +606,8 @@ section.reducere .reduc .continut .timer p {
 
 section.reducere .reduc .continut .timer span.time {
     color: #ffffff;
-    font-size: 200px;
-    font-weight: 800;   
+    font-size: 180px;
+    font-weight: 800;
 }
 
 section.reducere .reduc .continut .text .produse {
@@ -612,15 +621,15 @@ section.reducere .reduc .continut .text .produse {
 
 section.reducere .reduc .continut .text .produs {
     background-color: #ffffff;
-    width: 40%;
+    width: 35%;
     text-align: center;
     position: relative;
-    border-radius: 7%;
+    border-radius: 10px;
 }
 
 section.reducere .reduc .continut .text .produs img {
     width: 100%;
-    height: 200px;
+    height: 150px;
     object-fit: cover;
     object-position: center;
     display: block;
@@ -768,9 +777,6 @@ section.coment #comentarii .com {
     overflow: hidden;
     height: inherit;
 }
-
-/* 
- */
 
 section.coment #comentarii .com:hover {
     box-shadow: rgba(255, 154, 139, 0.15) 0px 2px 5px -1px, rgba(255, 154, 139, 0.15) 0px 1px 3px -1px;
@@ -926,20 +932,18 @@ section.crafti .text p {
 
 section.crafti .text button {
     font-weight: 600;
-    font-size: 18px;
+    font-size: 17px;
     background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 50%, #FF99AC 100%);
     color: #FFFFFF;
     border: none;
-    padding: 15px 30px;
+    padding: 10px 20px;
     cursor: pointer;
-    border-radius: 20px;
-    font-weight: 600;
+    border-radius: 10px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(255, 154, 139, 0.3);
 }
 
 section.crafti .text button:hover {
-    transform: scale(1.02);
     box-shadow: 0 8px 25px rgba(255, 154, 139, 0.4);
 }
 
@@ -956,7 +960,7 @@ section.crafti img {
 /* ADMIN */
 
 section.admin {
-    margin: 150px 13% 80px;
+    margin: 120px 13% 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1046,9 +1050,7 @@ section.admin #adminInfo b {
 /* comentarii */
 
 section.comentarii {
-    padding: 60px 0;
     border-radius: 20px;
-    margin-bottom: 50px;
 }
 
 section.comentarii h2 {
@@ -1106,7 +1108,6 @@ section.comentarii .date #coms .comentariu::before {
 }
 
 section.comentarii .date #coms .comentariu:hover {
-    transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba(255, 154, 139, 0.15);
 }
 
@@ -1124,15 +1125,15 @@ section.comentarii .date #coms .comentariu b {
     font-family: "Playfair Display";
     font-weight: 600;
     font-size: 20px;
-    color: #333;
-    margin-bottom: 10px;
+    color: #333333;
+    margin-bottom: 5px;
 }
 
 section.comentarii .date #coms .comentariu p {
     font-size: 16px;
-    color: #666;
+    color: #666666;
     line-height: 1.6;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 section.comentarii .date #coms .comentariu button {
@@ -1140,15 +1141,15 @@ section.comentarii .date #coms .comentariu button {
     background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 50%, #FF99AC 100%);
     color: white;
     border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-weight: 500;
+    padding: 10px 50px;
+    border-radius: 10px;
+    font-weight: 800;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin-top: auto;
 }
 
 section.comentarii .date #coms .comentariu button:hover {
-    transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(255, 154, 139, 0.3);
 }
 
@@ -1175,10 +1176,9 @@ section.comentarii .date #toggleComments:hover {
 
 section.comenzi,
 section.com-efect {
-    padding: 60px 0;
     background: linear-gradient(135deg, #fef7f7 0%, #fdf2f2 100%);
     border-radius: 20px;
-    margin-bottom: 50px;
+    margin: 50px 13%;
 }
 
 section.comenzi h2,
@@ -1282,9 +1282,9 @@ section.com-efect #completedOrders .order-item .info .date select {
     color: white;
     border: none;
     padding: 5px 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 15px;
     cursor: pointer;
     margin: 8px 0;
 }
@@ -1333,9 +1333,15 @@ section.com-efect #completedOrders .order-item .prod .produs img {
 section.comenzi #orders .order-item .prod .produs .infor p,
 section.com-efect #completedOrders .order-item .prod .produs .infor p {
     font-size: 12px;
-    color: #666;
+    color: #000000;
     text-align: center;
     margin-bottom: 5px;
+}
+
+section.comenzi #orders .order-item .prod .produs button,
+section.com-efect #completedOrders .order-item .prod .produs button {
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 section.comenzi #orders .order-item .prod .produs .detaliii,
@@ -1394,9 +1400,8 @@ section.com-efect #completedOrders .order-item .extra {
 
 /* adauga produs si reducere */
 
-section.ad-produs,
 section.ad-reducere {
-    padding: 60px 40px;
+    padding: 20px 20px;
     background: linear-gradient(135deg, #ffffff 0%, #fefefe 100%);
     border-radius: 25px;
     box-shadow: 0 20px 40px rgba(255, 154, 139, 0.1);
@@ -1406,7 +1411,6 @@ section.ad-reducere {
     overflow: hidden;
 }
 
-section.ad-produs::before,
 section.ad-reducere::before {
     content: '';
     position: absolute;
@@ -1418,7 +1422,6 @@ section.ad-reducere::before {
     border-radius: 25px 25px 0 0;
 }
 
-section.ad-produs h2,
 section.ad-reducere h2 {
     font-family: "Playfair Display";
     font-weight: 700;
@@ -1427,7 +1430,7 @@ section.ad-reducere h2 {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     text-align: center;
     position: relative;
     z-index: 1;
@@ -1437,7 +1440,7 @@ form {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 25px;
+    gap: 10px;
     width: 100%;
     position: relative;
     z-index: 1;
@@ -1485,7 +1488,6 @@ input[type="file"]:hover {
     background: rgba(255, 154, 139, 0.1);
 }
 
-section.ad-produs button,
 section.ad-reducere button {
     font-size: 18px;
     font-weight: 600;
@@ -1493,17 +1495,15 @@ section.ad-reducere button {
     color: white;
     border: none;
     padding: 15px 30px;
-    border-radius: 50px;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(255, 154, 139, 0.3);
     align-self: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
-section.ad-produs button:hover,
 section.ad-reducere button:hover {
-    transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(255, 154, 139, 0.4);
 }
 
@@ -1571,13 +1571,11 @@ input[type="checkbox"] {
     border-radius: 4px;
 }
 
-section.ad-produs button.adaugat,
 section.ad-reducere button.adaugat {
     background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
     box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
-section.ad-produs button.adaugat:hover,
 section.ad-reducere button.adaugat:hover {
     box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
 }
@@ -1962,7 +1960,7 @@ section.produse .produse-category .produs .detalii {
 /* COS SECTION */
 section.cos {
     margin: 80px 0 50px;
-    padding: 60px 0;
+    padding: 60px 0 0;
 }
 
 section.cos h2 {
@@ -1977,22 +1975,9 @@ section.cos h2 {
     text-align: center;
 }
 
-section.cos #error {
-    display: none;
-    color: #ff4444;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 500;
-    padding: 20px;
-    background: rgba(255, 68, 68, 0.1);
-    border-radius: 10px;
-    margin: 20px auto;
-    max-width: 500px;
-}
-
 section.cos #cosDisplay {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     max-width: 1200px;
     margin: 0 auto;
@@ -2140,8 +2125,7 @@ section.cos #cosDisplay .produs .actiuni .sterge-cos {
 }
 
 section.cos .order-form {
-    max-width: 500px;
-    margin: 40px auto;
+    margin: 40px 13%;
     padding: 30px;
     background: linear-gradient(135deg, rgba(255, 154, 139, 0.05) 0%, rgba(255, 106, 136, 0.05) 100%);
     border-radius: 20px;
@@ -2149,8 +2133,8 @@ section.cos .order-form {
 }
 
 section.cos .order-form h3 {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 25px;
+    font-weight: 800;
     color: #333;
     margin-bottom: 25px;
     text-align: center;
@@ -2170,6 +2154,7 @@ section.cos .form-group label {
     margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    margin-left: 10px;
 }
 
 section.cos .form-group input,
@@ -2188,10 +2173,10 @@ section.cos .order-section #placeOrderBtn {
     background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 50%, #FF99AC 100%);
     color: white;
     border: none;
-    padding: 18px 40px;
-    font-size: 20px;
+    padding: 10px 15px;
+    font-size: 17px;
     font-weight: 600;
-    border-radius: 50px;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 6px 20px rgba(255, 154, 139, 0.3);
@@ -2223,7 +2208,7 @@ section.salvari h2 {
 
 section.salvari #salvariDisplay {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
@@ -2248,7 +2233,7 @@ section.salvari #salvariDisplay .produs.salvare-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
     box-shadow: 0 15px 35px rgba(255, 154, 139, 0.1);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 2px solid rgba(255, 154, 139, 0.1);
@@ -2258,7 +2243,6 @@ section.salvari #salvariDisplay .produs.salvare-item {
 }
 
 section.salvari #salvariDisplay .produs.salvare-item:hover {
-    transform: translateY(-10px) scale(1.02);
     box-shadow: 0 25px 50px rgba(255, 154, 139, 0.2);
     border-color: rgba(255, 154, 139, 0.3);
 }
@@ -2327,23 +2311,20 @@ section.salvari #salvariDisplay .produs .actiuni {
     justify-content: center;
 }
 
+section.salvari #salvariDisplay .produs .detalii,
 section.salvari #salvariDisplay .produs .actiuni .adauga-cos {
     background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 50%, #FF99AC 100%);
     color: white;
     border: none;
-    padding: 12px 15px;
+    padding: 7px 10px;
     font-size: 16px;
     font-weight: 500;
-    border-radius: 25px;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(255, 154, 139, 0.3);
     width: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 section.salvari #salvariDisplay .produs .actiuni .adauga-cos i {
@@ -2518,9 +2499,9 @@ section.craft .right img {
     height: auto;
 }
 
-section.craft .right img.cream {    
+section.craft .right img.cream {
     margin-top: -20px;
-    margin-bottom: -50px;  
+    margin-bottom: -50px;
 }
 
 section.craft .right img.filling {
@@ -2828,7 +2809,7 @@ section.cine {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
     gap: 10px;
 }
 
@@ -2843,7 +2824,7 @@ section.cine p span {
 
 section.cine img {
     width: 45%;
-    border-radius: 65% 35% 60% 40% / 28% 50% 50% 72% ;
+    border-radius: 65% 35% 60% 40% / 28% 50% 50% 72%;
 }
 
 section.istoria {
@@ -3064,4 +3045,1451 @@ section.servicii .info p {
 
 section.servicii .card-group:hover .card:not(:hover) {
     filter: blur(5px);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - TABLET & MOBILE
+   ======================================== */
+
+/* TABLET (768px - 1024px) */
+@media (max-width: 1024px) {
+    section {
+        margin: 10px 8% 0;
+    }
+
+    header nav {
+        padding: 15px 8%;
+    }
+
+    header .helo {
+        padding: 80px 8% 40px;
+        gap: 30px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header .helo .text {
+        align-items: center;
+    }
+
+    header .helo .text h2 {
+        font-size: 48px;
+    }
+
+    header .helo .text p {
+        font-size: 18px;
+    }
+
+    header .helo .text button {
+        align-self: center;
+    }
+
+    header .helo img {
+        max-width: 100%;
+        flex: 1;
+    }
+
+    section.tort-popular .trei {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0 15px;
+        gap: 15px;
+    }
+
+    section.produse .produse-category {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    section.reducere {
+        height: auto;
+        padding: 5% 8%;
+    }
+
+    section.reducere .reduc .continut {
+        flex-direction: column;
+    }
+
+    section.reducere .reduc .continut .text {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    section.reducere .reduc .continut .timer {
+        position: relative;
+        right: auto;
+        margin-top: 20px;
+        text-align: center;
+        width: 100%;
+    }
+
+    section.reducere .reduc .continut .timer span.time {
+        font-size: 100px;
+    }
+
+    section.reducere .reduc .continut .text .produs {
+        width: 100%;
+    }
+
+    section.crafti {
+        flex-direction: column;
+        padding: 40px 15px;
+        gap: 30px;
+    }
+
+    section.crafti img {
+        max-width: 100%;
+    }
+
+    section.craft {
+        gap: 30px;
+        margin-top: 100px;
+    }
+
+    section.craft .left {
+        padding: 25px;
+    }
+
+    section.craft .right {
+        position: static;
+        min-height: auto;
+    }
+
+    section.craft h2 {
+        font-size: 36px;
+    }
+
+    section.user {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    section.user .info img {
+        width: 250px;
+    }
+
+    section.user .posibil h1 {
+        font-size: 40px;
+    }
+
+    section.servicii h2 {
+        font-size: 24px;
+    }
+
+    section.servicii .card-group {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    section.servicii .card {
+        width: 100%;
+        max-width: 280px;
+        height: 300px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    header nav .linkuri {
+        gap: 5px;
+    }
+
+    header nav .linkuri a {
+        font-size: 14px;
+        padding: 5px 8px;
+    }
+
+    header nav .inf {
+        gap: 15px;
+    }
+
+    header nav .inf a,
+    header nav .inf button.logoogle {
+        padding: 5px 8px;
+    }
+
+    header nav img.logo {
+        width: 70px;
+    }
+
+    section.admin {
+        margin: 120px 8% 60px;
+        padding: 40px 25px;
+    }
+
+    section.comentarii .date #coms {
+        gap: 20px;
+        padding: 0 15px;
+    }
+
+    section.comenzi #orders,
+    section.com-efect #completedOrders {
+        gap: 15px;
+    }
+
+    section.ad-produs,
+    section.ad-reducere {
+        padding: 40px 25px;
+    }
+
+    section.ad-reducere .end-start {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    section.ad-reducere #productsCheckboxes {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    header .infic {
+        margin: 100px 8% 0;
+    }
+
+    header .infic .imagini {
+        gap: 10px;
+    }
+
+    header .infic .imagini img {
+        width: 48%;
+    }
+
+    section.cine {
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    section.cine img {
+        width: 100%;
+    }
+
+    section.cine p {
+        font-size: 16px;
+    }
+
+    section.istoria {
+        margin: 30px 8%;
+    }
+
+    section.secrete {
+        flex-direction: column;
+    }
+
+    section.secrete img {
+        width: 100%;
+        height: auto;
+    }
+
+    section.secrete .info {
+        width: 100%;
+    }
+
+    section.lucru {
+        margin: 30px 8%;
+    }
+
+    section.lucru .detalii {
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+
+    section.lucru .detalii .din .un {
+        width: 130px;
+        height: 130px;
+    }
+
+    section.lucru .detalii .din .un img {
+        width: 70px;
+        height: 70px;
+        margin-top: 30px;
+    }
+
+    section.cos #cosDisplay,
+    section.salvari #salvariDisplay {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .footer-container {
+        width: 95%;
+        gap: 20px;
+    }
+
+    .carousel-item {
+        flex: 0 0 calc((100% - 16px) / 2);
+    }
+}
+
+/* MOBILE (576px - 767px) */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    section {
+        margin: 10px 5% 0;
+    }
+
+    header.index {
+        height: auto;
+    }
+
+    header nav {
+        padding: 12px 5%;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    header nav .linkuri {
+        flex-wrap: wrap;
+        gap: 8px;
+        order: 3;
+        width: 100%;
+    }
+
+    header nav .linkuri a {
+        font-size: 13px;
+        padding: 5px 10px;
+    }
+
+    header nav img.logo {
+        width: 60px;
+    }
+
+    header nav .inf {
+        gap: 10px;
+        order: 2;
+    }
+
+    header nav .inf a,
+    header nav .inf button.logoogle {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    header nav .inf i {
+        font-size: 18px;
+    }
+
+    header nav .inf .limba,
+    header nav .inf .nr {
+        display: none;
+    }
+
+    header .helo {
+        padding: 60px 5% 30px;
+        min-height: auto;
+        gap: 20px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header .helo .text {
+        align-items: center;
+        gap: 15px;
+    }
+
+    header .helo .text h2 {
+        font-size: 32px;
+        line-height: 1.2;
+    }
+
+    header .helo .text p {
+        font-size: 14px;
+    }
+
+    header .helo .text button {
+        width: 180px;
+        padding: 12px 20px;
+        font-size: 14px;
+        align-self: center;
+    }
+
+    header .helo img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    h3 {
+        font-size: 18px !important;
+    }
+
+    select {
+        font-size: 12px;
+        padding: 8px 30px 8px 12px;
+    }
+
+    button {
+        padding: 5px 12px;
+        font-size: 12px;
+    }
+
+    section.tort-popular {
+        padding: 40px 0;
+    }
+
+    section.tort-popular .trei .produs {
+        padding-bottom: 20px;
+    }
+
+    section.tort-popular .trei .produs .img-wrapper {
+        height: 200px;
+    }
+
+    section.tort-popular .trei .produs h3 {
+        font-size: 18px;
+    }
+
+    section.tort-popular .trei .produs>p:nth-of-type(1) {
+        font-size: 12px;
+    }
+
+    section.tort-popular .trei .produs .btn-detalii {
+        padding: 8px 15px !important;
+        font-size: 12px !important;
+        margin: 8px 12px;
+    }
+
+    section.reducere {
+        height: auto;
+        padding: 10% 5%;
+        margin: 30px 0 0;
+    }
+
+    section.reducere .reduc .text-top,
+    section.reducere .reduc .text-bottom {
+        font-size: 18px;
+        display: none;
+    }
+
+    section.reducere .reduc .continut {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    section.reducere .reduc .continut .text {
+        width: 100%;
+    }
+
+    section.reducere .reduc .continut .text h2 {
+        font-size: 28px;
+        color: white;
+        margin-bottom: 10px;
+    }
+
+    section.reducere .reduc .continut .text p {
+        font-size: 14px;
+    }
+
+    section.reducere .reduc .continut .text button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    section.reducere .reduc .continut .timer {
+        position: relative;
+        right: auto;
+        margin-top: 20px;
+        text-align: center;
+        width: 100%;
+    }
+
+    section.reducere .reduc .continut .timer p {
+        font-size: 16px;
+    }
+
+    section.reducere .reduc .continut .timer span.time {
+        font-size: 60px;
+    }
+
+    section.reducere .reduc .continut .text .produse {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    section.reducere .reduc .continut .text .produs {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    section.coment {
+        margin: 50px 5% 0;
+    }
+
+    section.coment h2 {
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    .carousel-item {
+        flex: 0 0 100%;
+    }
+
+    .carousel-btn {
+        display: none;
+    }
+
+    .carousel-container {
+        gap: 10px;
+    }
+
+    section.coment #comentarii .com {
+        padding: 20px;
+        text-align: center;
+    }
+
+    section.coment #comentarii .com img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 15px;
+    }
+
+    section.coment #comentarii .com .user {
+        font-size: 18px;
+    }
+
+    section.coment #comentarii .com .text {
+        font-size: 14px;
+        max-width: 100%;
+    }
+
+    section.crafti {
+        flex-direction: column;
+        padding: 30px 10px;
+        gap: 20px;
+    }
+
+    section.crafti .text h2 {
+        font-size: 28px;
+    }
+
+    section.crafti .text p {
+        font-size: 14px;
+    }
+
+    section.crafti .text button {
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+
+    section.craft {
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 60px;
+    }
+
+    section.craft .left {
+        min-width: auto;
+        width: 100%;
+        padding: 20px;
+    }
+
+    section.craft h2 {
+        font-size: 26px;
+    }
+
+    section.craft h3 {
+        font-size: 16px;
+    }
+
+    section.craft h4 {
+        font-size: 13px;
+    }
+
+    section.craft .left select,
+    section.craft .left input[type="color"] {
+        font-size: 12px;
+        padding: 8px 30px 8px 10px;
+    }
+
+    section.craft button {
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+
+    section.craft .right {
+        min-height: 250px;
+        position: static;
+        width: 100%;
+        padding: 15px 0;
+    }
+
+    section.craft .right img {
+        max-width: 200px;
+    }
+
+    section.craft .right img.cream {
+        margin-top: -15px;
+        margin-bottom: -30px;
+    }
+
+    section.craft .right img.filling {
+        margin-top: -20px;
+        margin-bottom: -30px;
+    }
+
+    section.servicii h2 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    section.servicii .card-group {
+        flex-direction: row;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    section.servicii .card {
+        width: calc(33.333% - 8px);
+        max-width: 200px;
+        height: 250px;
+    }
+
+    section.servicii .info h3 {
+        font-size: 16px;
+        line-height: 25px;
+    }
+
+    section.servicii .info p {
+        font-size: 12px;
+    }
+
+    section.admin {
+        margin: 80px 5% 40px;
+        padding: 30px 20px;
+    }
+
+    section.admin .info h2 {
+        font-size: 32px;
+    }
+
+    section.admin .info .deconectare {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+
+    section.admin #adminInfo img {
+        width: 120px;
+        height: 120px;
+    }
+
+    section.admin #adminInfo b {
+        font-size: 18px;
+    }
+
+    section.comentarii {
+        padding: 40px 0;
+    }
+
+    section.comentarii h2 {
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    section.comentarii .date #coms {
+        grid-template-columns: repeat(3, minmax(280px, 1fr));
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    section.comentarii .date #coms .comentariu {
+        padding: 20px;
+    }
+
+    section.comentarii .date #coms .comentariu img {
+        width: 70px;
+        height: 70px;
+    }
+
+    section.comentarii .date #coms .comentariu b {
+        font-size: 16px;
+    }
+
+    section.comentarii .date #coms .comentariu p {
+        font-size: 12px;
+    }
+
+    section.comentarii .date #toggleComments {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    section.comenzi #orders,
+    section.com-efect #completedOrders {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 0 10px;
+    }
+
+    section.comenzi #orders .order-item,
+    section.com-efect #completedOrders .order-item {
+        padding: 10px;
+    }
+
+    section.comenzi #orders .order-item .prod,
+    section.com-efect #completedOrders .order-item .prod {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+
+    section.ad-produs,
+    section.ad-reducere {
+        padding: 30px 15px;
+        margin-bottom: 30px;
+    }
+
+    section.ad-produs h2,
+    section.ad-reducere h2 {
+        font-size: 26px;
+    }
+
+    form {
+        gap: 15px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    input,
+    textarea {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    section.ad-produs button,
+    section.ad-reducere button {
+        font-size: 14px;
+        padding: 12px 24px;
+    }
+
+    section.ad-reducere .end-start {
+        grid-template-columns: 1fr;
+    }
+
+    section.ad-reducere #productsCheckboxes {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    section.ad-reducere #productsCheckboxes .product-card {
+        padding: 10px;
+    }
+
+    section.ad-reducere #productsCheckboxes .product-card img {
+        height: 120px;
+    }
+
+    section.user {
+        flex-direction: column;
+        gap: 20px;
+        padding: 40px 0;
+    }
+
+    section.user .posibil h1 {
+        font-size: 32px;
+    }
+
+    section.user .posibil p,
+    section.user .posibil span {
+        font-size: 14px;
+    }
+
+    section.user .info img {
+        width: 200px;
+    }
+
+    section.user .info .but button {
+        font-size: 16px;
+    }
+
+    section.add-com h2 {
+        font-size: 30px;
+    }
+
+    section.add-com .scrie textarea {
+        height: 80px;
+    }
+
+    section.add-com .scrie button {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+
+    section.produse {
+        padding: 100px 0;
+    }
+
+    section.produse h2 {
+        margin: 30px 0;
+        font-size: 26px;
+    }
+
+    section.produse .filter-panel {
+        padding: 15px;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    section.produse .filter-panel h3 {
+        font-size: 22px;
+    }
+
+    section.produse .filter-inputs {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    section.produse .filter-inputs input,
+    section.produse .filter-inputs select {
+        width: 100%;
+        min-width: auto;
+        font-size: 12px;
+        padding: 10px 12px;
+    }
+
+    section.produse .produse-category {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    section.produse .produse-category .produs {
+        padding-bottom: 20px;
+    }
+
+    section.produse .produse-category .produs .img-wrapper {
+        height: 220px;
+    }
+
+    section.produse .produse-category .produs h3 {
+        font-size: 16px;
+        margin: 8px 0 5px;
+    }
+
+    section.produse .produse-category .produs>p:nth-of-type(1) {
+        font-size: 12px;
+        margin: 5px 10px;
+    }
+
+    section.cos {
+        margin: 60px 0 30px;
+        padding: 40px 0;
+    }
+
+    section.cos h2 {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+
+    section.cos #cosDisplay {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    section.cos #cosDisplay .produs.cos-item {
+        padding-bottom: 20px;
+    }
+
+    section.cos #cosDisplay .produs h3 {
+        font-size: 16px;
+    }
+
+    section.cos #cosDisplay .produs p {
+        font-size: 12px;
+    }
+
+    section.cos #cosDisplay .produs .detalii {
+        padding: 8px 12px;
+        font-size: 11px;
+        margin: 0 12px 10px;
+    }
+
+    section.cos #cosDisplay .produs .img-wrapper {
+        height: 220px;
+    }
+
+    section.cos .order-form {
+        max-width: 100%;
+        margin: 20px 5%;
+        padding: 20px;
+    }
+
+    section.cos .order-form h3 {
+        font-size: 16px;
+    }
+
+    section.cos .form-group label {
+        font-size: 12px;
+    }
+
+    section.cos .order-section #placeOrderBtn {
+        padding: 14px 28px;
+        font-size: 16px;
+    }
+
+    section.salvari {
+        margin: 60px 0 30px;
+        padding: 40px 0;
+    }
+
+    section.salvari h2 {
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    section.salvari #salvariDisplay {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    section.salvari #salvariDisplay .produs.salvare-item {
+        padding-bottom: 20px;
+    }
+
+    section.salvari #salvariDisplay .produs h3 {
+        font-size: 16px;
+    }
+
+    section.salvari #salvariDisplay .produs p {
+        font-size: 12px;
+        padding: 0 12px;
+    }
+
+    section.salvari #salvariDisplay .produs .actiuni .adauga-cos {
+        width: 90%;
+        padding: 8px 12px;
+        font-size: 11px;
+        margin-top: 10px;
+    }
+
+    header .infic {
+        margin: 60px 5% 0;
+    }
+
+    header .infic p {
+        font-size: 14px;
+    }
+
+    header .infic .imagini {
+        gap: 8px;
+    }
+
+    header .infic .imagini img {
+        width: 48%;
+    }
+
+    section.cine {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    section.cine p {
+        font-size: 14px;
+    }
+
+    section.cine img {
+        width: 100%;
+    }
+
+    section.istoria {
+        margin: 30px 5%;
+        padding: 30px 0;
+    }
+
+    section.istoria p {
+        font-size: 14px;
+    }
+
+    section.secrete {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    section.secrete img {
+        width: 100%;
+        height: auto;
+    }
+
+    section.secrete .info {
+        width: 100%;
+    }
+
+    section.secrete .info p,
+    section.secrete .info .citata {
+        font-size: 14px;
+    }
+
+    section.secrete .info .cine span {
+        font-size: 14px;
+    }
+
+    section.lucru {
+        margin: 30px 5%;
+    }
+
+    section.lucru p {
+        font-size: 14px;
+    }
+
+    section.lucru .detalii {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    section.lucru .detalii .din .un {
+        width: 110px;
+        height: 110px;
+    }
+
+    section.lucru .detalii .din .un img {
+        width: 60px;
+        height: 60px;
+        margin-top: 25px;
+    }
+
+    section.lucru .detalii .din h3 {
+        font-size: 16px;
+    }
+
+    section.lucru .detalii .din p {
+        font-size: 12px;
+    }
+
+    .footer-container {
+        width: 100%;
+        padding: 0 15px;
+        gap: 20px;
+    }
+
+    .footer-section h3 {
+        font-size: 1.2em;
+    }
+
+    .footer-section p,
+    .footer-section a {
+        font-size: 0.85em;
+    }
+
+    .social-icons a {
+        width: 35px;
+        height: 35px;
+        font-size: 1em;
+        margin-right: 8px;
+    }
+
+    .linie {
+        width: 100px;
+        height: 5px;
+    }
+}
+
+/* EXTRA SMALL DEVICES (< 576px) */
+@media (max-width: 576px) {
+    body {
+        font-size: 13px;
+    }
+
+    section {
+        margin: 8px 3% 0;
+    }
+
+    header nav {
+        padding: 10px 3%;
+        gap: 10px;
+    }
+
+    header nav .linkuri {
+        gap: 5px;
+    }
+
+    header nav .linkuri a {
+        font-size: 11px;
+        padding: 3px 6px;
+    }
+
+    header nav img.logo {
+        width: 50px;
+    }
+
+    header nav .inf {
+        gap: 8px;
+    }
+
+    header nav .inf a,
+    header nav .inf button.logoogle {
+        padding: 3px 8px;
+        font-size: 10px;
+    }
+
+    header nav .inf i {
+        font-size: 16px;
+    }
+
+    header nav .inf .cos #cartCount,
+    header nav .inf .salv #savedCount {
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+    }
+
+    header .helo {
+        padding: 40px 3% 20px;
+        gap: 15px;
+    }
+
+    header .helo .text h2 {
+        font-size: 24px;
+    }
+
+    header .helo .text p {
+        font-size: 12px;
+    }
+
+    header .helo .text button {
+        width: 150px;
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 16px !important;
+    }
+
+    button {
+        padding: 4px 10px;
+        font-size: 11px;
+    }
+
+    select {
+        font-size: 11px;
+        padding: 6px 25px 6px 10px;
+    }
+
+    section.tort-popular .trei .produs h3 {
+        font-size: 16px;
+    }
+
+    section.tort-popular .trei .produs .btn-detalii {
+        padding: 6px 12px !important;
+        font-size: 11px !important;
+    }
+
+    section.reducere {
+        padding: 15% 3%;
+    }
+
+    section.reducere .reduc .continut .text h2 {
+        font-size: 20px;
+    }
+
+    section.reducere .reduc .continut .text p {
+        font-size: 12px;
+    }
+
+    section.reducere .reduc .continut .timer span.time {
+        font-size: 40px;
+    }
+
+    section.coment h2 {
+        font-size: 22px;
+    }
+
+    section.crafti {
+        padding: 20px 5px;
+    }
+
+    section.crafti .text h2 {
+        font-size: 22px;
+    }
+
+    section.crafti .text p {
+        font-size: 12px;
+    }
+
+    section.craft {
+        margin-top: 40px;
+    }
+
+    section.craft .left {
+        padding: 15px;
+    }
+
+    section.craft h2 {
+        font-size: 22px;
+    }
+
+    section.craft h3 {
+        font-size: 14px;
+    }
+
+    section.craft .left select,
+    section.craft .left input[type="color"] {
+        font-size: 11px;
+        padding: 6px 25px 6px 8px;
+    }
+
+    section.craft .right img {
+        max-width: 150px;
+    }
+
+    section.servicii h2 {
+        font-size: 18px;
+        line-height: 25px;
+    }
+
+    section.servicii .card {
+        width: calc(33.333% - 6px);
+        max-width: 150px;
+        height: 220px;
+    }
+
+    section.servicii .info h3 {
+        font-size: 14px;
+    }
+
+    section.servicii .info p {
+        font-size: 11px;
+    }
+
+    section.admin {
+        margin: 60px 3% 30px;
+        padding: 20px 15px;
+    }
+
+    section.admin .info h2 {
+        font-size: 26px;
+    }
+
+    section.admin #adminInfo img {
+        width: 100px;
+    }
+
+    section.comentarii .date #coms {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 0 5px;
+    }
+
+    section.comentarii .date #coms .comentariu {
+        padding: 15px;
+    }
+
+    section.comenzi #orders,
+    section.com-efect #completedOrders {
+        grid-template-columns: 1fr;
+        padding: 0 5px;
+    }
+
+    section.ad-reducere #productsCheckboxes {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    section.ad-produs,
+    section.ad-reducere {
+        padding: 20px 12px;
+    }
+
+    section.ad-produs h2,
+    section.ad-reducere h2 {
+        font-size: 22px;
+    }
+
+    input,
+    textarea {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    section.produse {
+        padding: 80px 0;
+    }
+
+    section.produse .filter-panel {
+        padding: 12px;
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+
+    section.produse .filter-panel h3 {
+        font-size: 18px;
+    }
+
+    section.produse .filter-inputs {
+        gap: 8px;
+    }
+
+    section.produse .filter-inputs input,
+    section.produse .filter-inputs select {
+        font-size: 11px;
+        padding: 8px 10px;
+    }
+
+    section.produse .produse-category {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        padding: 0 3px;
+    }
+
+    section.produse .produse-category .produs .img-wrapper {
+        height: 160px;
+    }
+
+    section.produse .produse-category .produs h3 {
+        font-size: 13px;
+    }
+
+    section.produse .produse-category .produs>p:nth-of-type(1) {
+        font-size: 10px;
+    }
+
+    section.cos #cosDisplay {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        padding: 0 3px;
+    }
+
+    section.cos #cosDisplay .produs h3 {
+        font-size: 13px;
+    }
+
+    section.cos #cosDisplay .produs p {
+        font-size: 10px;
+    }
+
+    section.cos #cosDisplay .produs .detalii {
+        padding: 6px 10px;
+        font-size: 10px;
+        margin: 0 8px 8px;
+    }
+
+    section.cos #cosDisplay .produs .img-wrapper {
+        height: 160px;
+    }
+
+    section.cos .order-form {
+        margin: 15px 3%;
+        padding: 15px;
+    }
+
+    section.salvari #salvariDisplay {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        padding: 0 3px;
+    }
+
+    section.salvari #salvariDisplay .produs h3 {
+        font-size: 13px;
+    }
+
+    section.salvari #salvariDisplay .produs p {
+        font-size: 10px;
+        padding: 0 8px;
+    }
+
+    section.salvari #salvariDisplay .produs .actiuni .adauga-cos {
+        width: 100%;
+        padding: 6px 10px;
+        font-size: 10px;
+        margin-top: 8px;
+    }
+
+    section.salvari #salvariDisplay .produs .img-wrapper {
+        height: 160px;
+    }
+
+    header .infic {
+        margin: 40px 3% 0;
+    }
+
+    header .infic p {
+        font-size: 13px;
+    }
+
+    header .infic .imagini {
+        gap: 5px;
+    }
+
+    header .infic .imagini img {
+        width: 48%;
+    }
+
+    section.cine p {
+        font-size: 12px;
+    }
+
+    section.istoria {
+        margin: 20px 3%;
+        padding: 20px 0;
+    }
+
+    section.istoria p {
+        font-size: 12px;
+    }
+
+    section.secrete .info p {
+        font-size: 12px;
+    }
+
+    section.lucru {
+        margin: 20px 3%;
+    }
+
+    section.lucru p {
+        font-size: 12px;
+    }
+
+    section.lucru .detalii .din .un {
+        width: 90px;
+        height: 90px;
+    }
+
+    section.lucru .detalii .din .un img {
+        width: 50px;
+        height: 50px;
+        margin-top: 20px;
+    }
+
+    section.lucru .detalii .din h3 {
+        font-size: 14px;
+    }
+
+    section.lucru .detalii .din p {
+        font-size: 11px;
+    }
+
+    .footer-container {
+        padding: 0 10px;
+    }
+
+    .footer-section h3 {
+        font-size: 1.1em;
+    }
+
+    .footer-section p,
+    .footer-section a {
+        font-size: 0.8em;
+    }
+
+    .social-icons a {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9em;
+        margin-right: 5px;
+    }
 }

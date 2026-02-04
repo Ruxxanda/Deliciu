@@ -10,8 +10,20 @@ async function afiseazaCos() {
     cosItems = cosItems.filter(item => item.cantitate > 0);
     localStorage.setItem(`cart_${uid}`, JSON.stringify(cosItems));
     
-    const data = await fetch('../data/products.json').then(r => r.json());
-    const produse = Array.isArray(data) ? data : [];
+    let produse = [];
+    try {
+        const resp = await fetch('../data/products.json');
+        if (!resp.ok) {
+            console.warn('products.json not found (cos):', resp.status);
+            produse = [];
+        } else {
+            const data = await resp.json();
+            produse = Array.isArray(data) ? data : [];
+        }
+    } catch (e) {
+        console.warn('Error fetching products.json (cos):', e);
+        produse = [];
+    }
     const cosProd = cosItems.map(item => {
         const prod = produse.find(p => p.nume === item.nume);
         let totalQty = 0;
