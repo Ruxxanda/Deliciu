@@ -106,7 +106,7 @@ async function incarcaComentarii(){
     if (container) container.innerHTML = '<div style="padding:20px;color:#999">Nu s-au putut încărca comentariile.</div>';
   }
 }
-incarcaComentarii();
+// incarcaComentarii called on DOMContentLoaded
 
 async function incarcaComenzi(){
   // Load user's orders from Google Sheets (Apps Script). Fallback to localStorage.
@@ -250,7 +250,7 @@ window.cancelOrder = async (id) => {
   }
   incarcaComenzi();
 }
-incarcaComenzi();
+// incarcaComenzi() called on DOMContentLoaded
 
 window.stergeComentariu = async (id) => {
   try {
@@ -278,3 +278,12 @@ window.salveazaComent = async (id) => {
   } catch(err) { console.error(err); alert('Eroare la salvare'); }
   incarcaComentarii();
 }
+
+// Initialize data on page load with a delay to ensure Firebase is ready
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    incarcaDate();
+    incarcaComentarii();
+    incarcaComenzi();
+  }, 500);
+});

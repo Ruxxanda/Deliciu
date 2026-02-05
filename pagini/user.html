@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil utilizator</title>
-    <!-- scripturile sunt servite din /scripts la root -->
     <link rel="stylesheet" href="../style.css">
     <script src="../scripts/user.js" defer></script>
     <script src="../scripts/stats.js" defer></script>
-    <script type="module" src="../scripts/firebase.js"></script>
+    <script type="module" src="../scripts/firebase.js" defer></script>
     <script src="../scripts/index.js" defer></script>
     <script src="https://kit.fontawesome.com/8a1f01fb65.js" crossorigin="anonymous"></script>
 </head>
@@ -84,10 +83,8 @@
             <textarea id="comentariuText" placeholder="Scrie un comentariu..."></textarea>
             <button id="trimiteComentariu">Publică</button>
         </div>
+        <div id="listaComentarii"></div>
     </section>
-
-
-    <!-- Lista comentariilor personale a fost ascunsa (comentarii afișate doar în admin) -->
 
     <section class="comenzi">
         <h2>Comenzile mele</h2>
