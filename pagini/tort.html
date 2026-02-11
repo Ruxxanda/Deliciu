@@ -1,36 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ro">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produse</title>
+    <title>Detalii produs</title>
     <link rel="stylesheet" href="../style.css">
-    <script src="../scripts/applyReductions.js" defer></script>
-    <script src="../scripts/produse.js" defer></script>
     <script src="../scripts/stats.js" defer></script>
-    <script type="module" src="../scripts/firebase.js"></script>
-    <script src="../scripts/index.js" defer></script>
+    <script src="../scripts/tort.js"></script>
+    <script type="module" src="../scripts/firebase.js" defer></script>
     <script src="../scripts/hamburger.js" defer></script>
     <script src="https://kit.fontawesome.com/8a1f01fb65.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 </head>
 
 <body>
+
     <header>
         <nav>
             <div class="linkuri">
-                <a href="../index.html">Acasă</a>
-                <a href="despre.html">Despre Noi</a>
-                <a href="produse.html">Catalog</a>
-                <a href="craft.html">Creează</a>
-                <a href="galerie.html">Galerie</a>
-                <a href="contacte.html">Contacte</a>
+                <a href="../index.html" data-i18n="nav.home">Acasă</a>
+                <a href="despre.html" data-i18n="nav.about">Despre Noi</a>
+                <a href="produse.html" data-i18n="nav.catalog">Catalog</a>
+                <a href="craft.html" data-i18n="nav.craft">Creează</a>
+                <a href="galerie.html" data-i18n="nav.gallery">Galerie</a>
+                <a href="contacte.html" data-i18n="nav.contact">Contacte</a>
             </div>
             <img class="logo" src="../imagini/logo.png" alt="logo">
             <div class="inf">
-                <div class="limba">
-                    <p>Limba</p>
+                <div class="lang-select">
+                    <span class="language">Română</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 48 32">
                         <defs>
                             <clipPath id="rounded">
@@ -128,29 +127,10 @@
     </div>
     </header>
 
-    <section class="produse">
-        <div id="filterPanel" class="filter-panel">
-            <h3>Filtrare produse</h3>
-            <div class="filter-inputs">
-                <input type="text" id="searchName" placeholder="Cauta dupa nume..." />
-                <input type="number" id="minPrice" placeholder="Pret minim..." min="0" />
-                <input type="number" id="maxPrice" placeholder="Pret maxim..." min="0" />
-                <select id="filterReduction">
-                    <option value="">Toate produsele</option>
-                    <option value="with">Doar cu reducere</option>
-                    <option value="without">Doar fara reducere</option>
-                </select>
-                <select id="filterType">
-                    <option value="">Toate tipurile</option>
-                    <option value="tort">Torturi</option>
-                    <option value="chec">Checuri</option>
-                    <option value="tarte">Tarte</option>
-                </select>
-                <button type="button" id="resetFiltersBtn">Elimina filtre</button>
-            </div>
-        </div>
-        <div id="produseDisplay" class="produse-category"></div>
+    <section class="prod">
+        <div id="tortDisplay">Se încarcă...</div>
     </section>
+
 
     <!-- footer -->
     <footer>

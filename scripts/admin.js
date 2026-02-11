@@ -3,7 +3,6 @@ const email = localStorage.getItem("email");
 if (!uid || email !== "ruxanda.cujba07@gmail.com") location.href = "../index.html";
 
 async function getUser(uid) {
-  // read user from localStorage
   const stored = localStorage.getItem(`user_${uid}`) || localStorage.getItem(`profile_${uid}`) || null;
   if (!stored) return { uid, nume: uid, email: '' };
   try { return JSON.parse(stored); } catch (e) { return { uid, nume: uid, email: '' }; }
@@ -11,7 +10,6 @@ async function getUser(uid) {
 
 async function loadStats() {
   try {
-    // Compute totals from localStorage (all users)
     const keys = Object.keys(localStorage);
     let savedCount = 0;
     let cartCount = 0;
@@ -26,7 +24,6 @@ async function loadStats() {
       }
     });
 
-    // Afișează valorile
     console.log("Saved count:", savedCount, "Cart count:", cartCount);
     document.getElementById("savedCount").textContent = savedCount;
     document.getElementById("cartCount").textContent = cartCount;
@@ -80,12 +77,10 @@ async function loadAll() {
     document.getElementById("coms").innerHTML = '<p>Comentarii indisponibile local.</p>';
   }
 
-  // Hide extra comments initially
   const comentarii = document.querySelectorAll('.comentariu');
   for (let i = 3; i < comentarii.length; i++) {
     comentarii[i].style.display = 'none';
   }
-  // Show button if more than 3
   const toggleBtn = document.getElementById('toggleComments');
   if (comentarii.length <= 3) {
     toggleBtn.style.display = 'none';
@@ -105,13 +100,11 @@ document.getElementById('toggleComments').addEventListener('click', function () 
   const comentarii = document.querySelectorAll('.comentariu');
   const isExpanded = this.textContent === 'Ascunde';
   if (isExpanded) {
-    // Hide extra
     for (let i = 3; i < comentarii.length; i++) {
       comentarii[i].style.display = 'none';
     }
     this.textContent = 'Mai multe';
   } else {
-    // Show all
     for (let i = 3; i < comentarii.length; i++) {
       comentarii[i].style.display = '';
     }
@@ -120,7 +113,6 @@ document.getElementById('toggleComments').addEventListener('click', function () 
 });
 
 window.deleteComent = async (id) => {
-  if (!confirm("Ștergi comentariul?")) return;
   const coms = JSON.parse(localStorage.getItem('comentarii') || '[]');
   const idx = coms.findIndex(c => c.id == id);
   if (idx !== -1) { coms.splice(idx, 1); localStorage.setItem('comentarii', JSON.stringify(coms)); }
@@ -139,7 +131,6 @@ async function loadOrders() {
         console.log('Comenzi încărcate din Google Sheets:', orders.length);
       } else {
         console.warn('Nu s-au putut încărca comenzile din Google Sheets, încerc localStorage');
-        // Fallback: combine all localStorage orders from all users
         const keys = Object.keys(localStorage).filter(k => k.startsWith('orders_'));
         keys.forEach(k => {
           const userOrders = JSON.parse(localStorage.getItem(k) || '[]');
@@ -148,7 +139,6 @@ async function loadOrders() {
       }
     } catch (err) {
       console.error('Eroare la fetch Google Sheets:', err);
-      // Fallback: combine all localStorage orders from all users
       const keys = Object.keys(localStorage).filter(k => k.startsWith('orders_'));
       keys.forEach(k => {
         const userOrders = JSON.parse(localStorage.getItem(k) || '[]');
@@ -166,7 +156,6 @@ async function loadOrders() {
     const completedHTML = await Promise.all(completedOrders.map(o => generateOrderHTML(o, produse, true)));
     document.getElementById("orders").innerHTML = activeHTML.length > 0 ? activeHTML.join("") : '<div style="padding:20px; text-align:center; color:#999;">Nu există comenzi active.</div>';
     document.getElementById("completedOrders").innerHTML = completedHTML.length > 0 ? completedHTML.join("") : '<div style="padding:20px; text-align:center; color:#999;">Nu există comenzi efectuate.</div>';
-    // Add toggle listeners for products
     document.querySelectorAll('[id^="toggleProducts-"]').forEach(btn => {
       btn.addEventListener('click', function () {
         const id = this.id.substring('toggleProducts-'.length);
@@ -187,14 +176,13 @@ async function loadOrders() {
 
 async function generateOrderHTML(o, produse, isCompleted = false) {
   const user = o.user || (await getUser(o.uid).catch(() => ({ nume: o.uid, email: '' })));
-  // normalize user display fields
   user.nume = user.nume || user.email || user.uid || 'Utilizator';
   user.email = user.email || '';
   const cart = Array.isArray(o.cart) ? o.cart : (o.cartData ? JSON.parse(o.cartData) : []);
   const productItems = cart.map((c, index) => {
     const prod = produse.find(p => p.nume === c.nume);
     const isCustom = c.descriere && c.descriere.includes('<ul>');
-    const imagine = prod ? (prod.imagine || prod.linkImagine) : '../pagini/pozeProduse/poza.jpg';
+    const imagine = prod ? (prod.imagine || prod.linkImagine) : './imagini/craft/craft.png';
     const areReducere = prod && prod.reducere != null && prod.reducere !== "" && prod.pretRedus != null && prod.pretRedus !== "";
     let pretHTML = "";
     if (!areReducere) {
@@ -292,7 +280,6 @@ window.toggleOrderDetails = function (key) {
 
 window.updateStatus = async (id, status) => {
   try {
-    // Update in Google Sheets
     const response = await fetch('https://script.google.com/macros/s/AKfycbzGZdepaLFf-ASxJyf9ARWimGJbMY2Q2-CKrryMRKeRSY264aw5FkZ-nv5LlNzFjclFMw/exec', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -307,7 +294,6 @@ window.updateStatus = async (id, status) => {
       console.log('Status actualizat în Google Sheets:', id, status);
     }
 
-    // Also update in localStorage for offline users
     const keys = Object.keys(localStorage).filter(k => k.startsWith('orders_'));
     keys.forEach(k => {
       const userOrders = JSON.parse(localStorage.getItem(k) || '[]');
@@ -319,15 +305,17 @@ window.updateStatus = async (id, status) => {
     });
   } catch (err) {
     console.error('Eroare la updateStatus:', err);
-    alert('Eroare la actualizare comanda.');
   }
   loadOrders();
 }
 
 window.deleteOrder = async (id) => {
-  if (!confirm("Anulezi comanda?")) return;
   try {
-    // Delete from all localStorage orders
+    const el = document.querySelector(`.order-item[data-id="${id}"]`);
+    if (el && el.parentNode) el.parentNode.removeChild(el);
+  } catch (e) {  }
+
+  try {
     const keys = Object.keys(localStorage).filter(k => k.startsWith('orders_'));
     keys.forEach(k => {
       let userOrders = JSON.parse(localStorage.getItem(k) || '[]');
@@ -338,7 +326,6 @@ window.deleteOrder = async (id) => {
     console.log('Comandă ștearsă din localStorage:', id);
   } catch (err) {
     console.error('Eroare la deleteOrder:', err);
-    alert('Eroare la ștergere comanda.');
   }
   loadOrders();
 }
@@ -349,14 +336,18 @@ async function loadProductsForReduction() {
     if (!res.ok) throw new Error(await res.text());
     const data = await res.json();
     const products = Array.isArray(data) ? data : [];
-    const checkboxes = products.map(p => `
+    const lang = (typeof getLang === 'function') ? getLang() : (document.documentElement.lang || 'ro');
+    const checkboxes = products.map(p => {
+      const displayName = p[`nume_${lang}`] || p.nume || p[`nume_ro`] || p.nume;
+      const value = p.nume || displayName;
+      return `
       <div class="product-card">
-        <input type="checkbox" value="${p.nume}" title="Selectează ${p.nume}">
-        <img src="../${(p.imagine || p.linkImagine || '').replace(/^\//,'').replace(/^\.\//,'')}" alt="${p.nume}">
-        <div class="product-name">${p.nume}</div>
+        <input type="checkbox" value="${value}" title="Selectează ${displayName}">
+        <img src="../${(p.imagine || p.linkImagine || '').replace(/^\//,'').replace(/^\.\//,'')}" alt="${displayName}">
+        <div class="product-name">${displayName}</div>
         <div class="product-price">${parseFloat(p.pret || 0).toFixed(2)} Lei</div>
       </div>
-    `).join("");
+    `}).join("");
     document.getElementById("productsCheckboxes").innerHTML = checkboxes;
   } catch (error) {
     console.error("Error loading products for reduction:", error);
@@ -366,7 +357,6 @@ async function loadProductsForReduction() {
 document.addEventListener("DOMContentLoaded", () => {
   loadAll();
 
-  // Handle reduction form submission
   const reductionForm = document.getElementById("reductionForm");
   if (reductionForm) {
     reductionForm.addEventListener("submit", async (e) => {
@@ -378,18 +368,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const dataStart = document.getElementById("dataStart").value;
       const dataEnd = document.getElementById("dataEnd").value;
 
-      // Get selected products
       const checkboxes = document.querySelectorAll("#productsCheckboxes input[type='checkbox']:checked");
       const produse = Array.from(checkboxes).map(cb => cb.value);
 
       try {
-        // Wait for firebase to be ready
         if (!window.firestore || !window.firestore.saveReduction) {
           setTimeout(() => reductionForm.dispatchEvent(new Event('submit')), 500);
           return;
         }
 
-        // Save to Firestore - converte reducere la number
         await window.firestore.saveReduction({
           denumire,
           descriere,
@@ -408,13 +395,11 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => { btn.textContent = originalText; btn.classList.remove('adaugat'); }, 5000);
       } catch (error) {
         console.error("Error adding reduction:", error);
-        alert("Eroare la adăugarea reducerii: " + error.message);
       }
     });
   }
 });
 
-// Context menu for orders (right-click -> Elimina comanda)
 (() => {
   const menu = document.createElement('div');
   menu.id = 'orderContextMenu';
@@ -439,16 +424,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const del = document.getElementById('ctx-delete');
       del.onclick = async () => {
-        if (confirm('Eliminați comanda?')) {
-          const comenzi = JSON.parse(localStorage.getItem('comenzi') || '[]');
-          const idx = comenzi.findIndex(c => String(c.id) === String(id));
-          if (idx !== -1) {
-            comenzi.splice(idx, 1);
-            localStorage.setItem('comenzi', JSON.stringify(comenzi));
-          }
-          menu.style.display = 'none';
-          loadOrders();
+        const comenzi = JSON.parse(localStorage.getItem('comenzi') || '[]');
+        const idx = comenzi.findIndex(c => String(c.id) === String(id));
+        if (idx !== -1) {
+          comenzi.splice(idx, 1);
+          localStorage.setItem('comenzi', JSON.stringify(comenzi));
         }
+        menu.style.display = 'none';
+        loadOrders();
       };
     } else {
       menu.style.display = 'none';
@@ -505,7 +488,6 @@ window.toggleOrderDetails = function (key) {
   }
 }
 
-// Deschide calendarul când apasezi pe input-uri de dată
 document.addEventListener("DOMContentLoaded", function () {
   const dateInputs = document.querySelectorAll('input[type="date"]');
   dateInputs.forEach(input => {

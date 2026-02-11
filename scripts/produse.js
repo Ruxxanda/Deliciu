@@ -1,7 +1,7 @@
 let produse = [];
 let cos = {};
 let salvari = [];
-let originalProduse = []; // Store original unfiltered list
+let originalProduse = [];
 
 async function afiseazaProduse(itemsToShow = null) {
     try {
@@ -9,20 +9,17 @@ async function afiseazaProduse(itemsToShow = null) {
         if (!res.ok) throw new Error(await res.text());
         let data = await res.json();
         produse = Array.isArray(data) ? data : [];
-        originalProduse = [...produse]; // Keep original copy
+        originalProduse = [...produse];
         
-        // Apply active reductions from Firestore
         if (typeof applyActiveReductions === 'function') {
           produse = await applyActiveReductions(produse);
           originalProduse = [...produse];
         }
         
-        // Use filtered items if provided, otherwise show all
         const toDisplay = itemsToShow || produse;
         
         const formatPrice = (price) => parseFloat(price || 0).toFixed(2);
         
-        // Check if any filters are applied
         const searchName = document.getElementById('searchName').value.toLowerCase();
         const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
         const maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
@@ -31,20 +28,11 @@ async function afiseazaProduse(itemsToShow = null) {
         
         const hasActiveFilters = searchName || minPrice !== 0 || maxPrice !== Infinity || filterReduction || filterType;
         
-        // Organize by category
-        const categories = {
-            'tort': [],
-            'chec': [],
-            'tarte': []
-        };
-        
-        toDisplay.forEach(p => {
-            const cat = p.categoria || 'tort';
-            if (categories[cat]) categories[cat].push(p);
-        });
-        
-        // Function to create product card HTML
         const createProductCard = (p) => {
+            const lang = (typeof getLang === 'function') ? getLang() : (document.documentElement.lang || 'ro');
+            const name = p[`nume_${lang}`] || p.nume || p[`nume_ro`] || p.nume;
+            const descr = p[`descriere_${lang}`] || p.descriere || p[`descriere_ro`] || p.descriere || '';
+            const detailsArr = p[`detalii_${lang}`] || p.detalii || p[`detalii_ro`] || [];
             const areReducere = p.reducere != null && p.reducere !== "" && p.pretRedus != null && p.pretRedus !== "";
             let pretHTML = "";
             if (!areReducere) {
@@ -61,89 +49,57 @@ async function afiseazaProduse(itemsToShow = null) {
             }
             const isSaved = salvari.includes(p.nume);
             const heartColor = isSaved ? 'red' : 'white';
-            const qtyId = `qty-${p.nume.replace(/\s/g, '-')}`;
-            const detailsId = `details-${p.nume.replace(/\s/g, '-')}`;
-            const buttonId = `btn-${p.nume.replace(/\s/g, '-')}-details`;
-            const detailsHTML = p.detalii ? `
-                <button class="detalii" onclick="toggleDetails('${detailsId}', '${buttonId}')" id="${buttonId}">Detalii ▶</button>
-                <div id="${detailsId}" style="display: none; margin-top: 10px; list-style: disc; padding-left: 20px;">${Array.isArray(p.detalii) ? p.detalii.map(detail => `<li>${detail}</li>`).join('') : p.detalii.split('\n').map(line => line.trim()).filter(line => line).map(line => `<li>${line}</li>`).join('')}</div>
+            const safeKey = (p.nume || name).replace(/\s/g, '-');
+            const qtyId = `qty-${safeKey}`;
+            const detailsId = `details-${safeKey}`;
+            const buttonId = `btn-${safeKey}-details`;
+            const detailsHTML = detailsArr ? `
+                <button class="detalii" onclick="toggleDetails('${detailsId}', '${buttonId}')" id="${buttonId}">` + (lang === 'ru' ? 'Детали ▶' : (lang === 'en' ? 'Details ▶' : 'Detalii ▶')) + `</button>
+                <div id="${detailsId}" style="display: none; margin-top: 10px; list-style: disc; padding-left: 20px;">${Array.isArray(detailsArr) ? detailsArr.map(detail => `<li>${detail}</li>`).join('') : detailsArr.split('\n').map(line => line.trim()).filter(line => line).map(line => `<li>${line}</li>`).join('')}</div>
             ` : '';
-            const card = document.createElement("div");
-            card.classList.add("produs");
-            card.innerHTML = `
-                <div class="img-wrapper">
-                   <img src="../${(p.imagine || p.linkImagine || '').replace(/^\.\//,'').replace(/^\//,'')}" alt="produs">
-                   ${areReducere ? `<div class="badge-reducere">-${p.reducere}%</div>` : ''}
-                   <i class="fa fa-heart heart-icon"
-                      style="color: ${heartColor}"
-                      onclick="toggleSalvare('${p.nume}', event)">
-                   </i>
-                </div>
-                <h3>${p.nume}</h3>
-                <p>${p.descriere}</p>
-                <p>${pretHTML}</p>
-                ${detailsHTML}
-                <div class="canti">
-                    <div class="derul">
-                       <button class="minus" onclick="changeQty('${p.nume}', -1)">-</button>
-                       <span id="${qtyId}">${cos[p.nume] || 0}</span>
-                       <button class="plus" onclick="changeQty('${p.nume}', 1)">+</button>
-                    </div>
-                    <button onclick="adaugaInCos('${p.nume}')">Adauga in cos</button>
-                </div>`;
+                const productLink = `tort.html?nume=${encodeURIComponent(p.nume)}`;
+                const card = document.createElement("div");
+                card.classList.add("produs");
+                card.innerHTML = `
+                     <a class="product-link" href="${productLink}">
+                        <div class="img-wrapper">
+                            <img src="../${(p.imagine || p.linkImagine || '').replace(/^\./,'').replace(/^\//,'')}" alt="produs">
+                            ${areReducere ? `<div class="badge-reducere">-${p.reducere}%</div>` : ''}
+                            <i class="fa fa-heart heart-icon"
+                                style="color: ${heartColor}"
+                                onclick="toggleSalvare('${p.nume}', event)">
+                            </i>
+                        </div>
+                        <h3>${name}</h3>
+                        <p class="prod-desc">${descr}</p>
+                     </a>
+                     <p>${pretHTML}</p>
+                     <div class="canti">
+                          <div class="derul">
+                              <button class="minus" onclick="changeQty('${p.nume}', -1)">
+                                 <i class="fa-solid fa-minus"></i>
+                              </button>
+                              <span id="${qtyId}">${cos[p.nume] || 0}</span>
+                              <button class="plus" onclick="changeQty('${p.nume}', 1)">
+                                 <i class="fa-solid fa-plus"></i>
+                              </button>
+                          </div>
+                          <button onclick="adaugaInCos('${p.nume}')">` + (lang === 'ru' ? 'Добавить в корзину' : (lang === 'en' ? 'Add to cart' : 'Adauga in cos')) + `</button>
+                     </div>`;
             return card;
         };
         
-        if (hasActiveFilters) {
-            // Show all results in a single list without categories
-            const div = document.getElementById('produseDisplayNoCategory');
-            if (div) {
-                div.innerHTML = '';
-                // Hide category titles
-                document.getElementById('titleTort').style.display = 'none';
-                document.getElementById('titleChec').style.display = 'none';
-                document.getElementById('titleTarte').style.display = 'none';
-                // Clear category containers
-                document.getElementById('produseDisplayTort').innerHTML = '';
-                document.getElementById('produseDisplayChec').innerHTML = '';
-                document.getElementById('produseDisplayTarte').innerHTML = '';
-                
-                if (toDisplay.length === 0) {
-                    div.innerHTML = '<p style="text-align:center;padding:30px;color:#999;">Nu s-au gasit produse.</p>';
-                } else {
-                    toDisplay.forEach(p => {
-                        div.appendChild(createProductCard(p));
-                    });
-                }
-            }
-        } else {
-            // Show categories normally
-            document.getElementById('titleTort').style.display = 'block';
-            document.getElementById('titleChec').style.display = 'block';
-            document.getElementById('titleTarte').style.display = 'block';
-            document.getElementById('produseDisplayNoCategory').innerHTML = '';
+        const div = document.getElementById('produseDisplay');
+        if (div) {
+            div.innerHTML = '';
             
-            // Display each category
-            const displayCategory = (catKey, containerId) => {
-                const div = document.getElementById(containerId);
-                if (!div) return;
-                
-                const items = categories[catKey];
-                div.innerHTML = '';
-                
-                if (items.length === 0) {
-                    div.innerHTML = '<p style="text-align:center;padding:30px;color:#999;">Nu s-au gasit produse.</p>';
-                    return;
-                }
-                
-                items.forEach(p => {
+            if (toDisplay.length === 0) {
+                div.innerHTML = '<p style="text-align:center;padding:30px;color:#999;">Nu s-au gasit produse.</p>';
+            } else {
+                toDisplay.forEach(p => {
                     div.appendChild(createProductCard(p));
                 });
-            };
-            
-            displayCategory('tort', 'produseDisplayTort');
-            displayCategory('chec', 'produseDisplayChec');
-            displayCategory('tarte', 'produseDisplayTarte');
+            }
         }
         
     } catch (error) {
@@ -188,16 +144,13 @@ async function adaugaInCos(nume) {
     const product = produse.find(p => p.nume === nume);
     const pret = product ? (product.pretRedus || product.pret) : 0;
     const descriere = product ? product.descriere : '';
-    // Save cart to localStorage under key cart_<uid>
     const cartKey = `cart_${uid}`;
     const cart = JSON.parse(localStorage.getItem(cartKey) || '[]');
     const existing = cart.find(i => i.nume === nume);
     if (existing) existing.cantitate = cantitate;
     else cart.push({ nume, cantitate, pret, descriere });
     localStorage.setItem(cartKey, JSON.stringify(cart));
-    // Update local state
     cos[nume] = cantitate;
-    // Ensure global stats/cart badge is updated
     try {
       if (typeof loadStats === 'function') loadStats();
       else if (window && window.loadStats) window.loadStats();
@@ -232,7 +185,6 @@ async function loadUserData() {
     if (!uid) return;
 
     try {
-        // load saves and cart from localStorage
         salvari = JSON.parse(localStorage.getItem(`salvari_${uid}`) || '[]');
         const cartArr = JSON.parse(localStorage.getItem(`cart_${uid}`) || '[]');
         cos = {};
@@ -248,7 +200,6 @@ async function initProducts() {
     setupFilterListeners();
 }
 
-// Filter and search functionality
 function applyFilters() {
     const searchName = document.getElementById('searchName').value.toLowerCase();
     const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
@@ -302,11 +253,9 @@ function setupFilterListeners() {
 
 document.addEventListener("DOMContentLoaded", initProducts);
 
-// Console command listener
 const originalLog = console.log;
 console.log = function (...args) {
     if (args[0] === 'sterge produsele') {
-        // Clear products from products page
         document.getElementById('produseDisplay').innerHTML = '<p style="color: red; text-align: center;">Produse șterse din afișare</p>';
         originalLog('Toate produsele au fost șterse din afișarea paginii produse');
         return;

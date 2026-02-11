@@ -3,8 +3,8 @@
     "nume": "Exemplu Produs",
     "descriere": "Descriere produs de test",
     "categoria": "tort",
-    "linkImagine": "./imagini/poza 1.png",
-    "imagine": "./imagini/poza 1.png",
+    "linkImagine": "./imagini/tort.jpg",
+    "imagine": "./imagini/tort.jpg",
     "pret": 1500,
     "detalii": [
       "Material: Bumbac 100%",
@@ -19,8 +19,8 @@
     "nume": "Tort",
     "descriere": "Descriere produs de test",
     "categoria": "tort",
-    "linkImagine": "./imagini/poza 1.png",
-    "imagine": "./imagini/poza 1.png",
+    "linkImagine": "./imagini/tort.jpg",
+    "imagine": "./imagini/tort.jpg",
     "pret": 2000,
     "detalii": [
       "Ingrediente: Făină, ouă, lapte",
@@ -35,8 +35,8 @@
     "nume": "Ciotca",
     "descriere": "Descriere produs de test",
     "categoria": "chec",
-    "linkImagine": "./imagini/poza 1.png",
-    "imagine": "./imagini/poza 1.png",
+    "linkImagine": "./imagini/tort.jpg",
+    "imagine": "./imagini/tort.jpg",
     "pret": 1100,
     "detalii": [
       "Material: Ceramică artizanală",
@@ -51,8 +51,8 @@
     "nume": "Marama",
     "descriere": "Descriere produs de test",
     "categoria": "tarte",
-    "linkImagine": "./imagini/poza 1.png",
-    "imagine": "./imagini/poza 1.png",
+    "linkImagine": "./imagini/tort.jpg",
+    "imagine": "./imagini/tort.jpg",
     "pret": 1150,
     "detalii": [
       "Țesătură: Mătase naturală",

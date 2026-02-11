@@ -17,7 +17,6 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 const db = getFirestore(app);
 
-// Firestore helpers exposed on window for non-module scripts
 window.firestore = {
   db,
   async saveComment(comment) {
@@ -163,12 +162,10 @@ if (loginBtn) {
       email: user.email,
       poza: user.photoURL || "../imagini/poza.png"
     };
-    // Save user locally instead of posting to server
     try {
       localStorage.setItem(`user_${user.uid}`, JSON.stringify(userData));
       localStorage.setItem("uid", user.uid);
       localStorage.setItem("email", user.email);
-      // set a simple profile record to speed up admin display
       localStorage.setItem(`profile_${user.uid}`, JSON.stringify({ nume: user.displayName, poza: user.photoURL }));
     } catch (err) {
       console.warn('Could not persist user to localStorage', err);
@@ -188,7 +185,6 @@ if (loginBtn) {
   });
 }
 
-// Starea autentificării se folosește doar pentru linkul profil/admin
 onAuthStateChanged(auth, (user) => {
   const ul = document.getElementById("userLink");
   if(user){
@@ -215,12 +211,10 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// deconectare
 window.logout = async () => {
   await signOut(auth);
   localStorage.removeItem("uid");
   localStorage.removeItem("email");
   const ul = document.getElementById("userLink");
   if (ul) ul.style.display = "none";
-  // BUTONUL GOOGLE RAMANE VIZIBIL
 };

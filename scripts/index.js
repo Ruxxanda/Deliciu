@@ -16,26 +16,20 @@ incarcaComentarii();
 
 async function incarcaReducereActiva() {
   try {
-    // Wait for firebase to be ready
     if (!window.firestore || !window.firestore.fetchAllReductions) {
       setTimeout(incarcaReducereActiva, 500);
       return;
     }
 
-    // Fetch reductions from Firestore
     const reductions = await window.firestore.fetchAllReductions();
     console.log('Reductions from Firestore:', reductions);
 
-    // Filter by date and choose first active reduction
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     function parseDateField(v) {
       if (!v) return null;
-      // Firestore Timestamp
       if (v.toDate && typeof v.toDate === 'function') return v.toDate();
-      // object with seconds
       if (v.seconds) return new Date(v.seconds * 1000);
-      // string or number
       return new Date(v);
     }
 
@@ -53,7 +47,6 @@ async function incarcaReducereActiva() {
     console.log('Active reduction:', activeReduction);
 
     if (activeReduction) {
-      // Fetch products from local JSON (try multiple possible relative paths)
       const allProducts = await (async () => {
         const candidates = [
           'data/products.json',
@@ -68,14 +61,11 @@ async function incarcaReducereActiva() {
             const j = await r.json();
             return Array.isArray(j) ? j : [];
           } catch (e) {
-            // try next
           }
         }
-        // final fallback: empty list
         return [];
       })();
 
-      // Get affected products
       const affectedNames = Array.isArray(activeReduction.produse) ? activeReduction.produse.slice(0, 3) : [];
       const affectedProducts = affectedNames.map(name => allProducts.find(p => p.nume === name)).filter(p => p);
 
@@ -141,7 +131,6 @@ async function incarcaReducereActiva() {
     console.error('Eroare la incarcare reducere activa:', error);
     const arCatch = document.getElementById('activeReduction'); if (arCatch) arCatch.style.display = 'none';
   }
-  // miscarea textului la reducere
     const textTop = document.querySelector('.text-top');
     const textBottom = document.querySelector('.text-bottom');
 
@@ -156,7 +145,7 @@ incarcaReducereActiva();
 
 function startCountdown(endDateStr, reductionId) {
   const endDate = new Date(endDateStr);
-  endDate.setHours(0, 0, 0, 0); // Set to midnight
+  endDate.setHours(0, 0, 0, 0);
   const timerElement = document.getElementById('countdownTimer');
   const daysDisplay = document.getElementById('daysDisplay');
   if (!timerElement) return;
@@ -171,11 +160,9 @@ function startCountdown(endDateStr, reductionId) {
       timerElement.textContent = 'Expirată';
       if (interval) clearInterval(interval);
 
-      // Șterge reducerea din Firestore și reîncarcă pagina
       if (reductionId && window.firestore && window.firestore.deleteReduction) {
         window.firestore.deleteReduction(reductionId).then(() => {
           console.log('Reducere ștearsă - ID:', reductionId);
-          // Reîncarcă pagina pentru a actualiza afișarea
           setTimeout(() => {
             location.reload();
           }, 500);
@@ -200,10 +187,8 @@ function startCountdown(endDateStr, reductionId) {
   interval = setInterval(updateTimer, 1000);
 }
 
-// Încarcă 3 torturi populare
 async function incarcaTorturiPopulare() {
   try {
-    // Try several relative paths to support being served from subfolders (GitHub Pages)
     const candidates = ['data/products.json', '../data/products.json', '/Deliciu/data/products.json', window.location.origin + '/Deliciu/data/products.json'];
     let produse = [];
     for (const url of candidates) {
@@ -212,15 +197,13 @@ async function incarcaTorturiPopulare() {
         if (!r.ok) continue;
         const j = await r.json();
         if (Array.isArray(j)) { produse = j; break; }
-      } catch (e) { /* try next */ }
+      } catch (e) {}
     }
 
-    // Aplică reduceri active din Firestore
     if (typeof applyActiveReductions === 'function') {
       produse = await applyActiveReductions(produse);
     }
 
-    // Alege primele 3 produse
     const topThree = produse.slice(0, 3);
 
     const div = document.querySelector('.trei');

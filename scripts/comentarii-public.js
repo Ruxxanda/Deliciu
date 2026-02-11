@@ -1,4 +1,3 @@
-// Script pentru index.html - afisare comentarii cu carousel
 let comentariiData = [];
 let currentIndex = 0;
 const commentsPerPage = 3;
@@ -22,12 +21,10 @@ async function incarcaComentariiPublice() {
       return;
     }
     
-    // Ascunde butoanele doar dacă sunt mai puțin de 4 comentarii
     if (comentariiData.length <= commentsPerPage) {
       document.getElementById('prevBtn').style.display = 'none';
       document.getElementById('nextBtn').style.display = 'none';
     } else {
-      // Butoanele sunt mereu active pentru circulare
       document.getElementById('prevBtn').style.display = 'flex';
       document.getElementById('nextBtn').style.display = 'flex';
     }
@@ -41,7 +38,7 @@ async function incarcaComentariiPublice() {
   }
 }
 
-let internalIndex = 0; // index în track (include clone-urile)
+let internalIndex = 0;
 let visibleCount = commentsPerPage;
 let carouselAutoPlayInterval = null;
 let carouselInitialized = false;
@@ -49,7 +46,6 @@ let isTransitioning = false;
 let resizeTimeout = null;
 
 function calculateVisibleCount() {
-  // Sincronizat cu media queries din CSS: 1 (<=600), 2 (<=1024), else 3
   const w = window.innerWidth;
   if (w <= 600) return 1;
   if (w <= 1024) return 2;
@@ -79,7 +75,6 @@ function renderCarousel() {
 
   visibleCount = calculateVisibleCount();
 
-  // Dacă sunt puține comentarii, afișăm simplu și oprim mecanismele de looping
   if (comentariiData.length <= visibleCount) {
     track.innerHTML = comentariiData.map(buildItemHTML).join('');
     track.style.transform = 'translateX(0)';
@@ -89,28 +84,22 @@ function renderCarousel() {
     return;
   }
 
-  // Construim clone-urile: ultimele visibleCount la început și primele visibleCount la sfârșit
   const itemsHTML = comentariiData.map(buildItemHTML).join('');
   const preClones = comentariiData.slice(-visibleCount).map(buildItemHTML).join('');
   const postClones = comentariiData.slice(0, visibleCount).map(buildItemHTML).join('');
 
   track.innerHTML = preClones + itemsHTML + postClones;
 
-  // Setăm indexul intern astfel încât să fim pe elementul curent real
   internalIndex = visibleCount + currentIndex;
 
-  // poziționăm fără animație
   updateCarouselPosition(false);
 
-  // Ascund/emitem butoane
   document.getElementById('prevBtn').style.display = 'flex';
   document.getElementById('nextBtn').style.display = 'flex';
 
-  // Render pagination dots și actualizează starea
   renderDots();
   updateActiveDot();
 
-  // Asigurăm un singur listener pentru 'transitionend'
   if (!carouselInitialized) {
     track.addEventListener('transitionend', onTrackTransitionEnd);
     carouselInitialized = true;
@@ -127,9 +116,7 @@ function updateCarouselPosition(animate = true) {
   const itemWidth = item.getBoundingClientRect().width;
   const wrapperWidth = wrapper.getBoundingClientRect().width;
 
-  // lățimea totală a elementelor vizibile (include gap-urile dintre ele)
   const totalVisibleWidth = visibleCount * itemWidth + Math.max(0, visibleCount - 1) * gap;
-  // offset pentru a centra setul vizibil în wrapper
   const centerOffset = (wrapperWidth - totalVisibleWidth) / 2;
 
   const translateX = -internalIndex * (itemWidth + gap) + centerOffset;
@@ -137,7 +124,6 @@ function updateCarouselPosition(animate = true) {
   if (!animate) {
     track.style.transition = 'none';
     track.style.transform = `translateX(${translateX}px)`;
-    // forțăm reflow
     track.getBoundingClientRect();
     track.style.transition = '';
   } else {
@@ -168,7 +154,6 @@ function prevComment() {
 function onTrackTransitionEnd() {
   const n = comentariiData.length;
 
-  // Dacă ne-am deplasat în afara secțiunii reale, resetăm indexul intern fără animație
   if (internalIndex >= visibleCount + n) {
     internalIndex -= n;
     updateCarouselPosition(false);
@@ -177,9 +162,7 @@ function onTrackTransitionEnd() {
     updateCarouselPosition(false);
   }
 
-  // Sincronizăm currentIndex cu poziția internă (valorile reale 0..n-1)
   currentIndex = (internalIndex - visibleCount + n) % n;
-  // Actualizăm dot-ul activ pentru a reflecta elementul central
   updateActiveDot();
   isTransitioning = false;
 } 
@@ -194,7 +177,6 @@ function renderDots() {
     <button class="dot" data-index="${i}" aria-label="Slide ${i+1}"></button>
   `).join('');
 
-  // atașăm click-urile
   dots.querySelectorAll('.dot').forEach(d => d.addEventListener('click', (e) => {
     const idx = Number(e.currentTarget.dataset.index);
     goToIndex(idx);
@@ -210,7 +192,6 @@ function updateActiveDot() {
   if (!dots) return;
   const n = comentariiData.length;
   if (n === 0) return;
-  // Vrem să evidențiem elementul din mijloc al ferestrei vizibile
   const centerOffset = Math.floor(visibleCount / 2);
   const centerIndex = (currentIndex + centerOffset) % n;
   dots.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === centerIndex));
@@ -221,17 +202,14 @@ function goToIndex(idx) {
   const n = comentariiData.length;
   if (n === 0) return;
   const centerOffset = Math.floor(visibleCount / 2);
-  // Calculăm indexul leftmost astfel încât idx să fie în centru
   currentIndex = (idx - centerOffset + n) % n;
   internalIndex = visibleCount + currentIndex;
-  // actualizare vizuală imediată a dot-ului (feedback instant)
   updateActiveDot();
   isTransitioning = true;
   updateCarouselPosition(true);
 }
 
 function startAutoplay() {
-  // Nu porni autoplay dacă nu sunt suficient comentarii
   if (comentariiData.length <= visibleCount) return;
   stopAutoplay();
   carouselAutoPlayInterval = setInterval(nextComment, 5000);
@@ -251,24 +229,20 @@ function addCarouselListeners() {
   const wrapper = document.querySelector('.carousel-wrapper');
   const track = document.getElementById('comentarii');
 
-  // Click butoane
   if (prevBtn) prevBtn.addEventListener('click', () => { prevComment(); stopAutoplay(); setTimeout(startAutoplay, 3000); });
   if (nextBtn) nextBtn.addEventListener('click', () => { nextComment(); stopAutoplay(); setTimeout(startAutoplay, 3000); });
 
-  // Autoplay la hover
   if (container) {
     container.addEventListener('mouseenter', stopAutoplay);
     container.addEventListener('mouseleave', startAutoplay);
   }
 
-  // Swipe / drag (pointer events)
   let startX = 0;
   let dx = 0;
   let dragging = false;
-  const threshold = 50; // px pentru a decide swipe
+  const threshold = 50; 
 
   function onPointerDown(e) {
-    // doar buton stânga pentru mouse
     if (e.pointerType === 'mouse' && e.button !== 0) return;
     const item = track.querySelector('.carousel-item');
     if (!item) return;
@@ -278,7 +252,6 @@ function addCarouselListeners() {
     dragging = true;
     startX = e.clientX;
     dx = 0;
-    // blocăm tranziția pentru mișcare lină
     track.style.transition = 'none';
     track.classList.add('dragging');
     wrapper.setPointerCapture(e.pointerId);
@@ -308,15 +281,12 @@ function addCarouselListeners() {
     if (Math.abs(dx) > threshold) {
       if (dx < 0) nextComment(); else prevComment();
     } else {
-      // Snap înapoi
       updateCarouselPosition(true);
     }
 
-    // restart autoplay
     setTimeout(startAutoplay, 3000);
   }
 
-  // Listeneri pointer
   if (wrapper) {
     wrapper.addEventListener('pointerdown', onPointerDown);
     wrapper.addEventListener('pointermove', onPointerMove);
@@ -324,7 +294,6 @@ function addCarouselListeners() {
     wrapper.addEventListener('pointercancel', onPointerUp);
   }
 
-  // Reconstruim caruselul la resize (mențin poziția) și repoziționăm
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
@@ -342,7 +311,6 @@ function addCarouselListeners() {
   startAutoplay();
 }
 
-// Încarcă comentariile când pagina se încarcă
 setTimeout(() => {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', incarcaComentariiPublice);

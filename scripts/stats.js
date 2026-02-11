@@ -1,4 +1,3 @@
-// Load and display stats (saved products count, cart items count)
 async function loadStats() {
   try {
     const uid = localStorage.getItem("uid");
@@ -8,13 +7,11 @@ async function loadStats() {
       return;
     }
 
-    // Load saved products and cart from localStorage
     const salvari = JSON.parse(localStorage.getItem(`salvari_${uid}`) || '[]');
     const savedCount = salvari.length;
     const cartArr = JSON.parse(localStorage.getItem(`cart_${uid}`) || '[]');
     const cartCount = cartArr.reduce((sum, item) => sum + (item.cantitate || 0), 0);
 
-    // Update the display
     const savedCountEl = document.getElementById("savedCount");
     const cartCountEl = document.getElementById("cartCount");
     
@@ -25,5 +22,4 @@ async function loadStats() {
   }
 }
 
-// Load stats when DOM is ready
 document.addEventListener("DOMContentLoaded", loadStats);

@@ -6,7 +6,6 @@ async function afiseazaCos() {
     }
     let cosItems = JSON.parse(localStorage.getItem(`cart_${uid}`) || '[]');
     
-    // Elimină automat orice produse cu cantitate <= 0
     cosItems = cosItems.filter(item => item.cantitate > 0);
     localStorage.setItem(`cart_${uid}`, JSON.stringify(cosItems));
     
@@ -28,7 +27,6 @@ async function afiseazaCos() {
         const prod = produse.find(p => p.nume === item.nume);
         let totalQty = 0;
         if (!prod) {
-            // Produs personalizat, calculeaza totalQty
             const parser = new DOMParser();
             const doc = parser.parseFromString(item.descriere, 'text/html');
             const lis = doc.querySelectorAll('li');
@@ -40,11 +38,10 @@ async function afiseazaCos() {
                 totalQty += qty;
             });
         }
-        if (prod) {
-            return { ...prod, cantitate: item.cantitate };
-        } else {
-            // Produs personalizat
-            return { nume: item.nume, imagine: '../pagini/pozeProduse/poza.jpg', descriere: 'Produs personalizat', pret: item.pret, cantitate: item.cantitate, fullDescriere: item.descriere, totalQty };
+            if (prod) {
+                return { ...prod, cantitate: item.cantitate, isCraft: !!item.isCraft };
+            } else {
+                return { nume: item.nume, imagine: '/imagini/craft/craft.png', descriere: 'Produs personalizat', pret: item.pret, cantitate: item.cantitate, fullDescriere: item.descriere, totalQty, isCraft: !!item.isCraft };
         }
     });
     const div = document.getElementById("cosDisplay");
@@ -62,10 +59,10 @@ async function afiseazaCos() {
         const card = document.createElement("div");
         card.classList.add("produs", "cos-item");
         let detailsHTML = '';
-        if (isCustom) {
+            if (isCustom && !p.isCraft) {
             detailsHTML = `\n                        <button class="detalii" onclick="toggleDetails(${index})" id="btn-${index}">Detalii ▶</button>\n                        <div id="details-${index}" style="display: none; margin-top: 10px;">${p.fullDescriere}</div>\n                    `;
         }
-            const imagePath = p.imagine || p.linkImagine || '../pagini/pozeProduse/poza.jpg';
+            const imagePath = p.imagine || p.linkImagine || '/imagini/craft/craft.png';
             card.innerHTML = `\n            <div class="img-wrapper">\n                <img src="../${(imagePath||'').replace(/^\\/,'').replace(/^\.\//,'')}" alt="produs">\n                ${areReducere ? `<div class="badge-reducere">-${p.reducere}%</div>` : ''}\n            </div>\n            <h3>${p.nume}</h3>\n            <p>${p.descriere.split('\n')[0] || p.descriere}</p>\n            <div class="pret-info">${pretHTML}</div>\n            <p class="cantitate">Cantitate: ${isCustom ? (p.totalQty / 1000) + ' kg' : p.cantitate}</p>\n            ${detailsHTML}\n            <div class="actiuni">\n                <button class="sterge-cos" onclick="toggleCos('${p.nume}', ${p.cantitate})">\n                    <i class="fa fa-trash"></i> Șterge\n                </button>\n            </div>`;
         div.appendChild(card);
     });
@@ -108,21 +105,32 @@ async function placeOrder() {
     const cart = JSON.parse(localStorage.getItem(cartKey) || '[]');
     if (!cart || cart.length === 0) {
         console.error("Coșul este gol!");
-        alert('Coșul este gol!');
         return;
     }
     
-    // Get form data
-    const phone = document.getElementById("phoneInput").value.trim();
-    const address = document.getElementById("addressInput").value.trim();
-    const message = document.getElementById("messageInput").value.trim();
+    const phoneEl = document.getElementById("phoneInput");
+    const addressEl = document.getElementById("addressInput");
+    const messageEl = document.getElementById("messageInput");
+
+    const phone = phoneEl ? phoneEl.value.trim() : '';
+    const address = addressEl ? addressEl.value.trim() : '';
+    const message = messageEl ? messageEl.value.trim() : '';
     
+    // Clear previous invalid markers
+    if (phoneEl) phoneEl.classList.remove('invalid');
+    if (addressEl) addressEl.classList.remove('invalid');
+    const errEl = document.getElementById('error');
+    if (errEl) errEl.textContent = '';
+
     if (!phone || !address) {
-        alert('Te rog completează numărul de telefon și adresa!');
+        if (!phone && phoneEl) phoneEl.classList.add('invalid');
+        if (!address && addressEl) addressEl.classList.add('invalid');
+        if (errEl) errEl.textContent = 'Te rog completează telefon și adresă!';
+        if (!phone && phoneEl) phoneEl.focus();
+        else if (!address && addressEl) addressEl.focus();
         return;
     }
     
-    // Get complete user info from localStorage
     const stored = localStorage.getItem(`user_${uid}`) || localStorage.getItem(`profile_${uid}`) || null;
     let userInfo = { uid, email: localStorage.getItem('email') || '' };
     if (stored) {
@@ -130,7 +138,6 @@ async function placeOrder() {
     }
     const user = { uid: userInfo.uid || uid, email: userInfo.email, nume: userInfo.nume, poza: userInfo.poza || userInfo.photoURL || '/imagini/poza.png' };
     
-    // Save order to localStorage
     const orderId = Date.now().toString();
     const orderPayload = {
             id: orderId,
@@ -145,8 +152,6 @@ async function placeOrder() {
             createdAt: new Date().toISOString()
     };
     
-    // Do NOT save orders to localStorage anymore; orders are stored in Google Sheets
-    // Send order to Google Sheets via Apps Script
     try {
             const response = await fetch('https://script.google.com/macros/s/AKfycbzGZdepaLFf-ASxJyf9ARWimGJbMY2Q2-CKrryMRKeRSY264aw5FkZ-nv5LlNzFjclFMw/exec', {
                     method: 'POST',
@@ -160,16 +165,15 @@ async function placeOrder() {
             console.log('Comandă trimisă la Google Sheets:', result);
         } catch (err) {
             console.error('Eroare la trimitere către Google Sheets:', err);
-            // Order could not be sent to Google Sheets; handle as needed
         }
     
-    // Clear cart and form
     localStorage.removeItem(cartKey);
-    document.getElementById("phoneInput").value = '';
-    document.getElementById("addressInput").value = '';
-    document.getElementById("messageInput").value = '';
+    if (phoneEl) phoneEl.value = '';
+    if (addressEl) addressEl.value = '';
+    if (messageEl) messageEl.value = '';
+    if (errEl) errEl.textContent = '';
     afiseazaCos();
-    alert('Comandă plasată cu succes!');
+    console.log('Comandă plasată cu succes!');
     try { if (typeof loadStats === 'function') loadStats(); } catch(e){}
 }
 
@@ -178,4 +182,16 @@ document.addEventListener("DOMContentLoaded", () => {
     afiseazaCos();
     const btn = document.getElementById("placeOrderBtn");
     if (btn) btn.onclick = placeOrder;
+
+    const phoneEl = document.getElementById('phoneInput');
+    const addrEl = document.getElementById('addressInput');
+    const msgEl = document.getElementById('messageInput');
+    const errorP = document.getElementById('error');
+    const removeInvalid = (e) => {
+        if (e.target.value && e.target.value.trim() !== '') e.target.classList.remove('invalid');
+        if (errorP) errorP.textContent = '';
+    };
+    if (phoneEl) phoneEl.addEventListener('input', removeInvalid);
+    if (addrEl) addrEl.addEventListener('input', removeInvalid);
+    if (msgEl) msgEl.addEventListener('input', removeInvalid);
 });

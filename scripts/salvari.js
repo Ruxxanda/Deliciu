@@ -20,7 +20,6 @@ async function afiseazaSalvări() {
     }
     let produse = Array.isArray(data) ? data : [];
     
-    // Apply active reductions from Firestore
     if (typeof applyActiveReductions === 'function') {
       produse = await applyActiveReductions(produse);
     }
@@ -108,7 +107,7 @@ async function adaugaInCosDinSalvări(nume) {
         document.getElementById("error").innerText = "Trebuie să fiți logat pentru a adăuga în coș.";
         return;
     }
-    const cantitate = 1; // Default quantity
+    const cantitate = 1;
     let product = null;
     try {
         const resp = await fetch('../data/products.json');
@@ -124,14 +123,12 @@ async function adaugaInCosDinSalvări(nume) {
     }
     const pret = product ? (product.pretRedus || product.pret) : 0;
     const descriere = product ? product.descriere : '';
-    // add to cart stored in localStorage
     const cartKey = `cart_${uid}`;
     const cart = JSON.parse(localStorage.getItem(cartKey) || '[]');
     const existing = cart.find(i => i.nume === nume);
     if (existing) existing.cantitate = (existing.cantitate || 0) + cantitate;
     else cart.push({ nume, cantitate, pret, descriere });
     localStorage.setItem(cartKey, JSON.stringify(cart));
-    // Show success message or update UI
     const btn = event.target.closest('button');
     const originalText = btn.innerHTML;
     btn.innerHTML = '<i class="fa fa-check"></i> Adăugat!';

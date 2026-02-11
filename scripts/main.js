@@ -13,7 +13,6 @@ firebase.initializeApp(firebaseConfig);
 const loginBtn = document.getElementById("loginGoogle");
 const link = document.getElementById("linkUser");
 
-// afișare comentarii publice
 async function loadComentariiPublice() {
   const coms = JSON.parse(localStorage.getItem('comentarii') || '[]');
   const div = document.getElementById("comentariiPublice");
@@ -26,7 +25,6 @@ async function loadComentariiPublice() {
 }
 loadComentariiPublice();
 
-// logare cu Google
 loginBtn.onclick = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider)
@@ -34,7 +32,6 @@ loginBtn.onclick = () => {
       const user = result.user;
       localStorage.setItem("uid", user.uid);
       localStorage.setItem("email", user.email);
-      // dacă e admin
       if (user.email === "ruxanda.cujba07@gmail.com") {
         localStorage.setItem("isAdmin", "true");
         location.href = "../pagini/admin.html";
@@ -45,7 +42,6 @@ loginBtn.onclick = () => {
     }).catch(err => console.log(err));
 }
 
-// afișare link user/admin
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
     if (user.email === "ruxanda.cujba07@gmail.com") {

@@ -1,33 +1,27 @@
 <!DOCTYPE html>
-<html lang="ro">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salvări</title>
-    <script src="../scripts/applyReductions.js" defer></script>
-    <script src="../scripts/stats.js" defer></script>
-    <script src="../scripts/salvari.js" defer></script>
+    <title>Galerie</title>
     <link rel="stylesheet" href="../style.css">
-    <script type="module" src="../scripts/firebase.js"></script>
-    <script src="../scripts/index.js" defer></script>
-    <script src="../scripts/hamburger.js" defer></script>
     <script src="https://kit.fontawesome.com/8a1f01fb65.js" crossorigin="anonymous"></script>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="../scripts/index.js" defer></script>
+    <script src="../scripts/galerie.js" defer></script>
+    <script src="../scripts/stats.js" defer></script>
+    <script src="../scripts/hamburger.js" defer></script>
+    <script type="module" src="../scripts/firebase.js"></script>
 </head>
-
 <body>
-
     <header>
         <nav>
             <div class="linkuri">
-                <a data-i18n="nav.home" href="../index.html">Acasă</a>
-                <a data-i18n="nav.about" href="despre.html">Despre Noi</a>
-                <a data-i18n="nav.catalog" href="produse.html">Catalog</a>
-                <a data-i18n="nav.create" href="craft.html">Creează</a>
-                <a data-i18n="nav.gallery" href="galerie.html">Galerie</a>
-                <a data-i18n="nav.contact" href="contacte.html">Contacte</a>
+                <a href="../index.html" data-i18n="nav.home">Acasă</a>
+                <a href="despre.html" data-i18n="nav.about">Despre Noi</a>
+                <a href="produse.html" data-i18n="nav.catalog">Catalog</a>
+                <a href="craft.html" data-i18n="nav.craft">Creează</a>
+                <a href="galerie.html" data-i18n="nav.gallery">Galerie</a>
+                <a href="contacte.html" data-i18n="nav.contact">Contacte</a>
             </div>
             <img class="logo" src="../imagini/logo.png" alt="logo">
             <div class="inf">
@@ -67,7 +61,6 @@
                 <a id="userLink" href="#" style="display:none;"><i class="fa-regular fa-user"></i></a>
             </div>
         </nav>
-        
         <!-- Hamburger Menu Icon -->
         <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
           <i class="fa-solid fa-bars hamburger-icon"></i>
@@ -130,13 +123,38 @@
         </div>
     </header>
 
-    <section class="salvari">
-        <h2>Produse Salvate</h2>
-        <div id="salvariDisplay"></div>
+
+    <section class="galerie">
+        <h2>Galerie</h2>
+        <div class="imeg" id="galerieContainer">
+            <img src="../imagini/decor 1.jpg" alt="Tort 1" class="galerie-image">
+            <img src="../imagini/decor 2.jpg" alt="Tort 2" class="galerie-image">
+            <img src="../imagini/poza 1.png" alt="Tort 3" class="galerie-image">
+            <img src="../imagini/poza 2.png" alt="Tort 4" class="galerie-image">
+            <img src="../imagini/tort.jpg" alt="Tort 5" class="galerie-image">
+            <img src="../imagini/tarte.jpg" alt="Tort 6" class="galerie-image">
+        </div>
     </section>
 
+    <!-- Lightbox Model -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <img id="lightbox-image" src="" alt="Fullscreen image">
+        </div>
+        <button class="lightbox-nav lightbox-prev" id="prevBtn">
+            <i class="fa-solid fa-caret-left"></i>
+        </button>
+        <button class="lightbox-nav lightbox-next" id="nextBtn">
+            <i class="fa-solid fa-caret-right"></i>
+        </button>
+        <button class="lightbox-close" id="closeLightbox">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="lightbox-counter" id="imageCounter"></div>
+    </div>
 
-    <!-- footer -->
+
+
     <footer>
         <div class="footer-container">
             <!-- Informații despre companie -->
@@ -189,6 +207,6 @@
                 proiectului.</p>
         </div>
     </footer>
+    <script src="../scripts/galerie.js"></script>
 </body>
-
 </html>

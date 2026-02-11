@@ -10,6 +10,7 @@
   <script src="scripts/index.js" defer></script>
   <script src="scripts/stats.js" defer></script>
   <script src="scripts/comentarii-public.js" defer></script>
+  <script src="scripts/hamburger.js" defer></script>
   <link rel="stylesheet" href="style.css">
   <script src="https://kit.fontawesome.com/8a1f01fb65.js" crossorigin="anonymous"></script>
 </head>
@@ -23,39 +24,20 @@
         <a href="pagini/despre.html">Despre Noi</a>
         <a href="pagini/produse.html">Catalog</a>
         <a href="pagini/craft.html">Creează</a>
-        <a href="#">Galerie</a>
-        <a href="#">Contacte</a>
+        <a href="pagini/galerie.html">Galerie</a>
+        <a href="pagini/contacte.html">Contacte</a>
       </div>
       <img class="logo" src="imagini/logo.png" alt="logo">
       <div class="inf">
-        <div class="limba">
-          <p>Limba</p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 48 32">
-            <defs>
-              <clipPath id="rounded">
-                <rect x="0" y="0" width="48" height="32" rx="4" ry="4" />
-              </clipPath>
-            </defs>
-
-            <g clip-path="url(#rounded)">
-              <!-- Albastru -->
-              <rect x="0" y="0" width="16" height="32" fill="#003F87" />
-              <!-- Galben -->
-              <rect x="16" y="0" width="16" height="32" fill="#FFD100" />
-              <!-- Roșu -->
-              <rect x="32" y="0" width="16" height="32" fill="#CE1126" />
-            </g>
-          </svg>
-        </div>
         <div class="nr">
           <i class="fa-solid fa-phone-volume"></i>
         </div>
-        <a class="cos" href="cos.html">
+        <a class="cos" href="pagini/cos.html">
           <i class="fa-solid fa-basket-shopping"></i>
           <div class="stat-value" id="cartCount">0</div>
         </a>
 
-        <a class="salv" href="salvari.html">
+        <a class="salv" href="pagini/salvari.html">
           <i class="fa-solid fa-heart"></i>
           <div class="stat-value" id="savedCount">0</div>
         </a>
@@ -64,6 +46,67 @@
         <a id="userLink" href="#" style="display:none;"><i class="fa-regular fa-user"></i></a>
       </div>
     </nav>
+
+    <!-- Hamburger Menu Icon -->
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+      <i class="fa-solid fa-bars hamburger-icon"></i>
+      <i class="fa-solid fa-xmark hamburger-icon-close" style="display:none;"></i>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+
+      <!-- User Section -->
+      <div class="mobile-user-section" id="mobileUserSection" style="display:none;">
+        <div class="mobile-user-info">
+          <img id="mobileUserAvatar" src="" alt="User" class="user-avatar">
+          <div class="user-details">
+            <p id="mobileUserName">Utilizator</p>
+          </div>
+        </div>
+        <a href="pagini/user.html" class="mobile-menu-link">
+          <i class="fa-regular fa-user"></i> Contul Meu
+        </a>
+        <button id="mobileLogoutBtn" class="mobile-logout-btn">
+          <i class="fa-solid fa-sign-out-alt"></i> Deconectare
+        </button>
+      </div>
+
+      <!-- Login Section (visible if not logged in) -->
+      <div class="mobile-login-section" id="mobileLoginSection">
+        <button class="mobile-google-btn" id="mobileGoogleLogin">
+          <i class="fa-brands fa-google"></i> Logare cu Google
+        </button>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="mobile-nav">
+        <a href="index.html" class="mobile-menu-link">
+          <i class="fa-solid fa-house"></i> Acasă
+        </a>
+        <a href="pagini/despre.html" class="mobile-menu-link">
+          <i class="fa-solid fa-info-circle"></i> Despre Noi
+        </a>
+        <a href="pagini/produse.html" class="mobile-menu-link">
+          <i class="fa-solid fa-box-open"></i> Catalog
+        </a>
+        <a href="pagini/cos.html" class="mobile-menu-link">
+          <i class="fa-solid fa-basket-shopping"></i> Coș
+        </a>
+        <a href="pagini/contacte.html" class="mobile-menu-link">
+          <i class="fa-solid fa-heart"></i> Salvări
+        </a>
+        <a href="pagini/craft.html" class="mobile-menu-link">
+          <i class="fa-solid fa-paint-brush"></i> Creează
+        </a>
+        <a href="pagini/galerie.html" class="mobile-menu-link">
+          <i class="fa-solid fa-images"></i> Galerie
+        </a>
+        <a href="pagini/contacte.html" class="mobile-menu-link">
+          <i class="fa-solid fa-phone-volume"></i> Contacte
+        </a>
+      </nav>
+    </div>
 
 
 
@@ -144,8 +187,8 @@
           <li><a href="pagini/despre.html">Despre Noi</a></li>
           <li><a href="pagini/produse.html">Catalog</a></li>
           <li><a href="pagini/craft.html">Creează</a></li>
-          <li><a href="pagini/#">Galerie</a></li>
-          <li><a href="pagini/#">Contacte</a></li>
+          <li><a href="pagini/galerie.html">Galerie</a></li>
+          <li><a href="pagini/contacte.html">Contacte</a></li>
         </ul>
       </div>
 

@@ -1,4 +1,3 @@
-// Script pentru admin.html - afisare si stergere comentarii
 const adminEmail = 'ruxanda.cujba07@gmail.com';
 let allComments = [];
 let displayLimit = 5;
@@ -36,7 +35,6 @@ function afisareComentariiAdmin() {
       `).join('')
     : '<p style="text-align:center;color:#999;">Nu sunt comentarii.</p>';
   
-  // Buton "Mai multe"
   const toggleBtn = document.getElementById('toggleComments');
   if (toggleBtn) {
     if (displayLimit >= allComments.length) {
@@ -52,22 +50,18 @@ function afisareComentariiAdmin() {
 }
 
 window.stergeComentariuAdmin = async (id) => {
-  if (confirm('Ștergi acest comentariu?')) {
-    try {
-      if (window.firestore && window.firestore.deleteComment) {
-        await window.firestore.deleteComment(id);
-        incarcaComentariiAdmin();
-      } else {
-        alert('Firestore nu e disponibil');
-      }
-    } catch (err) {
-      console.error('Eroare la stergere comentariu', err);
-      alert('Eroare la stergere');
+  try {
+    if (window.firestore && window.firestore.deleteComment) {
+      await window.firestore.deleteComment(id);
+      incarcaComentariiAdmin();
+    } else {
+      console.warn('Firestore nu e disponibil');
     }
+  } catch (err) {
+    console.error('Eroare la stergere comentariu', err);
   }
 };
 
-// Încarcă comentariile când pagina se încarcă (cu delay pentru a se asigura că firebase.js s-a încărcat)
 setTimeout(() => {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', incarcaComentariiAdmin);

@@ -62,20 +62,14 @@ const layerData = {
 let selected = [];
 
 function getImagePath(item) {
-    // Use the image property from the item if it exists
-    return item.image || null;
+    return item.image || 'imagini/craft/craft.png';
 }
 
 function updatePreview() {
     const rightPanel = document.querySelector('.right');
     rightPanel.innerHTML = '';
-    // Display selected layers in reverse order (first selected appears at back with highest z-index)
     selected.forEach((item, index) => {
         const imagePath = getImagePath(item);
-        // Only show image if path is defined
-        if (!imagePath) {
-            return;
-        }
         const img = document.createElement('img');
         img.src = imagePath;
         img.alt = item.name;
@@ -84,11 +78,17 @@ function updatePreview() {
         if (index === 0) {
             img.style.marginBottom = '0';
         } else {
-            img.style.marginTop = '-80px'; // Overlap with previous image
+            img.style.marginTop = '-80px';
             img.style.marginBottom = '0';
         }
-        img.style.zIndex = selected.length - index; // Later items have lower z-index
+        img.style.zIndex = selected.length - index;
         img.onerror = function() {
+            if (!this.dataset.fallback) {
+                this.dataset.fallback = '1';
+                this.src = 'imagini/craft/craft.png';
+                this.alt = `Imagine implicită: ${item.name}`;
+                return;
+            }
             console.error(`Imagine not found: ${this.src}`);
             this.style.border = '2px solid #ff6666';
             this.style.padding = '10px';
@@ -112,14 +112,12 @@ document.addEventListener("DOMContentLoaded", () => {
             select.appendChild(option);
         });
     }
-    // For decor
     const decorDiv = document.getElementById('decorOptions');
     layerData.decor.forEach(item => {
         const label = document.createElement('label');
         label.innerHTML = `<input type="checkbox" value="${item.name}"> ${item.name}`;
         decorDiv.appendChild(label);
     });
-    // Color picker
     document.getElementById('select-color').onchange = function() {
         const picker = document.getElementById('colorPicker');
         if (this.value === 'Culori personalizate') {
@@ -205,10 +203,9 @@ async function addToCart() {
         console.error("Selectați măcar un sloi.");
         return;
     }
-    // add custom cake to localStorage cart
     const cartKey = `cart_${uid}`;
     const cart = JSON.parse(localStorage.getItem(cartKey) || '[]');
-    cart.push({ nume, cantitate: 1, pret, descriere });
+    cart.push({ nume, cantitate: 1, pret, descriere, isCraft: true });
     localStorage.setItem(cartKey, JSON.stringify(cart));
     console.log("Tort adăugat în coș (localStorage)!");
     try { if (typeof loadStats === 'function') loadStats(); else if (window && window.loadStats) window.loadStats(); else setTimeout(()=>{ if (typeof loadStats === 'function') loadStats(); }, 200); } catch(e){}
