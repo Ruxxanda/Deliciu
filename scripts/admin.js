@@ -197,20 +197,8 @@ async function generateOrderHTML(o, produse, isCompleted = false) {
 `;
     }
     const descriereHTML = prod ? `<p>${prod.descriere}</p>` : '';
-    let detailsHTML = '';
-    if (isCustom) {
-      detailsHTML = `
-      <button onclick="toggleOrderDetails('${o.id}-${index}')" id="btn-${o.id}-${index}">Detalii ▶</button>
-      <div id="details-${o.id}-${index}" style="display: none; margin-top: 5px;">${c.descriere}</div>
-    `;
-    } else if (prod && prod.detalii) {
-      detailsHTML = `
-      <button onclick="toggleOrderDetails('${o.id}-${index}')" id="btn-${o.id}-${index}">Detalii ▶</button>
-      <div class="detaliii" id="details-${o.id}-${index}" style="display: none; margin-top: 5px;">${Array.isArray(prod.detalii) ? prod.detalii.map(detail => `<li>${detail}</li>`).join('') : prod.detalii.split('\n').map(line => line.trim()).filter(line => line).map(line => `<li>${line}</li>`).join('')}</div>
-    `;
-    }
     return `
-      <div class="produs">
+      <div class="produs" onclick="goToProductDetails('${c.nume}')" style="cursor: pointer;">
         <img src="../${(imagine||'').replace(/^\//,'').replace(/^\.\//,'')}" width="100" alt="produs">
         <div class="infor">
             <p class="nume">${c.nume}</p>
@@ -218,7 +206,6 @@ async function generateOrderHTML(o, produse, isCompleted = false) {
             <p>${pretHTML}</p>
             <p>Cantitate: ${isCustom ? (getTotalQty(c.descriere) / 1000) + ' kg' : c.cantitate}</p>
         </div>
-        ${detailsHTML}
       </div>
     `;
   });
@@ -276,6 +263,10 @@ window.toggleOrderDetails = function (key) {
     detailsDiv.style.display = 'none';
     btn.innerHTML = 'Detalii ▶';
   }
+};
+
+window.goToProductDetails = function (productName) {
+  window.location.href = `tort.html?nume=${encodeURIComponent(productName)}`;
 };
 
 window.updateStatus = async (id, status) => {
@@ -349,6 +340,20 @@ async function loadProductsForReduction() {
       </div>
     `}).join("");
     document.getElementById("productsCheckboxes").innerHTML = checkboxes;
+    
+    // Add event listeners to product cards to toggle checkbox on click
+    const productCards = document.querySelectorAll("#productsCheckboxes .product-card");
+    productCards.forEach(card => {
+      card.addEventListener("click", (e) => {
+        const checkbox = card.querySelector("input[type='checkbox']");
+        // Only toggle if clicking on the card but not directly on the checkbox
+        if (checkbox && e.target !== checkbox) {
+          checkbox.checked = !checkbox.checked;
+        }
+      });
+      // Make cursor pointer on product card to indicate it's clickable
+      card.style.cursor = "pointer";
+    });
   } catch (error) {
     console.error("Error loading products for reduction:", error);
   }

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../style.css">
   <script src="../scripts/stats.js" defer></script>
   <script src="../scripts/tort.js"></script>
+  <link rel="stylesheet" href="../media.css">
   <script type="module" src="../scripts/firebase.js" defer></script>
   <script src="../scripts/hamburger.js" defer></script>
   <script src="https://kit.fontawesome.com/8a1f01fb65.js" crossorigin="anonymous"></script>
@@ -19,17 +20,16 @@
     <nav>
       <div class="linkuri">
         <a href="../index.html" data-i18n="nav.home">Acasă</a>
-        <a href="despre.html" data-i18n="nav.about">Despre Noi</a>
+        <a href="despre.html" data-i18n="nav.about">Despre</a>
         <a href="produse.html" data-i18n="nav.catalog">Catalog</a>
         <a href="craft.html" data-i18n="nav.craft">Creează</a>
         <a href="galerie.html" data-i18n="nav.gallery">Galerie</a>
-        <a href="contacte.html" data-i18n="nav.contact">Contacte</a>
       </div>
       <img class="logo" src="../imagini/logo.png" alt="logo">
       <div class="inf">
-        <div class="nr">
+        <a class="nr" href="contacte.html">
           <i class="fa-solid fa-phone-volume"></i>
-        </div>
+        </a>
         <a class="cos" href="cos.html">
           <i class="fa-solid fa-basket-shopping"></i>
           <div class="stat-value" id="cartCount">0</div>
@@ -43,63 +43,62 @@
         <button class="logoogle" id="googleLogin"><i class="fa-brands fa-google"></i></button>
         <a id="userLink" href="#" style="display:none;"><i class="fa-regular fa-user"></i></a>
       </div>
-    </nav>
 
-    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
-      <i class="fa-solid fa-bars hamburger-icon"></i>
-      <i class="fa-solid fa-xmark hamburger-icon-close" style="display:none;"></i>
-    </button>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars hamburger-icon"></i>
+        <i class="fa-solid fa-xmark hamburger-icon-close" style="display:none;"></i>
+      </button>
 
-    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu" id="mobileMenu">
 
-      <div class="mobile-user-section" id="mobileUserSection" style="display:none;">
-        <div class="mobile-user-info">
-          <img id="mobileUserAvatar" src="" alt="User" class="user-avatar">
-          <div class="user-details">
-            <p id="mobileUserName">Utilizator</p>
+        <div class="mobile-user-section" id="mobileUserSection" style="display:none;">
+          <div class="mobile-user-info">
+            <img id="mobileUserAvatar" src="" alt="User" class="user-avatar">
+            <div class="user-details">
+              <p id="mobileUserName">Utilizator</p>
+            </div>
           </div>
+          <a href="user.html" class="mobile-menu-link">
+            <i class="fa-regular fa-user"></i> Contul Meu
+          </a>
+          <button id="mobileLogoutBtn" class="mobile-logout-btn">
+            <i class="fa-solid fa-sign-out-alt"></i> Deconectare
+          </button>
         </div>
-        <a href="user.html" class="mobile-menu-link">
-          <i class="fa-regular fa-user"></i> Contul Meu
-        </a>
-        <button id="mobileLogoutBtn" class="mobile-logout-btn">
-          <i class="fa-solid fa-sign-out-alt"></i> Deconectare
-        </button>
-      </div>
 
-      <div class="mobile-login-section" id="mobileLoginSection">
-        <button class="mobile-google-btn" id="mobileGoogleLogin">
-          <i class="fa-brands fa-google"></i> Logare cu Google
-        </button>
-      </div>
+        <div class="mobile-login-section" id="mobileLoginSection">
+          <button class="mobile-google-btn" id="mobileGoogleLogin">
+            <i class="fa-brands fa-google"></i> Logare cu Google
+          </button>
+        </div>
 
-      <nav class="mobile-nav">
-        <a href="../index.html" class="mobile-menu-link">
-          <i class="fa-solid fa-house"></i> Acasă
-        </a>
-        <a href="despre.html" class="mobile-menu-link">
-          <i class="fa-solid fa-info-circle"></i> Despre Noi
-        </a>
-        <a href="produse.html" class="mobile-menu-link">
-          <i class="fa-solid fa-box-open"></i> Catalog
-        </a>
-        <a href="cos.html" class="mobile-menu-link">
-          <i class="fa-solid fa-basket-shopping"></i> Coș
-        </a>
-        <a href="salvari.html" class="mobile-menu-link">
-          <i class="fa-solid fa-heart"></i> Salvări
-        </a>
-        <a href="craft.html" class="mobile-menu-link">
-          <i class="fa-solid fa-paint-brush"></i> Creează
-        </a>
-        <a href="galerie.html" class="mobile-menu-link">
-          <i class="fa-solid fa-images"></i> Galerie
-        </a>
-        <a href="contacte.html" class="mobile-menu-link">
-          <i class="fa-solid fa-phone-volume"></i> Contacte
-        </a>
-      </nav>
-    </div>
+        <nav class="mobile-nav">
+          <a href="../index.html" class="mobile-menu-link">
+            <i class="fa-solid fa-house"></i> Acasă
+          </a>
+          <a href="despre.html" class="mobile-menu-link">
+            <i class="fa-solid fa-info-circle"></i> Despre Noi
+          </a>
+          <a href="produse.html" class="mobile-menu-link">
+            <i class="fa-solid fa-box-open"></i> Catalog
+          </a>
+          <a href="cos.html" class="mobile-menu-link">
+            <i class="fa-solid fa-basket-shopping"></i> Coș
+          </a>
+          <a href="salvari.html" class="mobile-menu-link">
+            <i class="fa-solid fa-heart"></i> Salvări
+          </a>
+          <a href="craft.html" class="mobile-menu-link">
+            <i class="fa-solid fa-paint-brush"></i> Creează
+          </a>
+          <a href="galerie.html" class="mobile-menu-link">
+            <i class="fa-solid fa-images"></i> Galerie
+          </a>
+          <a href="contacte.html" class="mobile-menu-link">
+            <i class="fa-solid fa-phone-volume"></i> Contacte
+          </a>
+        </nav>
+      </div>
   </header>
 
   <section class="prod">

@@ -32,8 +32,14 @@ select {
     color: #000000;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    /* border: 1px solid #333; */
+}
+
+section.add-com #listaComentarii {
+    display: block;
+    width: 100%;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 button {
@@ -399,6 +405,7 @@ section.tort-popular .trei .produs {
     overflow: hidden;
     position: relative;
     padding-bottom: 25px;
+    width: 250px;
 }
 
 section.tort-popular .trei .produs:hover {
@@ -523,7 +530,6 @@ section.tort-popular .trei .produs .btn-detalii:hover {
 section.reducere {
     position: relative;
     overflow: hidden;
-    width: 100%;
     background-color: #FF9A8B;
     background-image: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
     margin: 0;
@@ -713,11 +719,15 @@ section.coment .carousel-wrapper {
     overflow: hidden;
     border-radius: 20px;
     position: relative;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 section.coment .carousel-track {
     display: flex;
     transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    touch-action: none;
 }
 
 section.coment .carousel-item {
@@ -991,6 +1001,17 @@ section.admin .info {
     z-index: 1;
 }
 
+section.admin .info #info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+
 section.admin .info h2 {
     font-size: 48px;
     font-family: "Playfair Display";
@@ -1016,7 +1037,6 @@ section.admin .info .deconectare {
 }
 
 section.admin .info .deconectare:hover {
-    transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(255, 154, 139, 0.4);
 }
 
@@ -1070,7 +1090,7 @@ section.comentarii .date {
 
 section.comentarii .date #coms {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
@@ -1518,7 +1538,7 @@ section.ad-reducere .end-start .end {
 
 section.ad-reducere #productsCheckboxes {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     max-width: 100%;
     margin-top: 10px;
@@ -1666,11 +1686,47 @@ section.add-com .scrie button {
     padding: 5px 15px;
 }
 
+section.add-com #listaComentarii div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#comentariuText {
+    padding: 15px 20px;
+    width: 95%;
+}
+
+section.add-com #listaComentarii button {
+    background-image: none;
+    background: none;
+    color: #000000;
+    padding: 0;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 0;
+    margin-left: 10px;
+}
+
+section.add-com #listaComentarii button i {
+    transition: all 0.2s ease;
+    font-size: 25px;
+}
+
+section.add-com #listaComentarii button.save:hover i {
+    color: #4caf50;
+}
+
+section.add-com #listaComentarii button.delete:hover i {
+    color: #ce2a2a;
+}
+
 
 
 
 section.produse {
-    padding: 150px 0;
+    padding: 120px 0 0;
 }
 
 section.produse h2 {
@@ -1764,14 +1820,6 @@ section.produse .produse-category {
     }
 }
 
-@media (max-width: 640px) {
-
-    section.produse .produse-category,
-    section.tort-popular .trei {
-        grid-template-columns: 2fr;
-    }
-}
-
 section.produse .produse-category .produs {
     background: white;
     border-radius: 10px;
@@ -1786,6 +1834,10 @@ section.produse .produse-category .produs {
     position: relative;
     padding-bottom: 25px;
     width: 100%;
+}
+
+.produs {
+    cursor: pointer;
 }
 
 section.produse .produse-category .produs:hover {
@@ -2009,12 +2061,6 @@ section.cos #cosDisplay {
     }
 }
 
-@media (max-width: 640px) {
-    section.cos #cosDisplay {
-        grid-template-columns: 1fr;
-    }
-}
-
 section.cos #cosDisplay .produs.cos-item {
     background: white;
     border-radius: 10px;
@@ -2040,7 +2086,6 @@ section.cos #cosDisplay .produs .img-wrapper {
     width: 100%;
     height: 280px;
     overflow: hidden;
-    border-radius: 25px 25px 0 0;
 }
 
 section.cos #cosDisplay .produs .img-wrapper img {
@@ -2259,12 +2304,6 @@ section.salvari #salvariDisplay {
 @media (max-width: 1024px) {
     section.salvari #salvariDisplay {
         grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 640px) {
-    section.salvari #salvariDisplay {
-        grid-template-columns: 1fr;
     }
 }
 
@@ -2723,9 +2762,10 @@ section.edit {
 
 /* footer */
 footer {
-    background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 50%, #FF99AC 100%);
+    background: #ffffff;
     padding: 40px 0;
     font-family: Arial, Helvetica, sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .footer-container {
@@ -2742,8 +2782,6 @@ footer {
 
 .footer-section h3 {
     font-size: 1.4em;
-    margin-bottom: 15px;
-    color: #ffffff;
     text-transform: uppercase;
     padding-bottom: 5px;
     position: relative;
@@ -2756,7 +2794,7 @@ footer {
     bottom: 0;
     width: 2px;
     height: 2px;
-    background-color: #fff;
+    background-color: #000000;
     transition: width 0.5s ease, left 0.3s ease;
 }
 
@@ -2770,7 +2808,14 @@ footer {
 .footer-section i {
     font-size: 0.95em;
     line-height: 1.8;
-    color: #ffffff;
+}
+
+.footer-section p:hover,
+.footer-section ul:hover,
+.footer-section a:hover,
+.footer-section i:hover {
+    color: #FF6A88;
+    transition: color 0.3s;
 }
 
 .footer-section ul {
@@ -2780,7 +2825,6 @@ footer {
 
 .footer-section ul li a {
     text-decoration: none;
-    color: #ffffff;
     transition: color 0.3s;
 }
 
@@ -2788,25 +2832,21 @@ footer {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    color: #ffd983;
-    font-size: 1.2em;
+    font-size: 30px;
+    margin-right: 5px;
     line-height: 40px;
     text-align: center;
-    margin-right: 10px;
     margin-bottom: 10px;
-    border-radius: 50%;
+    border-radius: 10%;
 }
 
 .social-icons a:hover {
-    background-color: rgba(217, 78, 56, 0.684);
+    color: #FF6A88;
 }
 
 .footer-bottom p {
     text-align: center;
-    margin-top: 30px;
-    color: #ffffff;
+    margin: 10px 4% 0;
 }
 
 
@@ -3024,7 +3064,7 @@ section.servicii .card-group {
 section.servicii .card {
     width: 300px;
     height: 400px;
-    border-radius: 16px;
+    border-radius: 10px;
     overflow: hidden;
     position: relative;
     transition: 0.5s;
@@ -3069,7 +3109,6 @@ section.servicii .card:hover .layer {
 section.servicii .card:hover .info {
     bottom: 20px;
     opacity: 1;
-
 }
 
 section.servicii .info h3 {
@@ -3210,6 +3249,14 @@ section.galerie .imeg img:hover {
     background-color: rgba(255, 255, 255, 0.4);
 }
 
+.lightbox-nav i {
+    color: #ffffff;
+}
+
+.lightbox-close i {
+    color: #ffffff;
+}
+
 .lightbox-prev {
     left: 200px;
 }
@@ -3255,6 +3302,9 @@ section.galerie .imeg img:hover {
     z-index: 1001;
 }
 
+body.lightbox-open .hamburger i {
+    color: #fff !important;
+}
 
 /* contacte */
 section.contacte {
@@ -3358,7 +3408,6 @@ section.harta iframe {
 /* detaliile tortului */
 section.prod {
     margin: 150px 13% 50px;
-    gap: 40px;
 }
 
 section.prod .detalii-produse {
@@ -3405,7 +3454,6 @@ section.prod .detalii-produse .info ul {
     padding: 0;
 }
 
-
 /* Product description clamp */
 .produs .prod-desc {
     display: -webkit-box;
@@ -3437,273 +3485,4 @@ nav.mobile-nav {
 
 .mobile-login-section {
     display: none;
-}
-
-/* ========================================
-   HAMBURGER MENU - MOBILE (max-width: 1180px)
-   ======================================== */
-
-@media (max-width: 1180px) {
-
-    /* Hide desktop navigation on mobile */
-    header nav {
-        display: none;
-        position: relative;
-    }
-
-    /* Show hamburger button */
-    .hamburger {
-        display: flex;
-        flex-direction: column;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 10px;
-        position: fixed;
-        top: 18px;
-        right: 20px;
-        z-index: 1001;
-        color: #000;
-        width: 40px;
-        height: 40px;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        background-color: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 50%, #FF99AC 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-    }
-
-    .hamburger i {
-        color: #000000;
-        transition: all 0.3s ease;
-        font-size: 30px;
-    }
-
-    /* Show bars icon by default, hide xmark */
-    .hamburger .hamburger-icon {
-        display: inline-block !important;
-    }
-
-    .hamburger .hamburger-icon-close {
-        display: none !important;
-    }
-
-    /* When hamburger is active, show xmark and hide bars */
-    .hamburger.active .hamburger-icon {
-        display: none !important;
-    }
-
-    .hamburger.active .hamburger-icon-close {
-        display: inline-block !important;
-    }
-
-    .hamburger.active {
-        display: none !important;
-    }
-
-    .hamburger:hover {
-        color: #FF6A88;
-    }
-
-    /* Hamburger color variants */
-    .hamburger.hamburger-white i {
-        color: #FFFFFF;
-    }
-
-    .hamburger.hamburger-white:hover i {
-        color: #FFB0B0;
-    }
-
-    .hamburger.hamburger-black i {
-        color: #000000;
-    }
-
-    .hamburger.hamburger-black:hover i {
-        color: #FF6A88;
-    }
-
-    /* Mobile Menu Styles */
-    .mobile-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 350px;
-        height: 100vh;
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
-        box-shadow: -2px 0 20px rgba(255, 154, 139, 0.15);
-        z-index: 999;
-        transition: right 0.3s ease;
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        padding: 20px 0;
-    }
-
-    .mobile-menu.active {
-        right: 0;
-    }
-
-    /* User Section in Mobile Menu */
-    .mobile-user-section {
-        display: none;
-        padding: 20px 15px 0;
-        border-bottom: none;
-        margin-bottom: 10px;
-    }
-
-    .mobile-user-info {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 15px;
-    }
-
-    .user-avatar {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid #FF6A88;
-    }
-
-    .user-details {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .user-details p {
-        font-weight: 700;
-        color: #333;
-        margin: 0;
-        font-size: 14px;
-    }
-
-    /* Mobile Menu Links */
-    .mobile-menu-link {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 12px 15px;
-        color: #000;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        border-left: 4px solid transparent;
-    }
-
-    .mobile-menu-link:hover {
-        background: rgba(255, 154, 139, 0.1);
-        color: #FF6A88;
-        border-left-color: #FF6A88;
-        padding-left: 20px;
-    }
-
-    /* Login Section */
-    .mobile-login-section {
-        padding: 15px;
-        margin: 10px 0;
-        border-bottom: 2px solid rgba(255, 154, 139, 0.1);
-    }
-
-    .mobile-google-btn {
-        width: 100%;
-        padding: 12px 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        font-size: 14px;
-        background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 50%, #FF99AC 100%);
-        border: none;
-        color: white;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .mobile-google-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(255, 154, 139, 0.3);
-    }
-
-    /* Mobile Navigation Links */
-    .mobile-nav {
-        display: none;
-        flex-direction: column;
-        gap: 0;
-        padding: 10px 0;
-        transition: all 0.3s ease;
-    }
-
-    .mobile-menu.active .mobile-nav {
-        display: block;
-        padding: 0 15px;
-        border-bottom: none;
-        background: none;
-        margin-bottom: 10px;
-        box-shadow: none;
-        backdrop-filter: none;
-    }
-
-    .mobile-menu.active .mobile-nav i,
-    .mobile-menu-link i {
-        font-size: 18px;
-        font-weight: 800;
-    }
-
-    /* Logout Button */
-    .mobile-logout-btn {
-        width: 100%;
-        padding: 12px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 12px;
-        margin-top: 10px;
-        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 50%, #ff7673 100%);
-        border: none;
-        color: white;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        font-size: 15px;
-    }
-
-    .mobile-logout-btn i {
-        font-size: 18px;
-        font-weight: 800;
-        color: #FFFFFF;
-    }
-
-    .mobile-logout-btn:hover {
-        box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
-    }
-
-    /* Hamburger animation - when active, transform to X */
-    .hamburger.active i {
-        transform: rotate(45deg);
-    }
-
-    /* Overlay when menu is open */
-    body.menu-open {
-        overflow: hidden;
-    }
-
-    body.menu-open::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.3);
-        z-index: 998;
-    }
 }

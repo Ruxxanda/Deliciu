@@ -56,6 +56,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Touch / swipe navigation for mobile devices
+    let touchStartX = 0;
+    let touchStartY = 0;
+    lightbox.addEventListener('touchstart', function(e) {
+        const t = e.changedTouches[0];
+        touchStartX = t.screenX;
+        touchStartY = t.screenY;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', function(e) {
+        const t = e.changedTouches[0];
+        const dx = t.screenX - touchStartX;
+        const dy = t.screenY - touchStartY;
+        // Only consider mostly-horizontal swipes with a minimum distance
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+            if (dx < 0) {
+                showNextImage();
+            } else {
+                showPreviousImage();
+            }
+        }
+    }, { passive: true });
+
     // Update counter
     updateCounter();
 });
@@ -68,6 +91,8 @@ function openLightbox(index) {
     lightboxImg.src = images[currentImageIndex].src;
     lightbox.style.display = 'flex';
     document.body.style.overflow = 'hidden';
+    // add class so header hamburger icons become white while lightbox is open
+    document.body.classList.add('lightbox-open');
     updateCounter();
 }
 
@@ -75,6 +100,8 @@ function closeLightbox() {
     const lightbox = document.getElementById('lightbox');
     lightbox.style.display = 'none';
     document.body.style.overflow = 'auto';
+    // restore hamburger icon color
+    document.body.classList.remove('lightbox-open');
 }
 
 function showPreviousImage() {

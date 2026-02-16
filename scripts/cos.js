@@ -65,6 +65,12 @@ async function afiseazaCos() {
             const imagePath = p.imagine || p.linkImagine || '/imagini/craft/craft.png';
             card.innerHTML = `\n            <div class="img-wrapper">\n                <img src="../${(imagePath||'').replace(/^\\/,'').replace(/^\.\//,'')}" alt="produs">\n                ${areReducere ? `<div class="badge-reducere">-${p.reducere}%</div>` : ''}\n            </div>\n            <h3>${p.nume}</h3>\n            <p>${p.descriere.split('\n')[0] || p.descriere}</p>\n            <div class="pret-info">${pretHTML}</div>\n            <p class="cantitate">Cantitate: ${isCustom ? (p.totalQty / 1000) + ' kg' : p.cantitate}</p>\n            ${detailsHTML}\n            <div class="actiuni">\n                <button class="sterge-cos" onclick="toggleCos('${p.nume}', ${p.cantitate})">\n                    <i class="fa fa-trash"></i> Șterge\n                </button>\n            </div>`;
         div.appendChild(card);
+            // navigate to product details (tort.html) when clicking the product card,
+            // but ignore clicks on img-wrapper, action buttons, details button or other interactive elements
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('.img-wrapper') || e.target.closest('.actiuni') || e.target.closest('.detalii') || e.target.closest('button') || e.target.closest('.sterge-cos')) return;
+                window.location.href = `tort.html?nume=${encodeURIComponent(p.nume)}`;
+            });
     });
 }
 

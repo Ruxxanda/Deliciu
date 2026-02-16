@@ -50,15 +50,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 function renderProduct(p, container, isCustom = false) {
     const formatPrice = (price) => parseFloat(price || 0).toFixed(2);
     const imageSrc = (p.imagine || p.linkImagine || p.imagine_url || '').replace(/^\./,'').replace(/^\//,'');
+    const mainDescr = (p.descriere || p.fullDescriere || '');
+    const showFullDescr = isCustom && p.fullDescriere && p.fullDescriere.trim() && (p.fullDescriere !== (p.descriere || ''));
     container.innerHTML = `
         <div class="detalii-produse">
             <img src="../${imageSrc || 'imagini/craft/craft.png'}" alt="${p.nume}" onerror="this.src='../imagini/craft/craft.png'">
             <div class="info">
                 <h2>${p.nume}</h2>
                 <p class="price">${formatPrice(p.pret)} Lei</p>
-                <div class="descriere">${(p.descriere || p.fullDescriere || '')}</div>
+                <div class="descriere">${mainDescr}</div>
                 ${Array.isArray(p.detalii) ? `<ul class="detalii-list">${p.detalii.map(d=>`<li>${d}</li>`).join('')}</ul>` : ''}
-                ${isCustom && p.fullDescriere ? `<div style="margin-top:12px;"><strong>Descriere completă:</strong><div>${p.fullDescriere}</div></div>` : ''}
+                ${showFullDescr ? `<div style="margin-top:12px;"><strong>Descriere completă:</strong><div>${p.fullDescriere}</div></div>` : ''}
             </div>
         </div>
     `;

@@ -33,8 +33,8 @@ async function incarcaDate() {
   console.log('incarcaDate:', { uid, user });
   if (infoEl) {
     infoEl.innerHTML = `
-      <img src="${imgSrc}" class="poza"><br>
-      <b>${user.nume || user.email || uid}</b><br>
+      <img src="${imgSrc}" class="poza">
+      <b>${user.nume || user.email || uid}</b>
       ${user.email || ''}
     `;
   }
@@ -113,9 +113,13 @@ async function incarcaComentarii(){
     if (!container) return;
     container.innerHTML = data.map(c => `
       <div style="border:1px solid #ccc;margin:5px;padding:5px">
-        <input type="text" value="${(c.text||'').replace(/"/g,'&quot;')}" id="input${c.id}" style="width:70%">
-        <button onclick="salveazaComent('${c.id}')">Salvează</button>
-        <button onclick="stergeComentariu('${c.id}')">Șterge</button>
+        <input type="text" value="${(c.text||'').replace(/"/g,'&quot;')}" id="input${c.id}" style="width:90%">
+        <button class="save" onclick="salveazaComent('${c.id}')">
+          <i class="fa-regular fa-circle-check"></i>
+        </button>
+        <button class="delete" onclick="stergeComentariu('${c.id}')">
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
       </div>
     `).join("");
   } catch (err) {
@@ -216,17 +220,11 @@ async function generateOrderHTMLUser(o, produse, isCompleted = false) {
       pretHTML = `\n        <div style="display: flex; align-items: center; gap: 10px;">\n            <div class="pret-vechi">${prod.pret} Lei</div>\n            <div class="pret-redus">${prod.pretRedus} Lei</div>\n        </div>\n        <div class="badge-reducere">-${prod.reducere}% reducere</div>\n`;
     }
     const descriereHTML = prod ? `<p>${prod.descriere}</p>` : '';
-    let detailsHTML = '';
-    if (isCustom) {
-      detailsHTML = `\n      <button onclick="toggleUserOrderDetails('${o.id}-${index}')" id="btn-user-${o.id}-${index}">Detalii ▶</button>\n      <div id="details-user-${o.id}-${index}" style="display: none; margin-top: 10px;">${c.descriere}</div>\n    `;
-    } else if (prod && prod.detalii) {
-      const dets = Array.isArray(prod.detalii) ? prod.detalii.map(detail => `<li>${detail}</li>`).join('') : prod.detalii.split('\n').map(line => line.trim()).filter(line => line).map(line => `<li>${line}</li>`).join('');
-      detailsHTML = `\n      <button onclick="toggleUserOrderDetails('${o.id}-${index}')" id="btn-user-${o.id}-${index}">Detalii ▶</button>\n      <div id="details-user-${o.id}-${index}" style="display: none; margin-top: 10px; list-style: disc; padding-left: 20px;">${dets}</div>\n    `;
-    }
+    const detailsHTML = '';
     let imgPath = (imagine || '').replace(/^\\/,'').replace(/^\.\//,'').replace(/^\//,'');
     if (imgPath && !imgPath.startsWith('http')) imgPath = `../${imgPath}`;
     const imgTagSrc = imgPath || '../imagini/craft/craft.png';
-    return `\n        <div style="border:1px solid #eee; padding:5px; margin:5px;" class="produs">\n          <img src="${imgTagSrc}" width="100" alt="produs"><br>\n          <b>${c.nume}</b><br>\n          ${descriereHTML}\n          ${pretHTML}<br>\n          Cantitate: ${isCustom ? (getTotalQty(c.descriere) / 1000) + ' kg' : c.cantitate}<br>\n          ${detailsHTML}\n        </div>\n      `;
+    return `\n        <div style="border:1px solid #eee; padding:5px; margin:5px; cursor:pointer;" class="produs" onclick="openProductPage('${encodeURIComponent(c.nume || '')}')">\n          <img src="${imgTagSrc}" width="100" alt="produs">\n          <b>${c.nume}</b>\n          ${descriereHTML}\n          ${pretHTML}\n          Cantitate: ${isCustom ? (getTotalQty(c.descriere) / 1000) + ' kg' : c.cantitate}\n        </div>\n      `;
   });
   const visibleProducts = productItems.slice(0, 3).join('');
   const extraProducts = productItems.slice(3).join('');

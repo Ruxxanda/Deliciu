@@ -139,6 +139,9 @@ function nextComment() {
   isTransitioning = true;
   internalIndex += 1;
   updateCarouselPosition(true);
+  
+  // Fallback pentru mobile - resetează isTransitioning după durata tranziției CSS
+  setTimeout(() => { isTransitioning = false; }, 550);
 }
 
 function prevComment() {
@@ -149,6 +152,9 @@ function prevComment() {
   isTransitioning = true;
   internalIndex -= 1;
   updateCarouselPosition(true);
+  
+  // Fallback pentru mobile - resetează isTransitioning după durata tranziției CSS
+  setTimeout(() => { isTransitioning = false; }, 550);
 }
 
 function onTrackTransitionEnd() {
@@ -240,7 +246,7 @@ function addCarouselListeners() {
   let startX = 0;
   let dx = 0;
   let dragging = false;
-  const threshold = 50; 
+  const threshold = window.innerWidth <= 600 ? 30 : 50;
 
   function onPointerDown(e) {
     if (e.pointerType === 'mouse' && e.button !== 0) return;
@@ -254,7 +260,7 @@ function addCarouselListeners() {
     dx = 0;
     track.style.transition = 'none';
     track.classList.add('dragging');
-    wrapper.setPointerCapture(e.pointerId);
+    try { wrapper.setPointerCapture(e.pointerId); } catch (err) {}
     stopAutoplay();
   }
 
@@ -269,6 +275,7 @@ function addCarouselListeners() {
     const centerOffset = (wrapperWidth - totalVisibleWidth) / 2;
     const baseTranslate = -internalIndex * (itemWidth + gap) + centerOffset;
     track.style.transform = `translateX(${baseTranslate + dx}px)`;
+    e.preventDefault();
   }
 
   function onPointerUp(e) {
@@ -284,7 +291,7 @@ function addCarouselListeners() {
       updateCarouselPosition(true);
     }
 
-    setTimeout(startAutoplay, 3000);
+    setTimeout(startAutoplay, 2000);
   }
 
   if (wrapper) {

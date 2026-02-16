@@ -40,16 +40,11 @@ async function afiseazaSalvări() {
         <div class="pret-vechi">${formatPrice(p.pret)} Lei</div>
         <div class="pret-redus">${formatPrice(p.pretRedus)} Lei</div>
     </div>
-    <div class="badge-reducere">-${p.reducere}% reducere</div>
 </div>
 `;
         }
-        const detailsId = `details-${p.nume.replace(/\s/g, '-')}`;
-        const buttonId = `btn-${p.nume.replace(/\s/g, '-')}-details`;
-        const detailsHTML = p.detalii ? `
-            <button class="detalii" onclick="toggleDetailsSalvari('${detailsId}', '${buttonId}')" id="${buttonId}">Detalii ▶</button>
-            <div id="${detailsId}" style="display: none; margin-top: 10px; list-style: disc; padding-left: 20px;">${Array.isArray(p.detalii) ? p.detalii.map(detail => `<li>${detail}</li>`).join('') : p.detalii.split('\n').map(line => line.trim()).filter(line => line).map(line => `<li>${line}</li>`).join('')}</div>
-        ` : '';
+        // details are intentionally hidden on the saved items page — no details button
+        const detailsHTML = '';
         const card = document.createElement("div");
         card.classList.add("produs", "salvare-item");
         card.innerHTML = `
@@ -68,6 +63,12 @@ async function afiseazaSalvări() {
                 </button>
             </div>`;
         div.appendChild(card);
+        // Make whole card clickable to go to product detail (tort.html),
+        // but don't navigate when user clicks the heart, details, img-wrapper or action buttons
+        card.addEventListener('click', function(e) {
+            if (e.target.closest('.img-wrapper') || e.target.closest('.actiuni') || e.target.closest('.detalii') || e.target.closest('.heart-icon') || e.target.closest('button')) return;
+            window.location.href = `tort.html?nume=${encodeURIComponent(p.nume)}`;
+        });
     });
 }
 

@@ -11,6 +11,7 @@
     <script type="module" src="../scripts/firebase.js"></script>
     <script src="../scripts/index.js" defer></script>
     <script src="../scripts/hamburger.js" defer></script>
+    <link rel="stylesheet" href="../media.css">
     <script src="https://kit.fontawesome.com/8a1f01fb65.js" crossorigin="anonymous"></script>
 
 </head>
@@ -20,17 +21,43 @@
         <nav>
             <div class="linkuri">
                 <a href="../index.html" data-i18n="nav.home">Acasă</a>
-                <a href="despre.html" data-i18n="nav.about">Despre Noi</a>
+                <a href="despre.html" data-i18n="nav.about">Despre</a>
                 <a href="produse.html" data-i18n="nav.catalog">Catalog</a>
                 <a href="craft.html" data-i18n="nav.craft">Creează</a>
                 <a href="galerie.html" data-i18n="nav.gallery">Galerie</a>
-                <a href="contacte.html" data-i18n="nav.contact">Contacte</a>
             </div>
             <img class="logo" src="../imagini/logo.png" alt="logo">
             <div class="inf">
-                <div class="nr">
+                <a class="nr" href="contacte.html">
                     <i class="fa-solid fa-phone-volume"></i>
-                </div>
+                </a>
+                <a class="cos" href="cos.html">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <div class="stat-value" id="cartCount">0</div>
+                </a>
+
+                <a class="salv" href="salvari.html">
+                    <i class="fa-solid fa-heart"></i>
+                    <div class="stat-value" id="savedCount">0</div>
+                </a>
+
+                <button class="logoogle" id="googleLogin"><i class="fa-brands fa-google"></i></button>
+                <a id="userLink" href="#" style="display:none;"><i class="fa-regular fa-user"></i></a>
+            </div>
+        </nav>
+        <nav>
+            <div class="linkuri">
+                <a href="../index.html" data-i18n="nav.home">Acasă</a>
+                <a href="despre.html" data-i18n="nav.about">Despre</a>
+                <a href="produse.html" data-i18n="nav.catalog">Catalog</a>
+                <a href="craft.html" data-i18n="nav.craft">Creează</a>
+                <a href="galerie.html" data-i18n="nav.gallery">Galerie</a>
+            </div>
+            <img class="logo" src="../imagini/logo.png" alt="logo">
+            <div class="inf">
+                <a class="nr" href="contacte.html">
+                    <i class="fa-solid fa-phone-volume"></i>
+                </a>
                 <a class="cos" href="cos.html">
                     <i class="fa-solid fa-basket-shopping"></i>
                     <div class="stat-value" id="cartCount">0</div>

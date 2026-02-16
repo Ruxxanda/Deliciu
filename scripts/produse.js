@@ -57,11 +57,9 @@ async function afiseazaProduse(itemsToShow = null) {
                 <button class="detalii" onclick="toggleDetails('${detailsId}', '${buttonId}')" id="${buttonId}">` + (lang === 'ru' ? 'Детали ▶' : (lang === 'en' ? 'Details ▶' : 'Detalii ▶')) + `</button>
                 <div id="${detailsId}" style="display: none; margin-top: 10px; list-style: disc; padding-left: 20px;">${Array.isArray(detailsArr) ? detailsArr.map(detail => `<li>${detail}</li>`).join('') : detailsArr.split('\n').map(line => line.trim()).filter(line => line).map(line => `<li>${line}</li>`).join('')}</div>
             ` : '';
-                const productLink = `tort.html?nume=${encodeURIComponent(p.nume)}`;
                 const card = document.createElement("div");
                 card.classList.add("produs");
                 card.innerHTML = `
-                     <a class="product-link" href="${productLink}">
                         <div class="img-wrapper">
                             <img src="../${(p.imagine || p.linkImagine || '').replace(/^\./,'').replace(/^\//,'')}" alt="produs">
                             ${areReducere ? `<div class="badge-reducere">-${p.reducere}%</div>` : ''}
@@ -72,7 +70,6 @@ async function afiseazaProduse(itemsToShow = null) {
                         </div>
                         <h3>${name}</h3>
                         <p class="prod-desc">${descr}</p>
-                     </a>
                      <p>${pretHTML}</p>
                      <div class="canti">
                           <div class="derul">
@@ -86,6 +83,11 @@ async function afiseazaProduse(itemsToShow = null) {
                           </div>
                           <button onclick="adaugaInCos('${p.nume}')">` + (lang === 'ru' ? 'Добавить в корзину' : (lang === 'en' ? 'Add to cart' : 'Adauga in cos')) + `</button>
                      </div>`;
+                // navigate to tort.html when clicking the produit card (but ignore clicks on img-wrapper and interactive elements)
+                card.addEventListener('click', function(e) {
+                    if (e.target.closest('.img-wrapper') || e.target.closest('.canti') || e.target.closest('.detalii') || e.target.closest('.heart-icon') || e.target.closest('button')) return;
+                    window.location.href = `tort.html?nume=${encodeURIComponent(p.nume)}`;
+                });
             return card;
         };
         
