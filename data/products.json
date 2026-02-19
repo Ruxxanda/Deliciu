@@ -1,65 +1,471 @@
 [
   {
-    "nume": "Exemplu",
-    "descriere": "Descriere produs de test",
+    "nume": "Tort Safeu cu Bani",
+    "descriere": "Tort aniversar spectaculos, decorat cu elemente inspirate din tematica financiară, accente aurii şi detalii elegante. Ideal pentru aniversări cu mesaj de succes şi prosperitate.",
     "categoria": "tort",
-    "linkImagine": "./imagini/tort.jpg",
-    "imagine": "./imagini/tort.jpg",
-    "pret": 1500,
+    "linkImagine": "./imagini/produse/tort 1.jpg",
+    "imagine": "./imagini/produse/tort 1.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
     "detalii": [
-      "Material: Bumbac 100%",
-      "Dimensiuni: 30x40 cm",
-      "Greutate: 250g",
-      "Culoare: Multicolor",
-      "Întreținere: Spălare la 30°C"
+      "Blat de cacao: făină, ouă, zahăr, cacao premium, unt, lapte",
+      "Cremă fină de ciocolată: ciocolată neagră 54%, frişcă naturală, mascarpone",
+      "Inserţie ganache: ciocolată + smântână pentru frişcă",
+      "Sirop uşor de cacao",
+      "Decor din pastă de zahăr şi foiţă aurie comestibilă"
     ]
   },
-
   {
-    "nume": "Tort",
-    "descriere": "Descriere produs de test",
+    "nume": "Tort alb aniversar",
+    "descriere": "Tort elegant, complet alb, cu design rafinat şi flori decorative. Potrivit pentru aniversări rotunde sau evenimente speciale. Gust delicat, fin şi aerat.",
     "categoria": "tort",
-    "linkImagine": "./imagini/tort.jpg",
-    "imagine": "./imagini/tort.jpg",
-    "pret": 2000,
+    "linkImagine": "./imagini/produse/tort 2.jpg",
+    "imagine": "./imagini/produse/tort 2.jpg",
+    "pret": 875,
+    "cantitate": "3.5 kg",
     "detalii": [
-      "Ingrediente: Făină, ouă, lapte",
-      "Alergeni: Gluten, lactică",
-      "Termen de consum: 5 zile",
-      "Depozitare: Frigider 2-8°C",
-      "Calorii: 250kcal/100g"
+      "Blat de vanilie: făină, ouă, zahăr, unt, extract natural de vanilie",
+      "Cremă mascarpone: mascarpone, frişcă naturală 35%, zahăr pudră",
+      "Inserţie jeleu de fructe de pădure",
+      "Îmbrăcat în cremă fină de unt",
+      "Decor din pastă de zahăr modelată manual"
     ]
   },
-
   {
-    "nume": "Ciotca",
-    "descriere": "Descriere produs de test",
+    "nume": "Tort inimă cu fructe",
+    "descriere": "Tort în formă de inimă, perfect pentru ocazii romantice sau aniversări speciale. Decorat generos cu fructe proaspete şi praline, are un gust bogat şi echilibrat între dulce şi uşor acrişor.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 3.jpg",
+    "imagine": "./imagini/produse/tort 3.jpg",
+    "pret": 750,
+    "cantitate": "3 kg",
+    "detalii": [
+      "Blat de cacao pufos",
+      "Cremă de ciocolată cu lapte: ciocolată, frişcă naturală",
+      "Confit de zmeură (zmeură, zahăr, pectină)",
+      "Sirop de vanilie",
+      "Decor din fructe proaspete şi bomboane fine"
+    ]
+  },
+  {
+    "nume": "Chec cu caramel şi alune",
+    "descriere": "Chec cremos cu aromă intensă de caramel şi textură crocantă de alune prăjite. Ideal pentru iubitorii de deserturi dulci şi consistente.",
     "categoria": "chec",
-    "linkImagine": "./imagini/tort.jpg",
-    "imagine": "./imagini/tort.jpg",
-    "pret": 1100,
+    "linkImagine": "./imagini/produse/tort 4.jpg",
+    "imagine": "./imagini/produse/tort 4.jpg",
+    "pret": 175,
+    "cantitate": "700 g",
     "detalii": [
-      "Material: Ceramică artizanală",
-      "Volum: 500ml",
-      "Stil: Tradițional românesc",
-      "Finisaj: Glazurat manual",
-      "Sigur pentru lavatrițe: Nu"
+      "Blat caramelizat: zahăr ars, unt, ouă, făină",
+      "Cremă caramel sărat: caramel, frişcă naturală, unt",
+      "Strat crocant din alune prăjite",
+      "Ganache de caramel pentru finisaj"
     ]
   },
-
   {
-    "nume": "Marama",
-    "descriere": "Descriere produs de test",
-    "categoria": "tarte",
-    "linkImagine": "./imagini/tort.jpg",
-    "imagine": "./imagini/tort.jpg",
-    "pret": 1150,
+    "nume": "Mini prăjituri glazurate",
+    "descriere": "Deserturi individuale acoperite cu glazură fină de ciocolată, perfecte pentru candy bar sau evenimente. Interior moale și cremos.",
+    "categoria": "chec",
+    "linkImagine": "./imagini/produse/tort 5.jpg",
+    "imagine": "./imagini/produse/tort 5.jpg",
+    "pret": 175,
+    "cantitate": "700 g",
     "detalii": [
-      "Țesătură: Mătase naturală",
-      "Dimensiuni: 150x150 cm",
-      "Greutate: 120g",
-      "Model: Broderie tradițională",
-      "Culoare: Roșu cu auriu"
+      "Blat de cacao mărunțit",
+      "Cremă de unt cu ciocolată",
+      "Glazură de ciocolată neagră și albă",
+      "Decor din ornamente comestibile"
+    ]
+  },
+  {
+    "nume": "Checuri cu vanilie",
+    "descriere": "Chec festiv decorat cu macarons colorați și elemente delicate. Gust fin, echilibrat, cu note ușor fructate.",
+    "categoria": "chec",
+    "linkImagine": "./imagini/produse/tort 6.jpg",
+    "imagine": "./imagini/produse/tort 6.jpg",
+    "pret": 175,
+    "cantitate": "700 g",
+    "detalii": [
+      "Blat de vanilie",
+      "Cremă mascarpone cu frișcă naturală",
+      "Inserție de fructe de pădure",
+      "Decor: macarons, frișcă, perle comestibile"
+    ]
+  },
+  {
+    "nume": "Tarte cu morcov și nucă",
+    "descriere": "Tarte rustic, aromat, cu blat umed de morcov și nucă. Gust echilibrat, cu note ușoare de scorțișoară și cremă fină de brânză.",
+    "categoria": "tarte",
+    "linkImagine": "./imagini/produse/tort 7.jpg",
+    "imagine": "./imagini/produse/tort 7.jpg",
+    "pret": 175,
+    "cantitate": "700 g",
+    "detalii": [
+      "Blat: morcov ras, nucă măcinată, făină, ouă, zahăr brun, scorțișoară",
+      "Cremă de brânză: cremă de brânză, unt, zahăr pudră, vanilie"
+    ]
+  },
+  {
+    "nume": "Tort aniversar colorat",
+    "descriere": "Tort vesel, cu decor colorat și elemente festive. Ideal pentru aniversări de copii sau petreceri tematice.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 8.jpg",
+    "imagine": "./imagini/produse/tort 8.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de vanilie",
+      "Cremă mascarpone",
+      "Inserție de căpșuni",
+      "Decor din frișcă colorată și figurine comestibile"
+    ]
+  },
+  {
+    "nume": "Tort cu miere",
+    "descriere": "Tort tradițional cu foi fragede de miere și cremă fină, ușor acrișoară. Gust echilibrat și aromă delicată.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 9.jpg",
+    "imagine": "./imagini/produse/tort 9.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Foi cu miere: făină, miere naturală, ouă, zahăr, unt",
+      "Cremă: smântână fermentată, frișcă naturală, zahăr",
+      "Nucă măcinată pentru textură"
+    ]
+  },
+  {
+    "nume": "Tort roz cu flori",
+    "descriere": "Tort delicat, în nuanțe de roz pastel, decorat cu flori decorative. Gust fin, cremos și ușor fructat.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 10.jpg",
+    "imagine": "./imagini/produse/tort 10.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de vanilie",
+      "Cremă mascarpone",
+      "Inserție de zmeură",
+      "Îmbrăcat în cremă de unt",
+      "Decor floral realizat manual"
+    ]
+  },
+  {
+    "nume": "Tort tematic pentru copii",
+    "descriere": "Tort vesel și colorat, decorat cu figurine tematice pentru copii. Perfect pentru zile de naștere. Gust bogat de ciocolată, cu combinație echilibrată de cremă fină și fructe.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 11.jpg",
+    "imagine": "./imagini/produse/tort 11.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de cacao: făină, ouă, zahăr, cacao premium, unt",
+      "Cremă de ciocolată: ciocolată neagră, frișcă naturală",
+      "Inserție de banane caramelizate",
+      "Sirop de vanilie",
+      "Decor din pastă de zahăr modelată manual"
+    ]
+  },
+  {
+    "nume": "Tort cu tematică fotbal",
+    "descriere": "Tort dedicat pasionaților de fotbal, decorat cu minge și elemente sportive. Ideal pentru aniversări de copii sau adolescenți.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 12.jpg",
+    "imagine": "./imagini/produse/tort 12.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de vanilie",
+      "Cremă de ciocolată albă: ciocolată albă, frișcă naturală",
+      "Inserție de fructe roșii",
+      "Îmbrăcat în cremă de unt",
+      "Decor din pastă de zahăr"
+    ]
+  },
+  {
+    "nume": "Tort cu supereroi",
+    "descriere": "Tort spectaculos pentru copii, decorat cu personaje îndrăgite. Gust intens de ciocolată, cremos și consistent.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 13.jpg",
+    "imagine": "./imagini/produse/tort 13.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de cacao",
+      "Cremă de ciocolată cu alune (tip Nutella)",
+      "Ganache de ciocolată",
+      "Sirop ușor de cacao",
+      "Decor tematic din pastă de zahăr"
+    ]
+  },
+  {
+    "nume": "Tort cu migdale și caramel",
+    "descriere": "Tort rafinat, cu gust intens de caramel și migdale crocante. Textură echilibrată între cremos și crocant.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 14.jpg",
+    "imagine": "./imagini/produse/tort 14.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat cu migdale: făină de migdale, ouă, zahăr, unt",
+      "Cremă caramel: caramel, frișcă naturală, unt",
+      "Strat crocant din migdale prăjite",
+      "Glazură fină de caramel"
+    ]
+  },
+  {
+    "nume": "Tort pastel aniversar",
+    "descriere": "Tort delicat, în culori pastelate, potrivit pentru aniversări elegante. Gust proaspăt și fin.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 15.jpg",
+    "imagine": "./imagini/produse/tort 15.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de vanilie",
+      "Cremă mascarpone",
+      "Inserție de mango",
+      "Decor din frișcă și accente aurii comestibile"
+    ]
+  },
+  {
+    "nume": "Tort aniversar pentru bărbați",
+    "descriere": "Tort cu design sobru și elegant, potrivit pentru aniversări masculine. Gust intens de ciocolată, ușor fructat.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 16.jpg",
+    "imagine": "./imagini/produse/tort 16.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de cacao",
+      "Cremă de ciocolată amăruie",
+      "Inserție de vișine",
+      "Ganache pentru acoperire",
+      "Decor tematic"
+    ]
+  },
+  {
+    "nume": "Tort Red Velvet",
+    "descriere": "Tort clasic Red Velvet, cu blat roșu catifelat și cremă fină de brânză. Gust delicat, ușor aromat de cacao.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 17.jpg",
+    "imagine": "./imagini/produse/tort 17.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat Red Velvet: făină, cacao, ouă, zahăr, lapte bătut, colorant alimentar",
+      "Cremă de brânză: cremă de brânză, unt, zahăr pudră, vanilie"
+    ]
+  },
+  {
+    "nume": "Tort alb cu trandafiri",
+    "descriere": "Tort elegant, decorat cu trandafiri și accente delicate. Gust proaspăt, ușor fructat.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 18.jpg",
+    "imagine": "./imagini/produse/tort 18.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de vanilie",
+      "Cremă de frișcă naturală",
+      "Inserție de căpșuni proaspete",
+      "Îmbrăcat în cremă fină de unt"
+    ]
+  },
+  {
+    "nume": "Tort cu mașini",
+    "descriere": "Tort tematic pentru copii pasionați de mașini și curse. Gust bogat și cremos.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 19.jpg",
+    "imagine": "./imagini/produse/tort 19.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de cacao",
+      "Cremă de ciocolată cu alune",
+      "Ganache de ciocolată",
+      "Sirop de vanilie",
+      "Decor din pastă de zahăr și figurine"
+    ]
+  },
+  {
+    "nume": "Tort roz cu căpșuni",
+    "descriere": "Tort delicat, cu aspect feminin și gust proaspăt de căpșuni.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 20.jpg",
+    "imagine": "./imagini/produse/tort 20.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de vanilie",
+      "Cremă mascarpone",
+      "Inserție de căpșuni",
+      "Decor din fructe proaspete"
+    ]
+  },
+  {
+    "nume": "Tort cu fructe de pădure",
+    "descriere": "Tort cu gust echilibrat între dulce și acrișor, decorat generos cu fructe proaspete.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 21.jpg",
+    "imagine": "./imagini/produse/tort 21.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de cacao",
+      "Cremă mascarpone",
+      "Inserție de fructe de pădure",
+      "Decor din fructe proaspete",
+      "Glazură fină de zahăr"
+    ]
+  },
+  {
+    "nume": "Tort de ciocolată",
+    "descriere": "Tort intens de ciocolată, ideal pentru iubitorii de deserturi clasice și consistente.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 22.jpg",
+    "imagine": "./imagini/produse/tort 22.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de cacao",
+      "Cremă ganache (ciocolată + frișcă naturală)",
+      "Sirop aromat",
+      "Glazură de ciocolată"
+    ]
+  },
+  {
+    "nume": "Tort roz simplu",
+    "descriere": "Tort elegant și simplu, cu aspect feminin și gust delicat.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 23.jpg",
+    "imagine": "./imagini/produse/tort 23.jpg",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de vanilie",
+      "Cremă mascarpone",
+      "Inserție de căpșuni",
+      "Decor din fructe proaspete",
+      "Glazură fină de zahăr"
+    ]
+  },
+  {
+    "nume": "Pahare desert",
+    "descriere": "Deserturi individuale în pahar, cu straturi vizibile și combinație echilibrată de texturi.",
+    "categoria": "tarte",
+    "linkImagine": "./imagini/produse/tort 24.png",
+    "imagine": "./imagini/produse/tort 24.png",
+    "pret": 175,
+    "cantitate": "700 g",
+    "detalii": [
+      "Blat de cacao",
+      "Cremă mascarpone",
+      "Sos caramel",
+      "Biscuiți crocanți"
+    ]
+  },
+  {
+    "nume": "Mini tarte colorate",
+    "descriere": "Tarte fragede, umplute cu cremă fină și decorate colorat. Ideale pentru evenimente.",
+    "categoria": "tarte",
+    "linkImagine": "./imagini/produse/tort 25.jpg",
+    "imagine": "./imagini/produse/tort 25.jpg",
+    "pret": 175,
+    "cantitate": "700 g",
+    "detalii": [
+      "Aluat fraged: făină, unt, zahăr, ou",
+      "Cremă de vanilie",
+      "Decor din cremă colorată"
+    ]
+  },
+  {
+    "nume": "Tarte cu fistic",
+    "descriere": "Tarte aromat, cu gust delicat de fistic și note proaspete de fructe.",
+    "categoria": "tarte",
+    "linkImagine": "./imagini/produse/tort 26.jpg",
+    "imagine": "./imagini/produse/tort 26.jpg",
+    "pret": 175,
+    "cantitate": "700 g",
+    "detalii": [
+      "Blat cu fistic",
+      "Cremă mascarpone",
+      "Inserție de zmeură",
+      "Decor din fistic mărunțit"
+    ]
+  },
+  {
+    "nume": "Tort aniversar cu coroană",
+    "descriere": "Tort elegant, decorat cu coroană și detalii festive. Ideal pentru aniversări speciale.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 27.png",
+    "imagine": "./imagini/produse/tort 27.png",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de vanilie",
+      "Cremă de ciocolată albă",
+      "Inserție fructe roșii",
+      "Decor din pastă de zahăr"
+    ]
+  },
+  {
+    "nume": "Tort regal",
+    "descriere": "Tort impunător, cu design sofisticat și decor regal. Gust intens de ciocolată.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 28.png",
+    "imagine": "./imagini/produse/tort 28.png",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de cacao",
+      "Cremă de ciocolată cu alune",
+      "Ganache de ciocolată",
+      "Decor auriu comestibil"
+    ]
+  },
+  {
+    "nume": "Tort unicorn",
+    "descriere": "Tort colorat și vesel, perfect pentru aniversări de copii. Gust fin, ușor fructat.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 29.png",
+    "imagine": "./imagini/produse/tort 29.png",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de vanilie",
+      "Cremă mascarpone",
+      "Inserție de căpșuni",
+      "Decor tematic unicorn"
+    ]
+  },
+  {
+    "nume": "Tort albastru de iarnă",
+    "descriere": "Tort decorat în nuanțe de albastru, cu elemente inspirate din iarnă. Gust delicat și echilibrat.",
+    "categoria": "tort",
+    "linkImagine": "./imagini/produse/tort 30.png",
+    "imagine": "./imagini/produse/tort 30.png",
+    "pret": 1000,
+    "cantitate": "4 kg",
+    "detalii": [
+      "Blat de vanilie",
+      "Cremă de frișcă naturală",
+      "Inserție de fructe",
+      "Decor din fulgi comestibili"
+    ]
+  },
+  {
+    "nume": "Brioșe cu cremă",
+    "descriere": "Brioșe pufoase, decorate cu cremă fină în formă de trandafir. Potrivite pentru candy bar sau aniversări.",
+    "categoria": "chec",
+    "linkImagine": "./imagini/produse/tort 31.png",
+    "imagine": "./imagini/produse/tort 31.png",
+    "pret": 175,
+    "cantitate": "700 g",
+    "detalii": [
+      "Aluat de vanilie: făină, ouă, zahăr, unt, lapte",
+      "Cremă de unt cu mascarpone",
+      "Decor din cremă colorată"
     ]
   }
 ]

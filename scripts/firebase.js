@@ -170,6 +170,8 @@ if (loginBtn) {
     } catch (err) {
       console.warn('Could not persist user to localStorage', err);
     }
+    // merge any guest data (cart/salvari) into the authenticated user's storage
+    try { mergeGuestData(user.uid); } catch(e){ console.warn('mergeGuestData failed:', e); }
 
     if (user.email === "ruxanda.cujba07@gmail.com") {
       if (userLink) userLink.href = "../pagini/admin.html";
@@ -201,6 +203,8 @@ onAuthStateChanged(auth, (user) => {
     } catch (err) {
       console.warn('Could not persist auth user to localStorage', err);
     }
+    // after the auth state is set, merge guest data if present
+    try { mergeGuestData(user.uid); } catch(e){ console.warn('mergeGuestData failed onAuthStateChanged:', e); }
     if (ul) ul.style.display = "inline";
     if(user.email === "ruxanda.cujba07@gmail.com") { if (ul) ul.href="../pagini/admin.html"; }
     else { if (ul) ul.href="../pagini/user.html"; }
@@ -218,3 +222,45 @@ window.logout = async () => {
   const ul = document.getElementById("userLink");
   if (ul) ul.style.display = "none";
 };
+
+function mergeGuestData(newUid) {
+  if (!newUid) return;
+  try {
+    const guestCartKey = 'cart_guest';
+    const guestSalvKey = 'salvari_guest';
+    const userCartKey = `cart_${newUid}`;
+    const userSalvKey = `salvari_${newUid}`;
+
+    const guestCart = JSON.parse(localStorage.getItem(guestCartKey) || '[]');
+    const guestSalv = JSON.parse(localStorage.getItem(guestSalvKey) || '[]');
+    const userCart = JSON.parse(localStorage.getItem(userCartKey) || '[]');
+    const userSalv = JSON.parse(localStorage.getItem(userSalvKey) || '[]');
+
+    // Merge carts: sum quantities for same product, append new ones
+    const mergedCartMap = new Map();
+    userCart.forEach(i => mergedCartMap.set(i.nume, Object.assign({}, i)));
+    guestCart.forEach(i => {
+      if (!i || !i.nume) return;
+      const existing = mergedCartMap.get(i.nume);
+      if (existing) {
+        existing.cantitate = (existing.cantitate || 0) + (i.cantitate || 0);
+      } else {
+        mergedCartMap.set(i.nume, Object.assign({}, i));
+      }
+    });
+    const mergedCart = Array.from(mergedCartMap.values());
+    localStorage.setItem(userCartKey, JSON.stringify(mergedCart));
+
+    // Merge salvări: union
+    const mergedSalv = Array.from(new Set([...(userSalv||[]), ...(guestSalv||[])]));
+    localStorage.setItem(userSalvKey, JSON.stringify(mergedSalv));
+
+    // remove guest keys to avoid repeated merges
+    localStorage.removeItem(guestCartKey);
+    localStorage.removeItem(guestSalvKey);
+    // update UI badges if present
+    try { if (typeof loadStats === 'function') loadStats(); } catch(e){}
+  } catch (err) {
+    console.error('Error merging guest data:', err);
+  }
+}

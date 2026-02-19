@@ -5,19 +5,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Deliciu</title>
-  <script type="module" src="scripts/firebase.js"></script>
-  <script src="scripts/applyReductions.js" defer></script>
-  <script src="scripts/index.js" defer></script>
-  <script src="scripts/stats.js" defer></script>
-  <script src="scripts/comentarii-public.js" defer></script>
-  <script src="scripts/hamburger.js" defer></script>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="media.css">
+
+  <link rel="icon" href="imagini/logo.png" type="image/png">
+
+  <meta name="keywords" content="Deliciu,web developer,proiecte,website,website de prezentare, aplicatie" />
+  <meta name="description" content="Păstrăm tradiţia de a produce natural.
+    Livrăm săptămânal la Soroca torturi, checuri și pirogurii până la uşa ta.
+    Deliciu la preţ rezonabil." />
+  <meta name="author" content="Cujba Ruxanda" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- stiluri -->
+  <link rel="stylesheet" href="./stiluri/style.css">
+  <link rel="stylesheet" href="./stiluri/media.css">
+
+  <!-- scripturi -->
+  <script type="module" src="./scripts/firebase.js"></script>
+  <script src="./scripts/applyReductions.js" defer></script>
+  <script src="./scripts/index.js" defer></script>
+  <script src="./scripts/stats.js" defer></script>
+  <script src="./scripts/comentarii-public.js" defer></script>
+  <script src="./scripts/hamburger.js" defer></script>
   <script src="https://kit.fontawesome.com/8a1f01fb65.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-
   <header class="index">
     <nav>
       <div class="linkuri">
@@ -29,8 +41,11 @@
       </div>
       <img class="logo" src="imagini/logo.png" alt="logo">
       <div class="inf">
-        <a class="nr" href="pagini/contacte.html">
+        <a class="nr" href="contacte.html">
           <i class="fa-solid fa-phone-volume"></i>
+        </a>
+        <a href="pagini/noutati.html">
+          <i class="fa-solid fa-newspaper"></i>
         </a>
         <a class="cos" href="pagini/cos.html">
           <i class="fa-solid fa-basket-shopping"></i>
@@ -47,16 +62,13 @@
       </div>
     </nav>
 
-    <!-- Hamburger Menu Icon -->
     <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
       <i class="fa-solid fa-bars hamburger-icon"></i>
       <i class="fa-solid fa-xmark hamburger-icon-close" style="display:none;"></i>
     </button>
 
-    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
 
-      <!-- User Section -->
       <div class="mobile-user-section" id="mobileUserSection" style="display:none;">
         <div class="mobile-user-info">
           <img id="mobileUserAvatar" src="" alt="User" class="user-avatar">
@@ -72,20 +84,21 @@
         </button>
       </div>
 
-      <!-- Login Section (visible if not logged in) -->
       <div class="mobile-login-section" id="mobileLoginSection">
         <button class="mobile-google-btn" id="mobileGoogleLogin">
           <i class="fa-brands fa-google"></i> Logare cu Google
         </button>
       </div>
 
-      <!-- Navigation Links -->
       <nav class="mobile-nav">
         <a href="index.html" class="mobile-menu-link">
           <i class="fa-solid fa-house"></i> Acasă
         </a>
         <a href="pagini/despre.html" class="mobile-menu-link">
-          <i class="fa-solid fa-info-circle"></i> Despre Noi
+          <i class="fa-solid fa-info-circle"></i> Despre
+        </a>
+        <a href="pagini/noutati.html" class="mobile-menu-link">
+          <i class="fa-solid fa-newspaper"></i> Noutăți
         </a>
         <a href="pagini/produse.html" class="mobile-menu-link">
           <i class="fa-solid fa-box-open"></i> Catalog
@@ -93,7 +106,7 @@
         <a href="pagini/cos.html" class="mobile-menu-link">
           <i class="fa-solid fa-basket-shopping"></i> Coș
         </a>
-        <a href="pagini/contacte.html" class="mobile-menu-link">
+        <a href="pagini/salvari.html" class="mobile-menu-link">
           <i class="fa-solid fa-heart"></i> Salvări
         </a>
         <a href="pagini/craft.html" class="mobile-menu-link">
@@ -109,7 +122,6 @@
     </div>
 
 
-
     <div class="helo">
       <div class="text">
         <p>Arome irezistibile, decoruri spectaculoase.</p>
@@ -118,7 +130,6 @@
           <button>Vezi catalogul</button>
         </a>
       </div>
-      <!-- <img src="imagini/marina.jpg" alt="tort"> -->
     </div>
   </header>
 
@@ -166,7 +177,7 @@
         <button>Creează Tortul!</button>
       </a>
     </div>
-    <img src="imagini/poza 2.png" alt="tort">
+    <img src="imagini/noutati/noutati 83.jpg" alt="tort">
   </section>
 
   <!-- footer -->

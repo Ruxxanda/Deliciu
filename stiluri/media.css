@@ -1,0 +1,1850 @@
+@media (max-width: 1350px) {
+  section.reducere .reduc .continut .timer {
+    display: none;
+  }
+
+  section.reducere .reduc .continut .text {
+    width: 100%;
+  }
+
+  section.reducere .reduc .continut .text .produs {
+    width: 20%;
+  }
+
+  .lightbox-close {
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+    border-radius: 10px;
+  }
+
+  .lightbox-next {
+    right: 10px;
+  }
+
+  .lightbox-prev {
+    left: 10px;
+  }
+
+  section.noutati #noutatiContainer article .foto {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 1180px) {
+  header nav {
+    display: none;
+    position: relative;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: fixed;
+    top: 18px;
+    right: 20px;
+    z-index: 1001;
+    color: #000;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background-color: linear-gradient(
+      135deg,
+      #ff9a8b 0%,
+      #ff6a88 50%,
+      #ff99ac 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hamburger i {
+    color: #000000;
+    transition: all 0.3s ease;
+    font-size: 30px;
+  }
+
+  .hamburger .hamburger-icon {
+    display: inline-block !important;
+  }
+
+  .hamburger .hamburger-icon-close {
+    display: none !important;
+  }
+
+  .hamburger.active .hamburger-icon {
+    display: none !important;
+  }
+
+  .hamburger.active .hamburger-icon-close {
+    display: inline-block !important;
+  }
+
+  .hamburger.active {
+    display: none !important;
+  }
+
+  .hamburger:hover {
+    color: #ff6a88;
+  }
+
+  .hamburger.hamburger-white i {
+    color: #ffffff;
+  }
+
+  .hamburger.hamburger-white:hover i {
+    color: #ffb0b0;
+  }
+
+  .hamburger.hamburger-black i {
+    color: #000000;
+  }
+
+  .hamburger.hamburger-black:hover i {
+    color: #ff6a88;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 350px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: -2px 0 20px rgba(255, 154, 139, 0.15);
+    z-index: 999;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+  }
+
+  .mobile-menu.active {
+    right: 0;
+  }
+
+  .mobile-user-section {
+    display: none;
+    padding: 20px 15px 0;
+    border-bottom: none;
+    margin-bottom: 10px;
+  }
+
+  .mobile-user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  .user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ff6a88;
+  }
+
+  .user-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .user-details p {
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .mobile-menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+  }
+
+  .mobile-menu-link:hover {
+    background: rgba(255, 154, 139, 0.1);
+    color: #ff6a88;
+    border-left-color: #ff6a88;
+    padding-left: 20px;
+  }
+
+  .mobile-login-section {
+    padding: 15px;
+    margin: 10px 0;
+    border-bottom: 2px solid rgba(255, 154, 139, 0.1);
+  }
+
+  .mobile-google-btn {
+    width: 100%;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 14px;
+    background: linear-gradient(135deg, #ff9a8b 0%, #ff6a88 50%, #ff99ac 100%);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-google-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 154, 139, 0.3);
+  }
+
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu.active .mobile-nav {
+    display: block;
+    padding: 0 15px;
+    border-bottom: none;
+    background: none;
+    margin-bottom: 10px;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .mobile-menu.active .mobile-nav i,
+  .mobile-menu-link i {
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  .mobile-logout-btn {
+    width: 100%;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-top: 10px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 50%, #ff7673 100%);
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 15px;
+  }
+
+  .mobile-logout-btn i {
+    font-size: 18px;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .mobile-logout-btn:hover {
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+  }
+
+  .hamburger.active i {
+    transform: rotate(45deg);
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  body.menu-open::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 998;
+  }
+
+  section.produse {
+    padding: 20px 0 0;
+  }
+
+  section.prod {
+    margin: 50px 5%;
+  }
+
+  section.craft {
+    margin: 20px 5%;
+    padding: 0;
+  }
+
+  section.craft .right {
+    top: 10px;
+  }
+
+  section.craft .left {
+    width: 100%;
+  }
+
+  section.cos {
+    margin: 20px 5% 50px;
+  }
+
+  section.salvari {
+    margin: 20px 0 50px;
+    padding: 0;
+  }
+
+  section.salvari h2 {
+    margin-bottom: 10px;
+    font-size: 30px !important;
+  }
+
+  section.salvari #salvariDisplay {
+    gap: 10px;
+  }
+
+  section.salvari #salvariDisplay .produs.salvare-item {
+    border-radius: 10px 10px 0 0;
+  }
+
+  section.salvari #salvariDisplay .produs .img-wrapper {
+    border-radius: 0;
+  }
+
+  .heart-icon {
+    top: 10px;
+    right: 10px;
+  }
+
+  section.salvari #salvariDisplay .produs .img-wrapper .badge-reducere {
+    top: 1px;
+    left: 5px;
+    padding: 7px 12px;
+    font-size: 10px;
+    border-radius: 5px !important;
+  }
+
+  section.salvari #salvariDisplay .produs p {
+    font-size: 10px;
+  }
+
+  section.salvari #salvariDisplay .produs .pret-info {
+    margin: 0;
+  }
+
+  .pret-info div div {
+    gap: 5px !important;
+  }
+
+  .pret-info div div .pret-vechi {
+    font-size: 10px;
+  }
+
+  .pret-info div div .pret-redus {
+    font-size: 12px;
+  }
+
+  section.salvari #salvariDisplay .produs .detalii,
+  section.salvari #salvariDisplay .produs .actiuni .adauga-cos {
+    font-size: 10px;
+    border-radius: 5px;
+    margin-top: 0;
+  }
+
+  section.salvari #salvariDisplay .produs.salvare-item {
+    padding-bottom: 10px;
+  }
+
+  section.galerie {
+    margin: 20px 2% 50px;
+  }
+
+  section.contacte h2 {
+    font-size: 30px !important;
+  }
+
+  section.contacte p {
+    font-size: 13px;
+  }
+
+  section.contacte {
+    margin: 20px 5% 20px;
+    gap: 10px;
+  }
+
+  section.contacte .info {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-around;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  section.contacte .info .del {
+    gap: 5px;
+    border-radius: 5px;
+    padding: 10px;
+    height: auto;
+    flex: 1;
+  }
+
+  section.harta {
+    margin: 0 5% 20px;
+  }
+
+  section.admin {
+    margin: 20px 5%;
+    padding: 60px 40px;
+    border-radius: 10px;
+  }
+
+  section.admin .info {
+    gap: 10px;
+  }
+
+  section.admin .info h2 {
+    margin: 0;
+  }
+
+  section.admin #adminInfo {
+    margin-top: 0;
+  }
+
+  section.admin #adminInfo img {
+    margin-bottom: 0;
+  }
+
+  section.admin .info .deconectare {
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+
+  section.comentarii {
+    margin: 20px 5% !important;
+  }
+
+  section.comentarii .date #coms {
+    gap: 5px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  section.comentarii .date #coms .comentariu {
+    border-radius: 10px;
+  }
+
+  section.noutati {
+    margin: 20px 13% 50px;
+  }
+}
+
+@media (max-width: 1024px) {
+  section {
+    margin: 10px 8% 0;
+  }
+
+  header nav {
+    padding: 15px 8%;
+  }
+
+  header .helo {
+    padding: 80px 8% 40px;
+    gap: 30px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  header .helo .text {
+    align-items: center;
+  }
+
+  header .helo .text h2 {
+    font-size: 48px;
+  }
+
+  header .helo .text p {
+    font-size: 18px;
+  }
+
+  header .helo .text button {
+    align-self: center;
+  }
+
+  header .helo img {
+    max-width: 100%;
+    flex: 1;
+  }
+
+  section.tort-popular .trei {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 15px;
+    gap: 15px;
+  }
+
+  section.tort-popular .trei .produs {
+    width: auto;
+  }
+
+  section.reducere {
+    height: auto;
+    padding: 5% 8%;
+    margin-top: 100px;
+  }
+
+  section.reducere .reduc .text-top,
+  section.reducere .reduc .text-bottom {
+    font-size: 24px;
+    opacity: 0.7;
+  }
+
+  section.reducere .reduc .continut {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  section.reducere .reduc .continut .text {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  section.reducere .reduc .continut .text h2 {
+    font-size: 36px;
+  }
+
+  section.reducere .reduc .continut .text p {
+    font-size: 16px;
+  }
+
+  section.reducere .reduc .continut .text .produse {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  section.reducere .reduc .continut .text .produs {
+    width: calc(33.333% - 10px);
+    min-width: 120px;
+    max-width: 140px;
+  }
+
+  section.reducere .reduc .continut .text .produs img {
+    height: 120px;
+  }
+
+  section.coment {
+    margin: 20px 8% 0;
+  }
+
+  section.coment .carousel-container {
+    padding: 0;
+  }
+
+  section.crafti {
+    gap: 20px;
+  }
+
+  section.crafti img {
+    max-width: 50%;
+  }
+
+  section.crafti .text h2 {
+    font-size: 30px;
+  }
+
+  section.crafti .text p {
+    font-size: 15px;
+  }
+
+  section.crafti .text button {
+    padding: 10px 15px;
+    font-size: 12px;
+  }
+
+  header nav .linkuri {
+    gap: 5px;
+  }
+
+  header nav .linkuri a {
+    font-size: 14px;
+    padding: 5px 8px;
+  }
+
+  header nav .inf {
+    gap: 15px;
+  }
+
+  header nav .inf a,
+  header nav .inf button.logoogle {
+    padding: 5px 8px;
+  }
+
+  header nav img.logo {
+    width: 70px;
+  }
+
+  .footer-container {
+    width: 95%;
+    gap: 20px;
+  }
+
+  .carousel-item {
+    flex: 0 0 calc((100% - 16px) / 2);
+  }
+
+  /* despre noi */
+  header .infic {
+    margin: 80px 8%;
+  }
+
+  header .infic .imagini {
+    gap: 0;
+    margin: 10px 0 0;
+  }
+
+  h2 {
+    font-weight: 800;
+  }
+
+  p {
+    font-size: 15px;
+    font-weight: 200;
+    margin: 0 !important;
+    line-height: normal;
+  }
+
+  section.galerie .imeg {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+
+  section.ad-reducere #productsCheckboxes .product-card img {
+    height: 100px;
+  }
+
+  section.noutati h2 {
+    margin-bottom: 42px !important;
+    margin-bottom: 5px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  section {
+    margin: 10px 5% 0;
+  }
+
+  header.index {
+    height: auto;
+  }
+
+  header nav {
+    padding: 12px 5%;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  header nav .linkuri {
+    flex-wrap: wrap;
+    gap: 8px;
+    order: 3;
+    width: 100%;
+  }
+
+  header nav .linkuri a {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+
+  header nav img.logo {
+    width: 60px;
+  }
+
+  header nav .inf {
+    gap: 10px;
+    order: 2;
+  }
+
+  header nav .inf a,
+  header nav .inf button.logoogle {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  header nav .inf i {
+    font-size: 18px;
+  }
+
+  header nav .inf .limba,
+  header nav .inf .nr {
+    display: none;
+  }
+
+  header .helo {
+    padding: 60px 5% 30px;
+    min-height: auto;
+    gap: 20px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  header .helo .text {
+    align-items: center;
+    gap: 15px;
+  }
+
+  header .helo .text h2 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  header .helo .text p {
+    font-size: 14px;
+  }
+
+  header .helo .text button {
+    width: 180px;
+    padding: 12px 20px;
+    font-size: 14px;
+    align-self: center;
+  }
+
+  header .helo img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  h3 {
+    font-size: 18px !important;
+  }
+
+  select {
+    font-size: 12px;
+    padding: 8px 30px 8px 12px;
+  }
+
+  button {
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+
+  section.tort-popular {
+    padding: 40px 0;
+  }
+
+  section.tort-popular p {
+    margin: 0;
+  }
+
+  section.tort-popular .trei .produs {
+    padding-bottom: 20px;
+  }
+
+  section.tort-popular .trei .produs .img-wrapper {
+    height: 200px;
+  }
+
+  section.tort-popular .trei .produs h3 {
+    font-size: 10px !important;
+  }
+
+  section.tort-popular .trei .produs > p:nth-of-type(1) {
+    font-size: 6px;
+  }
+
+  section.tort-popular .trei .produs .btn-detalii {
+    padding: 8px 15px !important;
+    font-size: 12px !important;
+    margin: 8px 12px;
+  }
+
+  section.tort-popular .trei .produs .badge-reducere {
+    font-size: 8px;
+    padding: 3px 6px;
+    top: 0;
+    left: 5px;
+  }
+
+  section.tort-popular .trei .produs .red {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  section.reducere {
+    height: auto;
+    padding: 10% 5%;
+    margin: 30px 0 0;
+  }
+
+  section.reducere .reduc .text-top,
+  section.reducere .reduc .text-bottom {
+    opacity: 0.6;
+  }
+
+  section.reducere .reduc .continut {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  section.reducere .reduc .continut .text {
+    width: 100%;
+  }
+
+  section.reducere .reduc .continut .text h2 {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 8px;
+  }
+
+  section.reducere .reduc .continut .text p {
+    font-size: 12px;
+  }
+
+  section.reducere .reduc .continut .text button {
+    margin-top: 12px;
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  section.reducere .reduc .continut .text .produse {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  section.reducere .reduc .continut .text .produs {
+    width: calc(33.333% - 6px);
+    min-width: 90px;
+    max-width: 120px;
+  }
+
+  section.reducere .reduc .continut .text .produs img {
+    height: 100px;
+  }
+
+  section.reducere .reduc .preturi {
+    padding: 5px;
+  }
+
+  section.reducere .reduc .preturi .pret-vechi {
+    font-size: 11px;
+  }
+
+  section.reducere .reduc .preturi .pret-redus {
+    font-size: 13px;
+  }
+
+  section.reducere .reduc .badge-reducere {
+    font-size: 12px;
+  }
+
+  section.coment {
+    margin: 50px 5% 0;
+  }
+
+  section.coment h2 {
+    margin-bottom: 25px;
+  }
+
+  section.coment .carousel-wrapper {
+    border-radius: 15px;
+  }
+
+  section.coment .carousel-track {
+    gap: 15px;
+  }
+
+  section.coment .carousel-item {
+    flex: 0 0 calc(50% - 8px);
+  }
+
+  section.coment .carousel-btn {
+    display: none !important;
+  }
+
+  section.coment .carousel-container {
+    gap: 10px;
+  }
+
+  section.coment #comentarii .com {
+    padding: 25px 20px;
+    text-align: center;
+    border-radius: 15px;
+  }
+
+  section.coment #comentarii .com img {
+    width: 75px;
+    height: 75px;
+    margin-bottom: 12px;
+  }
+
+  section.coment #comentarii .com .user {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  section.coment #comentarii .com .text {
+    font-size: 13px;
+    max-width: 100%;
+    line-height: 1.6;
+  }
+
+  section.coment .carousel-dots {
+    display: none;
+  }
+
+  section.crafti {
+    padding: 30px 10px;
+    gap: 20px;
+  }
+
+  section.crafti .text h2 {
+    font-size: 28px;
+  }
+
+  section.crafti .text p {
+    font-size: 14px;
+  }
+
+  section.crafti .text button {
+    font-size: 14px;
+    padding: 12px 20px;
+  }
+
+  .footer-container {
+    width: 100%;
+    padding: 0 15px;
+    gap: 20px;
+  }
+
+  .footer-bottom p {
+    padding-top: 10px;
+  }
+
+  .social-icons a {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+    margin-right: 8px;
+  }
+
+  .linie {
+    width: 100px;
+    height: 5px;
+  }
+
+  .cine p {
+    font-size: 15px !important;
+  }
+
+  section.istoria {
+    margin: 10px 5% 0;
+  }
+
+  section.secrete h2 {
+    font-size: 25px;
+  }
+
+  section.secrete p {
+    font-size: 14px !important;
+  }
+
+  section.secrete span {
+    font-size: 14px !important;
+  }
+
+  section.lucru {
+    margin: 50px 5% 0;
+  }
+
+  section.lucru .detalii .din .un {
+    width: 100px;
+    height: 100px;
+  }
+
+  section.lucru .detalii .din .un img {
+    margin: 10px;
+    width: 50px;
+  }
+
+  section.lucru .detalii .din h3 {
+    font-size: 14px !important;
+  }
+
+  section.lucru .detalii .din p {
+    font-size: 10px !important;
+  }
+
+  section.servicii .card-group {
+    gap: 5px;
+  }
+
+  section.servicii .card {
+    width: 150px;
+    height: 250px;
+    border-radius: 10px;
+  }
+
+  section.servicii .card h3 {
+    font-size: 15px;
+  }
+
+  section.servicii .card p {
+    font-size: 10px;
+  }
+
+  .footer-bottom p {
+    font-size: 10px;
+  }
+
+  section.produse .filter-inputs button {
+    padding: 10px 16px;
+  }
+
+  section.produse .trei {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    align-items: start;
+  }
+
+  section.produse .trei .produs,
+  section.produse .produs {
+    width: auto;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  section.produse .produs .img-wrapper {
+    overflow: hidden;
+  }
+
+  section.produse .produs img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  section.produse .produs h3 {
+    font-size: 12px;
+    margin: 6px 0 4px;
+    font-weight: 700;
+  }
+
+  section.produse .produs p,
+  section.produse .produs .pret-vechi,
+  section.produse .produs .pret-redus,
+  section.produse .produs span {
+    font-size: 11px;
+  }
+
+  section.produse .produs .btn-detalii {
+    padding: 6px 8px;
+    font-size: 10px;
+    margin: 4px 0;
+  }
+
+  /* detaliile tortului */
+
+  section.prod {
+    margin: 10px 2%;
+  }
+
+  section.prod .detalii-produse {
+    min-width: 80%;
+    height: auto;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  section.prod .detalii-produse .info {
+    width: 100%;
+    height: 50%;
+    padding: 10px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+  }
+
+  section.prod .detalii-produse img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+  }
+
+  section.prod .detalii-produse .info h2 {
+    font-size: 25px !important;
+  }
+
+  section.prod .detalii-produse .info .price {
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  section.prod .detalii-produse .info .descriere {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  section.prod .detalii-produse .info ul {
+    list-style: disc;
+    margin-left: 12px;
+  }
+
+  section.prod .detalii-produse .info ul li {
+    font-size: 14px;
+  }
+
+  section.cos .order-form h3 {
+    font-size: 30px !important;
+    margin-bottom: 20px;
+  }
+
+  section.cos .order-form {
+    padding: 20px 10px;
+    border-radius: 10px;
+  }
+
+  section.galerie {
+    margin: 20px 2% 20px;
+  }
+
+  section.galerie .imeg {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  section.contacte .info .del i {
+    font-size: 30px;
+    margin-bottom: 5px;
+  }
+
+  section.contacte .info .del h3 {
+    font-size: 15px !important;
+  }
+
+  section.contacte .info .del p {
+    font-size: 9px;
+  }
+
+  section.contacte .info .del a {
+    display: none;
+  }
+
+  section.comentarii .date #coms .comentariu img {
+    margin-bottom: 0;
+  }
+
+  section.comentarii .date #coms .comentariu p {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+
+  section.comenzi #orders,
+  section.com-efect #completedOrders {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    padding: 0;
+  }
+
+  section.comenzi #orders .order-item .info .user,
+  section.com-efect #completedOrders .order-item .info .user {
+    width: 50px;
+    height: 50px;
+  }
+
+  section.ad-reducere #productsCheckboxes .product-card img {
+    height: 80px;
+  }
+
+  section.ad-reducere #productsCheckboxes .product-card {
+    padding: 10px;
+  }
+
+  section.noutati #noutatiContainer article .foto img {
+    height: 100px;
+  }
+
+  section.crafti img {
+    height: 200px;
+  }
+}
+
+@media (max-width: 576px) {
+  body {
+    font-size: 13px;
+  }
+
+  h1 {
+    font-size: 28px !important;
+  }
+
+  section {
+    margin: 8px 3% 0;
+  }
+
+  header nav {
+    padding: 10px 3%;
+    gap: 10px;
+  }
+
+  header nav .linkuri {
+    gap: 5px;
+  }
+
+  header nav .linkuri a {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+
+  header nav img.logo {
+    width: 50px;
+  }
+
+  header nav .inf {
+    gap: 8px;
+  }
+
+  header nav .inf a,
+  header nav .inf button.logoogle {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+
+  header nav .inf i {
+    font-size: 16px;
+  }
+
+  header nav .inf .cos #cartCount,
+  header nav .inf .salv #savedCount {
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+  }
+
+  header .helo {
+    padding: 40px 3% 20px;
+    gap: 15px;
+  }
+
+  header .helo .text h2 {
+    font-size: 24px;
+  }
+
+  header .helo .text p {
+    font-size: 12px;
+  }
+
+  header .helo .text button {
+    width: 150px;
+    padding: 10px 15px;
+    font-size: 12px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  h3 {
+    font-size: 16px !important;
+  }
+
+  button {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  select {
+    font-size: 11px;
+    padding: 6px 25px 6px 10px;
+  }
+
+  section.tort-popular h2 {
+    font-size: 35px;
+  }
+
+  section.tort-popular .linie {
+    width: 80px;
+    height: 4px;
+  }
+
+  section.tort-popular p {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+
+  section.tort-popular .trei {
+    gap: 5px;
+  }
+
+  section.tort-popular .trei .produs .img-wrapper {
+    height: 100px;
+  }
+
+  section.tort-popular .trei .produs .img-wrapper img {
+    height: 100px;
+  }
+
+  section.tort-popular .trei .produs h3 {
+    font-size: 16px;
+  }
+
+  section.tort-popular .trei .produs p {
+    font-size: 10px;
+    margin: 0 5% !important;
+  }
+
+  section.tort-popular .trei .produs span {
+    font-size: 12px;
+  }
+
+  section.tort-popular .trei .produs .pret-vechi {
+    font-size: 10px;
+  }
+
+  section.tort-popular .trei .produs .pret-redus {
+    font-size: 12px;
+  }
+
+  section.reducere {
+    padding: 12% 3%;
+    margin: 20px 0 0;
+  }
+
+  section.tort-popular .trei .produs .btn-detalii {
+    margin: 5px 0;
+    padding: 5px 10px !important;
+    border-radius: 5px;
+    font-size: 10px !important;
+  }
+
+  section.reducere .reduc .text-top,
+  section.reducere .reduc .text-bottom {
+    font-size: 20px;
+    opacity: 0.5;
+  }
+
+  section.reducere .reduc .continut {
+    gap: 15px;
+  }
+
+  section.reducere .reduc .continut .text {
+    width: 100%;
+  }
+
+  section.reducere .reduc .continut .text h2 {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  section.reducere .reduc .continut .text p {
+    font-size: 11px;
+  }
+
+  section.reducere .reduc .continut .text button {
+    margin-top: 8px;
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  section.reducere .reduc .continut .text .produse {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  section.reducere .reduc .continut .text .produs {
+    width: calc(33.333% - 5px);
+    min-width: 75px;
+    max-width: 100px;
+  }
+
+  section.reducere .reduc .continut .text .produs img {
+    height: 80px;
+  }
+
+  section.reducere .reduc .preturi {
+    padding: 4px;
+  }
+
+  section.reducere .reduc .preturi .pret-vechi {
+    font-size: 9px;
+  }
+
+  section.reducere .reduc .preturi .pret-redus {
+    font-size: 11px;
+  }
+
+  section.reducere .reduc .badge-reducere {
+    font-size: 10px;
+  }
+
+  section.coment h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  section.coment .carousel-wrapper {
+    border-radius: 12px;
+    gap: 5px !important;
+  }
+
+  section.coment .carousel-track {
+    gap: 12px;
+  }
+
+  section.coment .carousel-item {
+    flex: 0 0 calc(30% - 6px);
+  }
+
+  section.coment #comentarii .com {
+    padding: 20px 15px;
+    border-radius: 12px;
+    gap: 5px;
+  }
+
+  section.coment #comentarii .com img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 0;
+    border: 2px solid transparent;
+  }
+
+  section.coment #comentarii .com .user {
+    font-size: 10px;
+    margin-bottom: 6px;
+  }
+
+  section.coment #comentarii .com .text {
+    font-size: 6px;
+    line-height: 1.5;
+  }
+
+  section.coment .carousel-dots {
+    display: none;
+  }
+
+  section.crafti {
+    padding: 20px 5px;
+  }
+
+  section.crafti .text button {
+    padding: 3px 5px;
+    border-radius: 2px;
+  }
+
+  .footer-container {
+    padding: 0 10px;
+  }
+
+  .social-icons a {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+  }
+
+  section.servicii .card {
+    width: 100px;
+    height: 200px;
+    border-radius: 5px;
+  }
+
+  section.servicii .card h3 {
+    font-size: 10px;
+  }
+
+  section.servicii .card p {
+    font-size: 7px;
+  }
+
+  /* despre noi */
+  header .infic {
+    margin: 30px 3% 0;
+  }
+
+  header .infic p {
+    font-size: 10px;
+    margin-top: 30px;
+  }
+
+  section.cine p,
+  section.istoria p {
+    font-size: 10px !important;
+  }
+
+  section.secrete img {
+    width: 50%;
+    height: 250px;
+  }
+
+  h2 {
+    font-size: 18px !important;
+  }
+
+  section.secrete .info p {
+    font-size: 10px !important;
+  }
+
+  section.secrete .info .citata {
+    font-size: 10px !important;
+  }
+
+  section.secrete .info .cine span {
+    font-size: 10px !important;
+  }
+
+  section.lucru p {
+    font-size: 10px;
+  }
+
+  section.servicii h2 {
+    margin-bottom: 0;
+  }
+
+  section.servicii {
+    padding: 0;
+  }
+
+  section.servicii .card {
+    width: 120px;
+    height: 200px;
+  }
+
+  section.servicii .card .layer {
+    opacity: 1;
+  }
+
+  section.servicii .card .info {
+    bottom: 20px;
+    opacity: 1;
+  }
+
+  section.servicii .card-group:hover .card:not(:hover) {
+    filter: none;
+  }
+
+  section.servicii .card:hover {
+    transform: none;
+  }
+
+  section.servicii .info h3 {
+    line-height: 20px;
+    font-size: 20px;
+  }
+
+  section.servicii .info p {
+    font-size: 7px;
+  }
+
+  section.produse .produse-category {
+    gap: 5px;
+  }
+
+  section.produse .produs .img-wrapper {
+    height: 150px !important;
+  }
+
+  .heart-icon {
+    top: 5px;
+    right: 5px;
+    font-size: 15px !important;
+    width: 30px;
+    height: 30px;
+  }
+
+  section.produse .produse-category .produs .img-wrapper .badge-reducere {
+    top: 1px;
+    left: 5px;
+    padding: 3px 7px;
+    font-size: 10px;
+    border-radius: 5px;
+  }
+
+  section.produse .produse-category .produs h3 {
+    font-weight: 800;
+    font-size: 15px;
+    margin: 2px 0 0;
+    padding: 0 5px;
+  }
+
+  section.produse .produse-category .produs p {
+    font-size: 10px;
+  }
+
+  section.produse .produse-category .produs .reducer .red {
+    gap: 2px;
+  }
+
+  section.produse .produse-category .produs .reducer .red .pret-vechi {
+    font-size: 7px;
+    font-weight: 400;
+  }
+
+  section.produse .produse-category .produs .reducer .red .pret-redus {
+    color: #ff6a88;
+    font-weight: 700;
+    font-size: 11px;
+    border-radius: 20px;
+  }
+
+  section.produse .produse-category .produs .canti button {
+    padding: 5px 10px;
+    font-size: 10px;
+    border-radius: 4px;
+    margin: 0;
+  }
+
+  section.produse .produse-category .produs {
+    padding-bottom: 10px;
+  }
+
+  section.craft h2 {
+    font-size: 30px !important;
+    margin: 0 0 10px;
+  }
+
+  section.craft h3 {
+    font-size: 14px !important;
+    margin: 0 0 5px;
+    padding: 0 0 0 5px;
+  }
+
+  section.cos #cosDisplay .produs .img-wrapper {
+    width: 100%;
+    height: 200px;
+  }
+
+  section.cos #cosDisplay .produs .img-wrapper img {
+    width: 100%;
+    height: 100%;
+  }
+
+  section.cos #cosDisplay .produs h3 {
+    font-size: 20px !important;
+  }
+
+  section.cos #cosDisplay .produs p {
+    font-size: 12px;
+  }
+
+  section.cos #cosDisplay .produs .cantitate {
+    font-size: 15px;
+  }
+
+  section.cos #cosDisplay .produs .actiuni .sterge-cos {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    width: 90%;
+    gap: 0;
+    margin-top: 5px;
+  }
+
+  section.cos #cosDisplay .produs.cos-item {
+    padding-bottom: 15px;
+  }
+
+  section.cos h2 {
+    font-size: 30px !important;
+    margin-bottom: 20px;
+  }
+
+  section.salvari #salvariDisplay .produs .img-wrapper {
+    height: 200px;
+  }
+
+  .lightbox-prev,
+  .lightbox-next,
+  .lightbox-close {
+    display: none !important;
+  }
+
+  section.galerie .imeg img {
+    height: 150px;
+    border-radius: 5px;
+  }
+
+  section.galerie h2 {
+    font-size: 42px !important;
+  }
+
+  section.admin .info h2 {
+    font-size: 30px !important;
+    margin-bottom: 0 !important;
+  }
+
+  section.comentarii h2 {
+    font-size: 30px !important;
+    margin-bottom: 20px;
+  }
+
+  section.comentarii .date #coms .comentariu button {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+
+  section.comentarii .date #coms {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
+
+  section.comentarii .date #toggleComments {
+    margin-top: 20px;
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 5px;
+  }
+
+  section.comenzi,
+  section.com-efect {
+    border-radius: 20px;
+    margin: 20px 5%;
+  }
+
+  section.comenzi h2,
+  section.com-efect h2 {
+    font-size: 30px !important;
+    margin-bottom: 20px;
+  }
+
+  section.ad-reducere .end-start {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+  }
+
+  section.ad-reducere {
+    margin-bottom: 30px;
+    margin-top: 50px;
+  }
+
+  section.ad-reducere h2 {
+    font-size: 30px !important;
+  }
+
+  section.ad-reducere #productsCheckboxes {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  section.ad-reducere #productsCheckboxes .product-card img {
+    height: 120px;
+  }
+
+  section.add-com {
+    margin: 20px 5%;
+  }
+
+  section.add-com h2 {
+    font-size: 30px !important;
+  }
+
+  section.add-com #listaComentarii {
+    margin-top: 10px;
+  }
+
+  section.noutati #noutatiContainer article .foto {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+}
+
+@media (max-width: 380px) {
+  section.tort-popular .trei .produs .btn-detalii {
+    font-size: 6px !important;
+    padding: 5px !important;
+  }
+
+  section.tort-popular .trei .produs {
+    padding-bottom: 5px;
+  }
+
+  section.tort-popular .trei .produs p {
+    font-size: 6px !important;
+  }
+
+  section.tort-popular .trei .produs .pret-redus,
+  section.tort-popular .trei .produs span {
+    font-size: 10px !important;
+  }
+
+  section.tort-popular .trei .produs .pret-vechi {
+    font-size: 8px !important;
+  }
+
+  section.coment #comentarii .com img {
+    width: 40px;
+    height: 40px;
+  }
+
+  section.coment #comentarii .com .user {
+    font-size: 6px;
+  }
+
+  section.coment #comentarii .com .user::after {
+    height: 0.1px;
+  }
+
+  section.coment #comentarii .com .text {
+    font-size: 5px;
+  }
+
+  .carousel-item img {
+    flex: 0;
+  }
+}

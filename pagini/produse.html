@@ -1,186 +1,247 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ro">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Produse</title>
-    <link rel="stylesheet" href="../style.css">
+
+    <link rel="icon" href="../imagini/logo.png" type="image/png" />
+
+    <meta
+      name="keywords"
+      content="Deliciu,web developer,proiecte,website,website de prezentare, aplicatie"
+    />
+    <meta
+      name="description"
+      content="Păstrăm tradiţia de a produce natural.
+    Livrăm săptămânal la Soroca torturi, checuri și pirogurii până la uşa ta.
+    Deliciu la preţ rezonabil."
+    />
+    <meta name="author" content="Cujba Ruxanda" />
+    <meta name="robots" content="index,follow" />
+
+    <!-- stiluri -->
+    <link rel="stylesheet" href="../stiluri/style.css" />
+    <link rel="stylesheet" href="../stiluri/media.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- scripturi -->
     <script src="../scripts/applyReductions.js" defer></script>
     <script src="../scripts/produse.js" defer></script>
     <script src="../scripts/stats.js" defer></script>
     <script type="module" src="../scripts/firebase.js"></script>
-    <link rel="stylesheet" href="../media.css">
     <script src="../scripts/index.js" defer></script>
     <script src="../scripts/hamburger.js" defer></script>
-    <script src="https://kit.fontawesome.com/8a1f01fb65.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+    <script
+      src="https://kit.fontawesome.com/8a1f01fb65.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav>
-            <div class="linkuri">
-                <a href="../index.html" data-i18n="nav.home">Acasă</a>
-                <a href="despre.html" data-i18n="nav.about">Despre</a>
-                <a href="produse.html" data-i18n="nav.catalog">Catalog</a>
-                <a href="craft.html" data-i18n="nav.craft">Creează</a>
-                <a href="galerie.html" data-i18n="nav.gallery">Galerie</a>
-            </div>
-            <img class="logo" src="../imagini/logo.png" alt="logo">
-            <div class="inf">
-                <a class="nr" href="contacte.html">
-                    <i class="fa-solid fa-phone-volume"></i>
-                </a>
-                <a class="cos" href="cos.html">
-                    <i class="fa-solid fa-basket-shopping"></i>
-                    <div class="stat-value" id="cartCount">0</div>
-                </a>
-
-                <a class="salv" href="salvari.html">
-                    <i class="fa-solid fa-heart"></i>
-                    <div class="stat-value" id="savedCount">0</div>
-                </a>
-
-                <button class="logoogle" id="googleLogin"><i class="fa-brands fa-google"></i></button>
-                <a id="userLink" href="#" style="display:none;"><i class="fa-regular fa-user"></i></a>
-            </div>
-        </nav>
-
-        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
-            <i class="fa-solid fa-bars hamburger-icon"></i>
-            <i class="fa-solid fa-xmark hamburger-icon-close" style="display:none;"></i>
-        </button>
-
-        <div class="mobile-menu" id="mobileMenu">
-
-            <div class="mobile-user-section" id="mobileUserSection" style="display:none;">
-                <div class="mobile-user-info">
-                    <img id="mobileUserAvatar" src="" alt="User" class="user-avatar">
-                    <div class="user-details">
-                        <p id="mobileUserName">Utilizator</p>
-                    </div>
-                </div>
-                <a href="user.html" class="mobile-menu-link">
-                    <i class="fa-regular fa-user"></i> Contul Meu
-                </a>
-                <button id="mobileLogoutBtn" class="mobile-logout-btn">
-                    <i class="fa-solid fa-sign-out-alt"></i> Deconectare
-                </button>
-            </div>
-
-            <div class="mobile-login-section" id="mobileLoginSection">
-                <button class="mobile-google-btn" id="mobileGoogleLogin">
-                    <i class="fa-brands fa-google"></i> Logare cu Google
-                </button>
-            </div>
-
-            <nav class="mobile-nav">
-                <a href="../index.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-house"></i> Acasă
-                </a>
-                <a href="despre.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-info-circle"></i> Despre Noi
-                </a>
-                <a href="produse.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-box-open"></i> Catalog
-                </a>
-                <a href="cos.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-basket-shopping"></i> Coș
-                </a>
-                <a href="salvari.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-heart"></i> Salvări
-                </a>
-                <a href="craft.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-paint-brush"></i> Creează
-                </a>
-                <a href="galerie.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-images"></i> Galerie
-                </a>
-                <a href="contacte.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-phone-volume"></i> Contacte
-                </a>
-            </nav>
+      <nav>
+        <div class="linkuri">
+          <a href="../index.html" data-i18n="nav.home">Acasă</a>
+          <a href="despre.html" data-i18n="nav.about">Despre</a>
+          <a href="produse.html" data-i18n="nav.catalog">Catalog</a>
+          <a href="craft.html" data-i18n="nav.craft">Creează</a>
+          <a href="galerie.html" data-i18n="nav.gallery">Galerie</a>
         </div>
+        <img class="logo" src="../imagini/logo.png" alt="logo" />
+        <div class="inf">
+          <a class="nr" href="contacte.html">
+            <i class="fa-solid fa-phone-volume"></i>
+          </a>
+          <a href="noutati.html">
+            <i class="fa-solid fa-newspaper"></i>
+          </a>
+          <a class="cos" href="cos.html">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <div class="stat-value" id="cartCount">0</div>
+          </a>
+
+          <a class="salv" href="salvari.html">
+            <i class="fa-solid fa-heart"></i>
+            <div class="stat-value" id="savedCount">0</div>
+          </a>
+
+          <button class="logoogle" id="googleLogin">
+            <i class="fa-brands fa-google"></i>
+          </button>
+          <a id="userLink" href="#" style="display: none"
+            ><i class="fa-regular fa-user"></i
+          ></a>
+        </div>
+      </nav>
+
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars hamburger-icon"></i>
+        <i
+          class="fa-solid fa-xmark hamburger-icon-close"
+          style="display: none"
+        ></i>
+      </button>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <div
+          class="mobile-user-section"
+          id="mobileUserSection"
+          style="display: none"
+        >
+          <div class="mobile-user-info">
+            <img id="mobileUserAvatar" src="" alt="User" class="user-avatar" />
+            <div class="user-details">
+              <p id="mobileUserName">Utilizator</p>
+            </div>
+          </div>
+          <a href="user.html" class="mobile-menu-link">
+            <i class="fa-regular fa-user"></i> Contul Meu
+          </a>
+          <button id="mobileLogoutBtn" class="mobile-logout-btn">
+            <i class="fa-solid fa-sign-out-alt"></i> Deconectare
+          </button>
+        </div>
+
+        <div class="mobile-login-section" id="mobileLoginSection">
+          <button class="mobile-google-btn" id="mobileGoogleLogin">
+            <i class="fa-brands fa-google"></i> Logare cu Google
+          </button>
+        </div>
+
+        <nav class="mobile-nav">
+          <a href="../index.html" class="mobile-menu-link">
+            <i class="fa-solid fa-house"></i> Acasă
+          </a>
+          <a href="despre.html" class="mobile-menu-link">
+            <i class="fa-solid fa-info-circle"></i> Despre
+          </a>
+          <a href="noutati.html" class="mobile-menu-link">
+            <i class="fa-solid fa-newspaper"></i> Noutăți
+          </a>
+          <a href="produse.html" class="mobile-menu-link">
+            <i class="fa-solid fa-box-open"></i> Catalog
+          </a>
+          <a href="cos.html" class="mobile-menu-link">
+            <i class="fa-solid fa-basket-shopping"></i> Coș
+          </a>
+          <a href="salvari.html" class="mobile-menu-link">
+            <i class="fa-solid fa-heart"></i> Salvări
+          </a>
+          <a href="craft.html" class="mobile-menu-link">
+            <i class="fa-solid fa-paint-brush"></i> Creează
+          </a>
+          <a href="galerie.html" class="mobile-menu-link">
+            <i class="fa-solid fa-images"></i> Galerie
+          </a>
+          <a href="contacte.html" class="mobile-menu-link">
+            <i class="fa-solid fa-phone-volume"></i> Contacte
+          </a>
+        </nav>
+      </div>
     </header>
 
     <section class="produse">
-        <div id="filterPanel" class="filter-panel">
-            <h3>Filtrare produse</h3>
-            <div class="filter-inputs">
-                <input type="text" id="searchName" placeholder="Cauta dupa nume..." />
-                <input type="number" id="minPrice" placeholder="Pret minim..." min="0" />
-                <input type="number" id="maxPrice" placeholder="Pret maxim..." min="0" />
-                <select id="filterReduction">
-                    <option value="">Toate produsele</option>
-                    <option value="with">Doar cu reducere</option>
-                    <option value="without">Doar fara reducere</option>
-                </select>
-                <select id="filterType">
-                    <option value="">Toate tipurile</option>
-                    <option value="tort">Torturi</option>
-                    <option value="chec">Checuri</option>
-                    <option value="tarte">Tarte</option>
-                </select>
-                <button type="button" id="resetFiltersBtn">Elimina filtre</button>
-            </div>
+      <div id="filterPanel" class="filter-panel">
+        <h3>Filtrare produse</h3>
+        <div class="filter-inputs">
+          <input type="text" id="searchName" placeholder="Cauta dupa nume..." />
+          <input
+            type="number"
+            id="minPrice"
+            placeholder="Pret minim..."
+            min="0"
+          />
+          <input
+            type="number"
+            id="maxPrice"
+            placeholder="Pret maxim..."
+            min="0"
+          />
+          <select id="filterReduction">
+            <option value="">Toate produsele</option>
+            <option value="with">Doar cu reducere</option>
+            <option value="without">Doar fara reducere</option>
+          </select>
+          <select id="filterType">
+            <option value="">Toate tipurile</option>
+            <option value="tort">Torturi</option>
+            <option value="chec">Checuri</option>
+            <option value="tarte">Tarte</option>
+          </select>
+          <button type="button" id="resetFiltersBtn">Elimina filtre</button>
         </div>
-        <div id="produseDisplay" class="produse-category"></div>
+      </div>
+      <div id="produseDisplay" class="produse-category"></div>
     </section>
 
     <!-- footer -->
     <footer>
-        <div class="footer-container">
-            <!-- Informații despre companie -->
-            <div class="footer-section">
-                <h3>Despre Noi</h3>
-                <p>Deliciu este o mică afacere dedicată creării torturilor artizanale, realizate cu grijă, ingrediente
-                    de
-                    calitate și multă pasiune.</p>
-            </div>
-
-            <!-- Link-uri utile -->
-            <div class="footer-section">
-                <h3>Link-uri utile</h3>
-                <ul>
-                    <li><a href="index.html">Acasă</a></li>
-                    <li><a href="despre.html">Despre Noi</a></li>
-                    <li><a href="produse.html">Catalog</a></li>
-                    <li><a href="craft.html">Creează</a></li>
-                    <li><a href="galerie.html">Galerie</a></li>
-                    <li><a href="contacte.html">Contacte</a></li>
-                </ul>
-            </div>
-
-            <!-- Contact -->
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <a href="tel:+37367287004">Telefon: +37367287004</a><br>
-                <a href="mailto:marinalabliuc@mail.com">Email: marinalabliuc@mail.com</a>
-                <p>Adresă: Tătărăuca Nouă, Moldova</p>
-                <a href="https://maps.app.goo.gl/3ERSc52ZgkMVsj8w7" target="_blank">Vezi pe hartă</a>
-            </div>
-
-            <!-- Rețele sociale -->
-            <div class="footer-section">
-                <h3>Urmărește-ne</h3>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/marina.ursu.262841" target="_blank"><i
-                            class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/marinaursu916?igsh=czIxNnI5aTlhZGNx" target="_blank"><i
-                            class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-
+      <div class="footer-container">
+        <!-- Informații despre companie -->
+        <div class="footer-section">
+          <h3>Despre Noi</h3>
+          <p>
+            Deliciu este o mică afacere dedicată creării torturilor artizanale,
+            realizate cu grijă, ingrediente de calitate și multă pasiune.
+          </p>
         </div>
 
-        <div class="footer-bottom">
-            <p>&copy; <span id="ani-container"></span> Deliciu. Acest website a fost realizat în
-                cadrul competiției ”Tekwill
-                Junior Ambassadors” organizată de proiectul ”Tekwill în Fiecare Școală” și nu reflectă neapărat opinia
-                proiectului.</p>
+        <!-- Link-uri utile -->
+        <div class="footer-section">
+          <h3>Link-uri utile</h3>
+          <ul>
+            <li><a href="index.html">Acasă</a></li>
+            <li><a href="despre.html">Despre Noi</a></li>
+            <li><a href="produse.html">Catalog</a></li>
+            <li><a href="craft.html">Creează</a></li>
+            <li><a href="galerie.html">Galerie</a></li>
+            <li><a href="contacte.html">Contacte</a></li>
+          </ul>
         </div>
+
+        <!-- Contact -->
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <a href="tel:+37367287004">Telefon: +37367287004</a><br />
+          <a href="mailto:marinalabliuc@mail.com"
+            >Email: marinalabliuc@mail.com</a
+          >
+          <p>Adresă: Tătărăuca Nouă, Moldova</p>
+          <a href="https://maps.app.goo.gl/3ERSc52ZgkMVsj8w7" target="_blank"
+            >Vezi pe hartă</a
+          >
+        </div>
+
+        <!-- Rețele sociale -->
+        <div class="footer-section">
+          <h3>Urmărește-ne</h3>
+          <div class="social-icons">
+            <a
+              href="https://www.facebook.com/marina.ursu.262841"
+              target="_blank"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/marinaursu916?igsh=czIxNnI5aTlhZGNx"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          &copy; <span id="ani-container"></span> Deliciu. Acest website a fost
+          realizat în cadrul competiției ”Tekwill Junior Ambassadors” organizată
+          de proiectul ”Tekwill în Fiecare Școală” și nu reflectă neapărat
+          opinia proiectului.
+        </p>
+      </div>
     </footer>
-</body>
-
+  </body>
 </html>

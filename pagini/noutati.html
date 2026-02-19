@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ro">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacte</title>
+    <title>Detalii produs</title>
 
     <link rel="icon" href="../imagini/logo.png" type="image/png">
 
@@ -18,23 +18,25 @@
     <!-- stiluri -->
     <link rel="stylesheet" href="../stiluri/style.css">
     <link rel="stylesheet" href="../stiluri/media.css">
-    
+
     <!-- scripturi -->
-    <script src="https://kit.fontawesome.com/8a1f01fb65.js" crossorigin="anonymous"></script>
-    <script src="../scripts/hamburger.js" defer></script>
     <script src="../scripts/stats.js" defer></script>
-    <script type="module" src="../scripts/firebase.js"></script>
+    <script type="module" src="../scripts/firebase.js" defer></script>
+    <script src="../scripts/hamburger.js" defer></script>
+    <script src="../scripts/noutati.js" defer></script>
+    <script src="https://kit.fontawesome.com/8a1f01fb65.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
     <header>
         <nav>
             <div class="linkuri">
-                <a href="../index.html" data-i18n="nav.home">Acasă</a>
-                <a href="despre.html" data-i18n="nav.about">Despre</a>
-                <a href="produse.html" data-i18n="nav.catalog">Catalog</a>
-                <a href="craft.html" data-i18n="nav.craft">Creează</a>
-                <a href="galerie.html" data-i18n="nav.gallery">Galerie</a>
+                <a href="../index.html">Acasă</a>
+                <a href="despre.html">Despre</a>
+                <a href="produse.html">Catalog</a>
+                <a href="craft.html">Creează</a>
+                <a href="galerie.html">Galerie</a>
             </div>
             <img class="logo" src="../imagini/logo.png" alt="logo">
             <div class="inf">
@@ -119,44 +121,12 @@
         </div>
     </header>
 
-    <!-- contacte -->
-    <section class="contacte">
-        <h2>Date de contact</h2>
-        <p>Mă poți contacta folosind următoarele informații:</p>
-        <div class="info">
-            <div class="del">
-                <i class="fa-solid fa-house"></i>
-                <h3>Vizitează-mă</h3>
-                <p>Mă găsești la adresa de mai jos. Te aștept cu drag pentru orice întrebare, colaborare sau vizită
-                    planificată.</p>
-                <a href="https://maps.app.goo.gl/9ckDgESbg8nN3qVu9">Tătărăuca Nouă, SR, Moldova</a>
-            </div>
-            <div class="del">
-                <i class="fa-solid fa-phone"></i>
-                <h3>Sună-mă</h3>
-                <p>Sună-mă oricând pentru informații rapide sau suport direct. Îți voi răspunde în cel mai scurt timp
-                    posibil.</p>
-                <a href="tel:+37367287004">+37367287004</a>
-            </div>
-            <div class="del">
-                <i class="fa-solid fa-envelope"></i>
-                <h3>Scrie-mi</h3>
-                <p>Scrie-mi un email pentru detalii, propuneri sau solicitări. Îți voi răspunde prompt și cu atenție în
-                    orice moment.
-                </p>
-                <a href="mailto:marinalabliuc@mail.com">marinalabliuc@mail.com</a>
-            </div>
-        </div>
+    <section class="noutati">
+        <h2>Noutăți</h2>
+        <div id="noutatiContainer"></div>
     </section>
 
-
-    <section class="harta">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d2401.1451295871097!2d27.9726823!3d48.315318!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2s!4v1770579124396!5m2!1sen!2s"
-            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-    </section>
-
+    <!-- footer -->
     <footer>
         <div class="footer-container">
             <!-- Informații despre companie -->

@@ -69,36 +69,37 @@ function updatePreview() {
     const rightPanel = document.querySelector('.right');
     rightPanel.innerHTML = '';
     selected.forEach((item, index) => {
-        const imagePath = getImagePath(item);
-        const img = document.createElement('img');
-        img.src = imagePath;
-        img.alt = item.name;
-        img.classList.add(item.type);
-
-        if (index === 0) {
-            img.style.marginBottom = '0';
-        } else {
-            img.style.marginTop = '-80px';
-            img.style.marginBottom = '0';
-        }
-        img.style.zIndex = selected.length - index;
-        img.onerror = function() {
-            if (!this.dataset.fallback) {
-                this.dataset.fallback = '1';
-                this.src = 'imagini/craft/craft.png';
-                this.alt = `Imagine implicită: ${item.name}`;
-                return;
+        if (['base', 'cream', 'filling'].includes(item.type)) {
+            const imagePath = getImagePath(item);
+            const img = document.createElement('img');
+            img.src = imagePath;
+            img.alt = item.name;
+            img.classList.add(item.type);
+            if (index === 0) {
+                img.style.marginBottom = '0';
+            } else {
+                img.style.marginTop = '-80px';
+                img.style.marginBottom = '0';
             }
-            console.error(`Imagine not found: ${this.src}`);
-            this.style.border = '2px solid #ff6666';
-            this.style.padding = '10px';
-            this.style.background = '#ffe6e6';
-            this.alt = `Imagine indisponibilă: ${item.name}`;
-        };
-        img.onload = function() {
-            console.log(`Imagine loaded successfully: ${this.src}`);
-        };
-        rightPanel.appendChild(img);
+            img.style.zIndex = selected.length - index;
+            img.onerror = function() {
+                if (!this.dataset.fallback) {
+                    this.dataset.fallback = '1';
+                    this.src = 'imagini/craft/craft.png';
+                    this.alt = `Imagine implicită: ${item.name}`;
+                    return;
+                }
+                console.error(`Imagine not found: ${this.src}`);
+                this.style.border = '2px solid #ff6666';
+                this.style.padding = '10px';
+                this.style.background = '#ffe6e6';
+                this.alt = `Imagine indisponibilă: ${item.name}`;
+            };
+            img.onload = function() {
+                console.log(`Imagine loaded successfully: ${this.src}`);
+            };
+            rightPanel.appendChild(img);
+        }
     });
 }
 
@@ -194,18 +195,20 @@ async function addToCart() {
     const nume = document.getElementById('cakeName').value.trim() || 'Tort personalizat';
     const pret = selected.reduce((sum, item) => sum + item.price, 0);
     const descriere = '<ul>' + selected.map(s => `<li>${s.name}: ${s.price} Lei, ${s.qty}</li>`).join('') + '</ul>';
-    const uid = localStorage.getItem("uid");
-    if (!uid) {
-        console.error("Trebuie să fiți logat pentru a adăuga în coș.");
-        return;
-    }
+    let totalQty = 0;
+    selected.forEach(item => {
+        const qtyNum = parseInt(item.qty) || 0;
+        totalQty += qtyNum;
+    });
+    function getStorageUid() { return localStorage.getItem('uid') || 'guest'; }
+    const uid = getStorageUid();
     if (selected.length === 0) {
         console.error("Selectați măcar un sloi.");
         return;
     }
     const cartKey = `cart_${uid}`;
     const cart = JSON.parse(localStorage.getItem(cartKey) || '[]');
-    cart.push({ nume, cantitate: 1, pret, descriere, isCraft: true });
+    cart.push({ nume, cantitate: 1, pret, descriere, isCraft: true, totalQty });
     localStorage.setItem(cartKey, JSON.stringify(cart));
     console.log("Tort adăugat în coș (localStorage)!");
     try { if (typeof loadStats === 'function') loadStats(); else if (window && window.loadStats) window.loadStats(); else setTimeout(()=>{ if (typeof loadStats === 'function') loadStats(); }, 200); } catch(e){}

@@ -31,7 +31,7 @@ async function afiseazaProduse(itemsToShow = null) {
         const createProductCard = (p) => {
             const lang = (typeof getLang === 'function') ? getLang() : (document.documentElement.lang || 'ro');
             const name = p[`nume_${lang}`] || p.nume || p[`nume_ro`] || p.nume;
-            const descr = p[`descriere_${lang}`] || p.descriere || p[`descriere_ro`] || p.descriere || '';
+            const descr = '';
             const detailsArr = p[`detalii_${lang}`] || p.detalii || p[`detalii_ro`] || [];
             const areReducere = p.reducere != null && p.reducere !== "" && p.pretRedus != null && p.pretRedus !== "";
             let pretHTML = "";
@@ -69,20 +69,21 @@ async function afiseazaProduse(itemsToShow = null) {
                             </i>
                         </div>
                         <h3>${name}</h3>
-                        <p class="prod-desc">${descr}</p>
-                     <p>${pretHTML}</p>
-                     <div class="canti">
-                          <div class="derul">
-                              <button class="minus" onclick="changeQty('${p.nume}', -1)">
-                                 <i class="fa-solid fa-minus"></i>
-                              </button>
-                              <span id="${qtyId}">${cos[p.nume] || 0}</span>
-                              <button class="plus" onclick="changeQty('${p.nume}', 1)">
-                                 <i class="fa-solid fa-plus"></i>
-                              </button>
-                          </div>
-                          <button onclick="adaugaInCos('${p.nume}')">` + (lang === 'ru' ? 'Добавить в корзину' : (lang === 'en' ? 'Add to cart' : 'Adauga in cos')) + `</button>
-                     </div>`;
+                        <!-- descriere eliminată -->
+                        <p>${pretHTML}</p>
+                        <div class="cantitate-info" style="color:#888;font-size:0.95em; margin-bottom:8px;">${p.cantitate ? p.cantitate : ''}</div>
+                        <div class="canti">
+                              <div class="derul">
+                                    <button class="minus" onclick="changeQty('${p.nume}', -1)">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+                                      <span id="${qtyId}">${cos[p.nume] || 0}</span>
+                                    <button class="plus" onclick="changeQty('${p.nume}', 1)">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                              </div>
+                              <button onclick="adaugaInCos('${p.nume}')">` + (lang === 'ru' ? 'Добавить в корзину' : (lang === 'en' ? 'Add to cart' : 'Adauga in cos')) + `</button>
+                        </div>`;
                 // navigate to tort.html when clicking the produit card (but ignore clicks on img-wrapper and interactive elements)
                 card.addEventListener('click', function(e) {
                     if (e.target.closest('.img-wrapper') || e.target.closest('.canti') || e.target.closest('.detalii') || e.target.closest('.heart-icon') || e.target.closest('button')) return;
@@ -136,11 +137,8 @@ function toggleDetails(detailsId, buttonId) {
 }
 
 async function adaugaInCos(nume) {
-    const uid = localStorage.getItem("uid");
-    if (!uid) {
-        document.getElementById("error").innerText = "Trebuie să fiți logat pentru a adăuga în coș.";
-        return;
-    }
+    function getStorageUid() { return localStorage.getItem('uid') || 'guest'; }
+    const uid = getStorageUid();
     const qtyEl = document.getElementById(`qty-${nume.replace(/\s/g, '-')}`);
     const cantitate = parseInt(qtyEl.textContent);
     const product = produse.find(p => p.nume === nume);
@@ -161,15 +159,13 @@ async function adaugaInCos(nume) {
 }
 
 async function toggleSalvare(nume, ev) {
-    const uid = localStorage.getItem("uid");
-    if (!uid) {
-        document.getElementById("error").innerText = "Trebuie să fiți logat pentru a salva produse.";
-        return;
-    }
+    function getStorageUid() { return localStorage.getItem('uid') || 'guest'; }
+    const uid = getStorageUid();
     const isSaved = salvari.includes(nume);
     const heartIcon = ev && ev.target;
     const salvKey = `salvari_${uid}`;
     let saved = JSON.parse(localStorage.getItem(salvKey) || '[]');
+    if (!Array.isArray(saved)) saved = [];
     if (isSaved) {
         saved = saved.filter(s => s !== nume);
         salvari = salvari.filter(id => id !== nume);
@@ -180,11 +176,12 @@ async function toggleSalvare(nume, ev) {
         if (heartIcon) heartIcon.style.color = 'red';
     }
     localStorage.setItem(salvKey, JSON.stringify(saved));
+    if (typeof loadStats === 'function') loadStats();
 }
 
 async function loadUserData() {
-    const uid = localStorage.getItem("uid");
-    if (!uid) return;
+    function getStorageUid() { return localStorage.getItem('uid') || 'guest'; }
+    const uid = getStorageUid();
 
     try {
         salvari = JSON.parse(localStorage.getItem(`salvari_${uid}`) || '[]');

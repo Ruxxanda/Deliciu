@@ -5,10 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil utilizator</title>
-    <link rel="stylesheet" href="../style.css">
+
+    <link rel="icon" href="../imagini/logo.png" type="image/png">
+
+    <meta name="keywords" content="Deliciu,web developer,proiecte,website,website de prezentare, aplicatie" />
+    <meta name="description" content="Păstrăm tradiţia de a produce natural.
+    Livrăm săptămânal la Soroca torturi, checuri și pirogurii până la uşa ta.
+    Deliciu la preţ rezonabil." />
+    <meta name="author" content="Cujba Ruxanda" />
+    <meta name="robots" content="index,follow" />
+
+    <!-- stiluri -->
+    <link rel="stylesheet" href="../stiluri/style.css">
+    <link rel="stylesheet" href="../stiluri/media.css">
+
+    <!-- scripturi -->
     <script src="../scripts/user.js" defer></script>
     <script src="../scripts/stats.js" defer></script>
-    <link rel="stylesheet" href="../media.css">
     <script type="module" src="../scripts/firebase.js" defer></script>
     <script src="../scripts/hamburger.js" defer></script>
     <script src="https://kit.fontawesome.com/8a1f01fb65.js" crossorigin="anonymous"></script>
@@ -16,20 +29,22 @@
 </head>
 
 <body>
-
     <header>
         <nav>
             <div class="linkuri">
-                <a href="../index.html" data-i18n="nav.home">Acasă</a>
-                <a href="despre.html" data-i18n="nav.about">Despre</a>
-                <a href="produse.html" data-i18n="nav.catalog">Catalog</a>
-                <a href="craft.html" data-i18n="nav.craft">Creează</a>
-                <a href="galerie.html" data-i18n="nav.gallery">Galerie</a>
+                <a href="../index.html">Acasă</a>
+                <a href="despre.html">Despre</a>
+                <a href="produse.html">Catalog</a>
+                <a href="craft.html">Creează</a>
+                <a href="galerie.html">Galerie</a>
             </div>
             <img class="logo" src="../imagini/logo.png" alt="logo">
             <div class="inf">
                 <a class="nr" href="contacte.html">
                     <i class="fa-solid fa-phone-volume"></i>
+                </a>
+                <a href="noutati.html">
+                    <i class="fa-solid fa-newspaper"></i>
                 </a>
                 <a class="cos" href="cos.html">
                     <i class="fa-solid fa-basket-shopping"></i>
@@ -79,7 +94,11 @@
                     <i class="fa-solid fa-house"></i> Acasă
                 </a>
                 <a href="despre.html" class="mobile-menu-link">
-                    <i class="fa-solid fa-info-circle"></i> Despre No        </a>
+                    <i class="fa-solid fa-info-circle"></i> Despre
+                </a>
+                <a href="noutati.html" class="mobile-menu-link">
+                    <i class="fa-solid fa-newspaper"></i> Noutăți
+                </a>
                 <a href="produse.html" class="mobile-menu-link">
                     <i class="fa-solid fa-box-open"></i> Catalog
                 </a>
@@ -119,6 +138,21 @@
             <button id="trimiteComentariu">Publică</button>
         </div>
         <div id="listaComentarii"></div>
+        <script>
+            function autoResizeAll() {
+                document.querySelectorAll('.comment-text').forEach(function (ta) {
+                    ta.style.height = 'auto';
+                    ta.style.height = ta.scrollHeight + 'px';
+                    ta.addEventListener('input', function () {
+                        this.style.height = 'auto';
+                        this.style.height = this.scrollHeight + 'px';
+                    });
+                });
+            }
+            document.addEventListener('DOMContentLoaded', function () {
+                setTimeout(autoResizeAll, 800);
+            });
+        </script>
     </section>
 
     <section class="comenzi">
@@ -127,57 +161,58 @@
     </section>
 
     <!-- footer -->
-  <footer>
-    <div class="footer-container">
-      <!-- Informații despre companie -->
-      <div class="footer-section">
-        <h3>Despre Noi</h3>
-        <p>Deliciu este o mică afacere dedicată creării torturilor artizanale, realizate cu grijă, ingrediente
-          de
-          calitate și multă pasiune.</p>
-      </div>
+    <footer>
+        <div class="footer-container">
+            <!-- Informații despre companie -->
+            <div class="footer-section">
+                <h3>Despre Noi</h3>
+                <p>Deliciu este o mică afacere dedicată creării torturilor artizanale, realizate cu grijă, ingrediente
+                    de
+                    calitate și multă pasiune.</p>
+            </div>
 
-      <!-- Link-uri utile -->
-      <div class="footer-section">
-        <h3>Link-uri utile</h3>
-        <ul>
-          <li><a href="index.html">Acasă</a></li>
-          <li><a href="despre.html">Despre Noi</a></li>
-          <li><a href="produse.html">Catalog</a></li>
-          <li><a href="craft.html">Creează</a></li>
-          <li><a href="galerie.html">Galerie</a></li>
-          <li><a href="contacte.html">Contacte</a></li>
-        </ul>
-      </div>
+            <!-- Link-uri utile -->
+            <div class="footer-section">
+                <h3>Link-uri utile</h3>
+                <ul>
+                    <li><a href="index.html">Acasă</a></li>
+                    <li><a href="despre.html">Despre Noi</a></li>
+                    <li><a href="produse.html">Catalog</a></li>
+                    <li><a href="craft.html">Creează</a></li>
+                    <li><a href="galerie.html">Galerie</a></li>
+                    <li><a href="contacte.html">Contacte</a></li>
+                </ul>
+            </div>
 
-      <!-- Contact -->
-      <div class="footer-section">
-        <h3>Contact</h3>
-        <a href="tel:+37367287004">Telefon: +37367287004</a><br>
-        <a href="mailto:marinalabliuc@mail.com">Email: marinalabliuc@mail.com</a>
-        <p>Adresă: Tătărăuca Nouă, Moldova</p>
-        <a href="https://maps.app.goo.gl/3ERSc52ZgkMVsj8w7" target="_blank">Vezi pe hartă</a>
-      </div>
+            <!-- Contact -->
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <a href="tel:+37367287004">Telefon: +37367287004</a><br>
+                <a href="mailto:marinalabliuc@mail.com">Email: marinalabliuc@mail.com</a>
+                <p>Adresă: Tătărăuca Nouă, Moldova</p>
+                <a href="https://maps.app.goo.gl/3ERSc52ZgkMVsj8w7" target="_blank">Vezi pe hartă</a>
+            </div>
 
-      <!-- Rețele sociale -->
-      <div class="footer-section">
-        <h3>Urmărește-ne</h3>
-        <div class="social-icons">
-          <a href="https://www.facebook.com/marina.ursu.262841" target="_blank"><i class="fab fa-facebook"></i></a>
-          <a href="https://www.instagram.com/marinaursu916?igsh=czIxNnI5aTlhZGNx" target="_blank"><i
-              class="fab fa-instagram"></i></a>
+            <!-- Rețele sociale -->
+            <div class="footer-section">
+                <h3>Urmărește-ne</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/marina.ursu.262841" target="_blank"><i
+                            class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/marinaursu916?igsh=czIxNnI5aTlhZGNx" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
         </div>
-      </div>
 
-    </div>
-
-    <div class="footer-bottom">
-      <p>&copy; <span id="ani-container"></span> Deliciu. Acest website a fost realizat în
-        cadrul competiției ”Tekwill
-        Junior Ambassadors” organizată de proiectul ”Tekwill în Fiecare Școală” și nu reflectă neapărat opinia
-        proiectului.</p>
-    </div>
-  </footer>
+        <div class="footer-bottom">
+            <p>&copy; <span id="ani-container"></span> Deliciu. Acest website a fost realizat în
+                cadrul competiției ”Tekwill
+                Junior Ambassadors” organizată de proiectul ”Tekwill în Fiecare Școală” și nu reflectă neapărat opinia
+                proiectului.</p>
+        </div>
+    </footer>
 </body>
 
 </html>

@@ -1,9 +1,7 @@
+function getStorageUid() { return localStorage.getItem('uid') || 'guest'; }
+
 async function afiseazaSalvări() {
-    const uid = localStorage.getItem("uid");
-    if (!uid) {
-        document.getElementById("error").innerText = "Trebuie să fiți logat pentru a vedea salvările.";
-        return;
-    }
+    const uid = getStorageUid();
     const salvariNume = JSON.parse(localStorage.getItem(`salvari_${uid}`) || '[]');
     let data = [];
     try {
@@ -32,7 +30,7 @@ async function afiseazaSalvări() {
         const areReducere = p.reducere != null && p.reducere !== "" && p.pretRedus != null && p.pretRedus !== "";
         let pretHTML = "";
         if (!areReducere) {
-            pretHTML = `<span>${formatPrice(p.pret)} Lei</span>`;
+            pretHTML = `<span>${formatPrice(p.pret)} Lei</span>`; 
         } else {
             pretHTML = `
 <div>
@@ -54,8 +52,9 @@ async function afiseazaSalvări() {
                 <i class="fa fa-heart heart-icon active" onclick="toggleSalvare('${p.nume}')"></i>
             </div>
             <h3>${p.nume}</h3>
-            <p>${p.descriere}</p>
+            <!-- descriere eliminată -->
             <div class="pret-info">${pretHTML}</div>
+            <div class="cantitate-info" style="color:#888;font-size:0.95em; margin-bottom:8px;">${p.cantitate ? p.cantitate : ''}</div>
             ${detailsHTML}
             <div class="actiuni">
                 <button class="adauga-cos" onclick="adaugaInCosDinSalvări('${p.nume}')">
@@ -73,15 +72,19 @@ async function afiseazaSalvări() {
 }
 
 async function toggleSalvare(nume, ev) {
-    const uid = localStorage.getItem("uid");
-    if (!uid) return;
+    const uid = getStorageUid();
     const heartIcon = ev && ev.target;
     const key = `salvari_${uid}`;
     let saved = JSON.parse(localStorage.getItem(key) || '[]');
-    saved = saved.filter(s => s !== nume);
+    if (!Array.isArray(saved)) saved = [];
+    // toggle behavior: if already saved -> remove, else add
+    const exists = saved.includes(nume);
+    if (exists) saved = saved.filter(s => s !== nume);
+    else saved.push(nume);
     localStorage.setItem(key, JSON.stringify(saved));
-    if (heartIcon) heartIcon.style.color = 'white';
+    if (heartIcon) heartIcon.style.color = exists ? 'white' : 'red';
     afiseazaSalvări();
+    if (typeof loadStats === 'function') loadStats();
 }
 
 function toggleDetailsSalvari(detailsId, buttonId) {
@@ -103,11 +106,7 @@ function toggleDetailsSalvari(detailsId, buttonId) {
 }
 
 async function adaugaInCosDinSalvări(nume) {
-    const uid = localStorage.getItem("uid");
-    if (!uid) {
-        document.getElementById("error").innerText = "Trebuie să fiți logat pentru a adăuga în coș.";
-        return;
-    }
+    const uid = getStorageUid();
     const cantitate = 1;
     let product = null;
     try {
@@ -138,6 +137,7 @@ async function adaugaInCosDinSalvări(nume) {
         btn.innerHTML = originalText;
         btn.style.background = '';
     }, 2000);
+    if (typeof loadStats === 'function') loadStats();
 }
 
 document.addEventListener("DOMContentLoaded", afiseazaSalvări);

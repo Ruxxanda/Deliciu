@@ -180,6 +180,7 @@ async function generateOrderHTML(o, produse, isCompleted = false) {
   user.email = user.email || '';
   const cart = Array.isArray(o.cart) ? o.cart : (o.cartData ? JSON.parse(o.cartData) : []);
   const productItems = cart.map((c, index) => {
+`;
     const prod = produse.find(p => p.nume === c.nume);
     const isCustom = c.descriere && c.descriere.includes('<ul>');
     const imagine = prod ? (prod.imagine || prod.linkImagine) : './imagini/craft/craft.png';
@@ -194,21 +195,21 @@ async function generateOrderHTML(o, produse, isCompleted = false) {
             <div class="pret-redus">${prod.pretRedus} Lei</div>
         </div>
         <div class="badge-reducere">-${prod.reducere}% reducere</div>
-`;
+  });
     }
     const descriereHTML = prod ? `<p>${prod.descriere}</p>` : '';
     return `
       <div class="produs" onclick="goToProductDetails('${c.nume}')" style="cursor: pointer;">
-        <img src="../${(imagine||'').replace(/^\//,'').replace(/^\.\//,'')}" width="100" alt="produs">
+        <img src="../${(imagine||'').replace(/^\/, '').replace(/^\.\//,'')}" width="100" alt="produs">
         <div class="infor">
             <p class="nume">${c.nume}</p>
-            <p>${descriereHTML}</p>
+            <!-- descriere eliminată -->
             <p>${pretHTML}</p>
-            <p>Cantitate: ${isCustom ? (getTotalQty(c.descriere) / 1000) + ' kg' : c.cantitate}</p>
+            <div class="cantitate-info" style="color:#888;font-size:0.95em; margin-bottom:8px;">${prod && prod.cantitate ? prod.cantitate : ''}</div>
+            <p>${c.cantitate ? `x${c.cantitate}` : ''}</p>
         </div>
       </div>
     `;
-  });
   const visibleProducts = productItems.slice(0, 3).join('');
   const extraProducts = productItems.slice(3).join('');
   const toggleHTML = extraProducts ? `<button id="toggleProducts-${o.id}" class="extra">Mai multe</button>` : '';
