@@ -42,7 +42,7 @@ async function incarcaDate() {
 waitForUid(2500).then(found => {
   if (!found) {
     console.warn('No uid found in localStorage after wait; redirecting to index.html');
-    window.location.href = "../index.html";
+    window.location.href = "/Deliciu/index.html";
   } else {
     incarcaDate();
   }
@@ -53,7 +53,7 @@ if (logoutBtn) {
   logoutBtn.onclick = async () => {
     localStorage.removeItem("uid");
     localStorage.removeItem("email");
-    window.location.href = "../index.html";
+    window.location.href = "/Deliciu/index.html";
   };
 }
 

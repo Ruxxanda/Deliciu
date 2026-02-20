@@ -1,6 +1,6 @@
 const uid = localStorage.getItem("uid");
 const email = localStorage.getItem("email");
-if (!uid || email !== "ruxanda.cujba07@gmail.com") location.href = "../index.html";
+if (!uid || email !== "ruxanda.cujba07@gmail.com") location.href = "/Deliciu/index.html";
 
 async function getUser(uid) {
   const stored = localStorage.getItem(`user_${uid}`) || localStorage.getItem(`profile_${uid}`) || null;
@@ -56,7 +56,7 @@ loadAdminInfo();
 document.getElementById("logoutBtn").onclick = () => {
   localStorage.removeItem("uid");
   localStorage.removeItem("email");
-  window.location.href = "../index.html";
+  window.location.href = "/Deliciu/index.html";
 }
 
 async function loadAll() {
