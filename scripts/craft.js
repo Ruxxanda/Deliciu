@@ -1,61 +1,61 @@
 const layerData = {
     base: [
-        {name: 'Vanilie', price: 50, qty: '500g', image: '../imagini/craft/blat vanilie.png'},
-        {name: 'Ciocolată', price: 55, qty: '500g', image: '../imagini/craft/blat ciocolata.png'},
-        {name: 'Red velvet', price: 60, qty: '500g', image: '../imagini/craft/blat red velvet.png'},
-        {name: 'Lămâie', price: 45, qty: '500g', image: '../imagini/craft/blat lamaie.png'},
-        {name: 'Morcov', price: 40, qty: '500g', image: '../imagini/craft/blat morcov.png'},
-        {name: 'Fistic', price: 70, qty: '500g', image: '../imagini/craft/blat fistic.png'},
-        {name: 'Nucă', price: 65, qty: '500g', image: '../imagini/craft/blat nuca.png'},
-        {name: 'Oreo', price: 75, qty: '500g', image: '../imagini/craft/blat oreo.png'}
+        {name: 'Vanilie', price: 120, qty: '700g', image: '../imagini/craft/blat vanilie.png'},
+        {name: 'Ciocolată', price: 130, qty: '700g', image: '../imagini/craft/blat ciocolata.png'},
+        {name: 'Red velvet', price: 140, qty: '700g', image: '../imagini/craft/blat red velvet.png'},
+        {name: 'Lămâie', price: 110, qty: '700g', image: '../imagini/craft/blat lamaie.png'},
+        {name: 'Morcov', price: 105, qty: '700g', image: '../imagini/craft/blat morcov.png'},
+        {name: 'Fistic', price: 160, qty: '700g', image: '../imagini/craft/blat fistic.png'},
+        {name: 'Nucă', price: 150, qty: '700g', image: '../imagini/craft/blat nuca.png'},
+        {name: 'Oreo', price: 170, qty: '700g', image: '../imagini/craft/blat oreo.png'}
     ],
     cream: [
-        {name: 'Cremă de vanilie', price: 30, qty: '200g', image: '../imagini/craft/crema vanilie.png'},
-        {name: 'Cremă de ciocolată', price: 35, qty: '200g', image: '../imagini/craft/crema ciocolata.png'},
-        {name: 'Cremă mascarpone', price: 40, qty: '200g', image: '../imagini/craft/crema mascarpone.png'},
-        {name: 'Cremă de brânză (cream cheese)', price: 38, qty: '200g', image: '../imagini/craft/crema branza.png'},
-        {name: 'Cremă de fructe (căpșuni, zmeură, mango, fructe de pădure)', price: 45, qty: '200g', image: '../imagini/craft/crema fructe.png'},
-        {name: 'Ganache de ciocolată', price: 50, qty: '200g', image: '../imagini/craft/ganache ciocolata.png'},
-        {name: 'Cremă de caramel sărat', price: 42, qty: '200g', image: '../imagini/craft/crema caramel.png'}
+        {name: 'Cremă de vanilie', price: 70, qty: '300g', image: '../imagini/craft/crema vanilie.png'},
+        {name: 'Cremă de ciocolată', price: 75, qty: '300g', image: '../imagini/craft/crema ciocolata.png'},
+        {name: 'Cremă mascarpone', price: 80, qty: '300g', image: '../imagini/craft/crema mascarpone.png'},
+        {name: 'Cremă de brânză (cream cheese)', price: 78, qty: '300g', image: '../imagini/craft/crema branza.png'},
+        {name: 'Cremă de fructe (căpșuni, zmeură, mango, fructe de pădure)', price: 85, qty: '300g', image: '../imagini/craft/crema fructe.png'},
+        {name: 'Ganache de ciocolată', price: 90, qty: '300g', image: '../imagini/craft/ganache ciocolata.png'},
+        {name: 'Cremă de caramel sărat', price: 82, qty: '300g', image: '../imagini/craft/crema caramel.png'}
     ],
     filling: [
-        {name: 'Căpșuni proaspete', price: 25, qty: '150g', image: '../imagini/craft/capsuni.png'},
-        {name: 'Zmeură', price: 28, qty: '150g', image: '../imagini/craft/zmeura.png'},
-        {name: 'Afine', price: 30, qty: '150g', image: '../imagini/craft/afine.png'},
-        {name: 'Vișine', price: 26, qty: '150g', image: '../imagini/craft/visine.png'},
-        {name: 'Mango', price: 32, qty: '150g', image: '../imagini/craft/mango.png'},
-        {name: 'Banane', price: 20, qty: '150g', image: '../imagini/craft/banane.png'},
-        {name: 'Gem de fructe', price: 15, qty: '150g', image: '../imagini/craft/gem fructe.png'},
-        {name: 'Caramel', price: 22, qty: '150g', image: '../imagini/craft/caramel.png'},
-        {name: 'Sos de ciocolată', price: 18, qty: '150g', image: '../imagini/craft/sos.png'}
+        {name: 'Căpșuni proaspete', price: 55, qty: '200g', image: '../imagini/craft/capsuni.png'},
+        {name: 'Zmeură', price: 58, qty: '200g', image: '../imagini/craft/zmeura.png'},
+        {name: 'Afine', price: 60, qty: '200g', image: '../imagini/craft/afine.png'},
+        {name: 'Vișine', price: 56, qty: '200g', image: '../imagini/craft/visine.png'},
+        {name: 'Mango', price: 62, qty: '200g', image: '../imagini/craft/mango.png'},
+        {name: 'Banane', price: 50, qty: '200g', image: '../imagini/craft/banane.png'},
+        {name: 'Gem de fructe', price: 45, qty: '200g', image: '../imagini/craft/gem fructe.png'},
+        {name: 'Caramel', price: 52, qty: '200g', image: '../imagini/craft/caramel.png'},
+        {name: 'Sos de ciocolată', price: 48, qty: '200g', image: '../imagini/craft/sos.png'}
     ],
     exterior: [
-        {name: 'Cremă de unt', price: 25, qty: '300g'},
-        {name: 'Cremă mascarpone', price: 30, qty: '300g'},
-        {name: 'Ciocolată oglindă', price: 40, qty: '300g'},
-        {name: 'Glazură simplă', price: 20, qty: '300g'},
-        {name: 'Fondant', price: 35, qty: '300g'}
+        {name: 'Cremă de unt', price: 60, qty: '400g'},
+        {name: 'Cremă mascarpone', price: 65, qty: '400g'},
+        {name: 'Ciocolată oglindă', price: 80, qty: '400g'},
+        {name: 'Glazură simplă', price: 55, qty: '400g'},
+        {name: 'Fondant', price: 75, qty: '400g'}
     ],
     color: [
         {name: 'Alb', price: 0, qty: '0g'},
-        {name: 'Pastel (roz, bleu, lila etc.)', price: 10, qty: '0g'},
-        {name: 'Culori personalizate', price: 15, qty: '0g'}
+        {name: 'Pastel (roz, bleu, lila etc.)', price: 20, qty: '0g'},
+        {name: 'Culori personalizate', price: 25, qty: '0g'}
     ],
     texture: [
         {name: 'Neted', price: 0, qty: '0g'},
-        {name: 'Rustic', price: 5, qty: '0g'},
-        {name: 'Drip cake (ciocolată curgătoare)'},
-        {name: 'Ombre', price: 15, qty: '0g'},
-        {name: 'Semi-naked', price: 10, qty: '0g'}
+        {name: 'Rustic', price: 15, qty: '0g'},
+        {name: 'Drip cake (ciocolată curgătoare)', price: 25, qty: '0g'},
+        {name: 'Ombre', price: 30, qty: '0g'},
+        {name: 'Semi-naked', price: 20, qty: '0g'}
     ],
     decor: [
-        {name: 'Fructe proaspete', price: 15, qty: '100g'},
-        {name: 'Flori comestibile', price: 20, qty: '50g'},
-        {name: 'Macarons', price: 25, qty: '100g'},
-        {name: 'Bomboane', price: 12, qty: '100g'},
-        {name: 'Ciocolată', price: 18, qty: '100g'},
-        {name: 'Nuci / alune', price: 10, qty: '100g'},
-        {name: 'Sprinkles', price: 8, qty: '50g'}
+        {name: 'Fructe proaspete', price: 35, qty: '150g'},
+        {name: 'Flori comestibile', price: 40, qty: '100g'},
+        {name: 'Macarons', price: 50, qty: '150g'},
+        {name: 'Bomboane', price: 32, qty: '150g'},
+        {name: 'Ciocolată', price: 38, qty: '150g'},
+        {name: 'Nuci / alune', price: 30, qty: '150g'},
+        {name: 'Sprinkles', price: 28, qty: '100g'}
     ]
 };
 

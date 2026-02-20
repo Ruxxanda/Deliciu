@@ -179,65 +179,64 @@ async function generateOrderHTML(o, produse, isCompleted = false) {
   user.nume = user.nume || user.email || user.uid || 'Utilizator';
   user.email = user.email || '';
   const cart = Array.isArray(o.cart) ? o.cart : (o.cartData ? JSON.parse(o.cartData) : []);
-  const productItems = cart.map((c, index) => {
-`;
-    const prod = produse.find(p => p.nume === c.nume);
-    const isCustom = c.descriere && c.descriere.includes('<ul>');
-    const imagine = prod ? (prod.imagine || prod.linkImagine) : './imagini/craft/craft.png';
-    const areReducere = prod && prod.reducere != null && prod.reducere !== "" && prod.pretRedus != null && prod.pretRedus !== "";
-    let pretHTML = "";
-    if (!areReducere) {
-      pretHTML = `<p>Preț: ${c.pret} Lei</p>`;
-    } else {
-      pretHTML = `
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <div class="pret-vechi">${prod.pret} Lei</div>
-            <div class="pret-redus">${prod.pretRedus} Lei</div>
-        </div>
-        <div class="badge-reducere">-${prod.reducere}% reducere</div>
-  });
-    }
-    const descriereHTML = prod ? `<p>${prod.descriere}</p>` : '';
-    return `
-      <div class="produs" onclick="goToProductDetails('${c.nume}')" style="cursor: pointer;">
-        <img src="../${(imagine||'').replace(/^\/, '').replace(/^\.\//,'')}" width="100" alt="produs">
-        <div class="infor">
-            <p class="nume">${c.nume}</p>
-            <!-- descriere eliminată -->
-            <p>${pretHTML}</p>
-            <div class="cantitate-info" style="color:#888;font-size:0.95em; margin-bottom:8px;">${prod && prod.cantitate ? prod.cantitate : ''}</div>
-            <p>${c.cantitate ? `x${c.cantitate}` : ''}</p>
-        </div>
-      </div>
-    `;
-  const visibleProducts = productItems.slice(0, 3).join('');
-  const extraProducts = productItems.slice(3).join('');
-  const toggleHTML = extraProducts ? `<button id="toggleProducts-${o.id}" class="extra">Mai multe</button>` : '';
-  const extraHTML = extraProducts ? `<div id="extraProducts-${o.id}" style="display:none">${extraProducts}</div>` : '';
-  const cancelHTML = isCompleted ? '' : `<button class="delete" onclick="deleteOrder('${o.id}')">Anulează</button>`;
-  return `
-    <div class="order-item" data-id="${o.id}">
-        <div class="info">
-          <img class="user"
-            src="${(o.poza && o.poza.startsWith('http')) ? o.poza : (o.user.poza && o.user.poza.startsWith('http') ? o.user.poza : '')}">
-          <div class="date">
-            <p>${user.nume}</p>
-            <p>Email: ${user.email || ''}</p>
-            ${o.phone ? `<p>Telefon: ${o.phone}</p>` : ''}
-            ${o.address ? `<p>Adresa: ${o.address}</p>` : ''}
-            ${o.message ? `<p>Mesaj: ${o.message}</p>` : ''}
-            <select onchange="updateStatus('${o.id}', this.value)">
-              <option value="În desfășurare" ${o.status === 'În desfășurare' ? 'selected' : ''}>În desfășurare</option>
-              <option value="Pe drum" ${o.status === 'Pe drum' ? 'selected' : ''}>Pe drum</option>
-              <option value="Efectuat" ${o.status === 'Efectuat' ? 'selected' : ''}>Efectuat</option>
-            </select>
+    const productItems = cart.map((c, index) => {
+      const prod = produse.find(p => p.nume === c.nume);
+      const isCustom = c.descriere && c.descriere.includes('<ul>');
+      const imagine = prod ? (prod.imagine || prod.linkImagine) : './imagini/craft/craft.png';
+      const areReducere = prod && prod.reducere != null && prod.reducere !== "" && prod.pretRedus != null && prod.pretRedus !== "";
+      let pretHTML = "";
+      if (!areReducere) {
+        pretHTML = `<p>Preț: ${c.pret} Lei</p>`;
+      } else {
+        pretHTML = `
+          <div style="display: flex; align-items: center; gap: 10px;">
+              <div class="pret-vechi">${prod.pret} Lei</div>
+              <div class="pret-redus">${prod.pretRedus} Lei</div>
+          </div>
+          <div class="badge-reducere">-${prod.reducere}% reducere</div>
+        `;
+      }
+      const descriereHTML = prod ? `<p>${prod.descriere}</p>` : '';
+      return `
+        <div class="produs" onclick="goToProductDetails('${c.nume}')" style="cursor: pointer;">
+          <img src="../${(imagine||'').replace(/^\//, '').replace(/^\.\//,'')}" width="100" alt="produs">
+          <div class="infor">
+              <p class="nume">${c.nume}</p>
+              <p>${pretHTML}</p>
+              <div class="cantitate-info" style="color:#888;font-size:0.95em; margin-bottom:8px;">${prod && prod.cantitate ? prod.cantitate : ''}</div>
+              <p>${c.cantitate ? `x${c.cantitate}` : ''}</p>
           </div>
         </div>
-        <div class="prod">${visibleProducts}${extraHTML}</div>
-        <div class="toggle">${toggleHTML}   ${cancelHTML}</div>
-    </div>
-  `;
-}
+      `;
+    });
+    const visibleProducts = productItems.slice(0, 3).join('');
+    const extraProducts = productItems.slice(3).join('');
+    const toggleHTML = extraProducts ? `<button id="toggleProducts-${o.id}" class="extra">Mai multe</button>` : '';
+    const extraHTML = extraProducts ? `<div id="extraProducts-${o.id}" style="display:none">${extraProducts}</div>` : '';
+    const cancelHTML = isCompleted ? '' : `<button class="delete" onclick="deleteOrder('${o.id}')">Anulează</button>`;
+    return `
+      <div class="order-item" data-id="${o.id}">
+          <div class="info">
+            <img class="user"
+              src="${(o.poza && o.poza.startsWith('http')) ? o.poza : (o.user.poza && o.user.poza.startsWith('http') ? o.user.poza : '')}">
+            <div class="date">
+              <p>${user.nume}</p>
+              <p>Email: ${user.email || ''}</p>
+              ${o.phone ? `<p>Telefon: ${o.phone}</p>` : ''}
+              ${o.address ? `<p>Adresa: ${o.address}</p>` : ''}
+              ${o.message ? `<p>Mesaj: ${o.message}</p>` : ''}
+              <select onchange="updateStatus('${o.id}', this.value)">
+                <option value="În desfășurare" ${o.status === 'În desfășurare' ? 'selected' : ''}>În desfășurare</option>
+                <option value="Pe drum" ${o.status === 'Pe drum' ? 'selected' : ''}>Pe drum</option>
+                <option value="Efectuat" ${o.status === 'Efectuat' ? 'selected' : ''}>Efectuat</option>
+              </select>
+            </div>
+          </div>
+          <div class="prod">${visibleProducts}${extraHTML}</div>
+          <div class="toggle">${toggleHTML}   ${cancelHTML}</div>
+      </div>
+    `;
+  }
 
 function getTotalQty(descriere) {
   const parser = new DOMParser();

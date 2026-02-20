@@ -7,7 +7,7 @@ Platforma permite utilizatorilor să exploreze produsele disponibile, să person
 
 ## 🌐 Acces Online
 
-🔗 Website: [Vezi site-ul Deliciu](https://ruxxanda.github.io/Deliciu/pagini/cos.html)  
+🔗 Website: [Vezi site-ul Deliciu (urmăriți aici următoarele modificări)](https://ruxxanda.github.io/Deliciu/pagini/cos.html)  
 📊 Comenzi salvate în Google Sheets: [Vezi comenzile](https://docs.google.com/spreadsheets/d/1PsCbD8uw-Y4yYrBq5jPlpDu_X7iwTKoWBq5Syz4tNfY/edit?usp=sharing)
 
 ---

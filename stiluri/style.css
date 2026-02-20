@@ -370,7 +370,7 @@ header nav .inf button {
 header.index {
   background:
     linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("../imagini/header.jpg") center / cover no-repeat;
+    url("/imagini/header.jpg") center / cover no-repeat;
   background-size: cover;
   background-position: center;
   margin: 0;
@@ -2254,7 +2254,7 @@ section.cos #cosDisplay .produs .cantitate {
   bottom: 5px;
   right: 5px;
   padding: 1px 15px;
-    border-radius: 3px;
+  border-radius: 3px;
 }
 
 section.cos #cosDisplay .produs .detalii {
@@ -3671,8 +3671,15 @@ section.noutati #noutatiContainer article .foto img {
 
 section.admin #info .poza {
   border-radius: 10px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  background:
+    linear-gradient(135deg, #ff9a8b, #ff6a88) padding-box,
+    linear-gradient(135deg, #ff9a8b 0%, #ff6a88 50%, #ff99ac 100%) border-box;
+  box-shadow: 0 8px 20px rgba(255, 154, 139, 0.2);
 }
-
 
 /* Stilizare comenzi user.html */
 .order-item .info {
@@ -3746,5 +3753,4 @@ section.admin #info .poza {
 .order-item .prod .produs p {
   font-size: 12px;
   margin: 2px 0;
-
 }
