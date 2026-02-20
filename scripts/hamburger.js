@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const isAdmin = email === "ruxanda.cujba07@gmail.com";
             const userLink = mobileUserSection.querySelector('a.mobile-menu-link');
             if (userLink) {
-                userLink.href = isAdmin ? 'admin.html' : 'user.html';
+                userLink.href = isAdmin ? '/Deliciu/pagini/admin.html' : '/Deliciu/pagini/user.html';
             }
             
             if (userPhotoURL) {
