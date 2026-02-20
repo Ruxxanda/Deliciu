@@ -5,15 +5,16 @@ Platforma permite utilizatorilor să exploreze produsele disponibile, să person
 
 ---
 
-**Salut, Comisia de evaluare al Tekwill Junior Ambassadors**, dacă citește cineva asta - vreau să știți, că voi mai reveni cu modificări la acest site, pe care le ve-ți putea vedea la link-ul siteul-ui publicat de mine pe github, sper că nu e o problemă :) **PS: Se poate locul 1?**.  
-Am îndrăgita cest concurs și vreau să cred în forțele și cunoștințele mele. Apopo, vreau să menționez neplăcerea mea față de un punct din regulament, dacă se poate.. Începusem să implementez în site adăugarea și stocarea produselor în Google Apps Script prin node.js, pănă nu am realizat că node.js e interzis((( Așa că am fost nevoită să restructurez site-ul fără de node.js (eram foarte indegnată), dar acum e ok! Marina (femeia care face aceste torturi la comandă) e foarte implicată în procesul de utilizare a site-ului, așteptănd cu nerăbdare să îl folosească (ne-a a jutat puțin la colectarea fotografiilor cu clienții și produsele sale). Cam atât.. Ne vedem la Chișinău!
-
+**Salut, Comisia de evaluare al Tekwill Junior Ambassadors**, dacă citește cineva asta - vreau să știți, că voi mai reveni cu modificări la acest site, pe care le ve-ți putea vedea la link-ul siteul-ui publicat de mine pe github, sper că nu e o problemă :).  
+Am îndrăgit acest concurs și vreau să cred în forțele și cunoștințele mele. Apopo, vreau să menționez neplăcerea mea față de un punct din regulament, dacă se poate.. Începusem să implementez în site adăugarea și stocarea produselor în Google Apps Script prin node.js, pănă nu am realizat că node.js e interzis((( Așa că am fost nevoită să restructurez site-ul fără de node.js (eram foarte indignată), dar acum e ok! Marina (femeia care face aceste torturi la comandă) e foarte implicată în procesul de utilizare a site-ului, așteptănd cu nerăbdare să îl folosească (ne-a a jutat puțin la colectarea fotografiilor cu clienții și produsele sale). Cam atât.. Ne vedem la Chișinău!
+**PS: Se poate locul 1?**
 ---
 
 ## 🌐 Acces Online
 
 🔗 Website: [Vezi site-ul Deliciu (urmăriți aici următoarele modificări)](https://ruxxanda.github.io/Deliciu/pagini/cos.html)  
 📊 Comenzi salvate în Google Sheets: [Vezi comenzile](https://docs.google.com/spreadsheets/d/1PsCbD8uw-Y4yYrBq5jPlpDu_X7iwTKoWBq5Syz4tNfY/edit?usp=sharing)
+🔗 Contul meu Github: [https://github.com/Ruxxanda)](https://github.com/Ruxxanda) 
 
 ---
 
