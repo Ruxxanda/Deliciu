@@ -174,11 +174,11 @@ if (loginBtn) {
     try { mergeGuestData(user.uid); } catch(e){ console.warn('mergeGuestData failed:', e); }
 
     if (user.email === "ruxanda.cujba07@gmail.com") {
-      if (userLink) userLink.href = "/Deliciu/pagini/admin.html";
-      window.location.href = "/Deliciu/pagini/admin.html";
+      if (userLink) userLink.href = "pagini/admin.html";
+      window.location.href = "pagini/admin.html";
     } else {
-      if (userLink) userLink.href = "/Deliciu/pagini/user.html";
-      window.location.href = "/Deliciu/pagini/user.html";
+      if (userLink) userLink.href = "pagini/user.html";
+      window.location.href = "pagini/user.html";
     }
 
   } catch(err) {
@@ -206,8 +206,8 @@ onAuthStateChanged(auth, (user) => {
     // after the auth state is set, merge guest data if present
     try { mergeGuestData(user.uid); } catch(e){ console.warn('mergeGuestData failed onAuthStateChanged:', e); }
     if (ul) ul.style.display = "inline";
-    if(user.email === "ruxanda.cujba07@gmail.com") { if (ul) ul.href="/Deliciu/pagini/admin.html"; }
-    else { if (ul) ul.href="/Deliciu/pagini/user.html"; }
+    if(user.email === "ruxanda.cujba07@gmail.com") { if (ul) ul.href="pagini/admin.html"; }
+    else { if (ul) ul.href="pagini/user.html"; }
   } else {
     localStorage.removeItem("uid");
     localStorage.removeItem("email");

@@ -34,10 +34,10 @@ loginBtn.onclick = () => {
       localStorage.setItem("email", user.email);
       if (user.email === "ruxanda.cujba07@gmail.com") {
         localStorage.setItem("isAdmin", "true");
-        location.href = "/Deliciu/pagini/admin.html";
+        location.href = "pagini/admin.html";
       } else {
         localStorage.setItem("isAdmin", "false");
-        location.href = "/Deliciu/pagini/user.html";
+        location.href = "pagini/user.html";
       }
     }).catch(err => console.log(err));
 }
@@ -45,9 +45,9 @@ loginBtn.onclick = () => {
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
     if (user.email === "ruxanda.cujba07@gmail.com") {
-      link.href = "/Deliciu/pagini/admin.html";
+      link.href = "pagini/admin.html";
     } else {
-      link.href = "/Deliciu/pagini/user.html";
+      link.href = "pagini/user.html";
     }
     link.style.display = "inline";
   } else {
