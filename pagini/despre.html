@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Despre Noi</title>
+    <link rel="icon" href="../imagini/logo.png" type="image/png" />
+
+    <meta
+      name="keywords"
+      content="Deliciu,web developer,proiecte,website,website de prezentare, aplicatie"
+    />
+    <meta
+      name="description"
+      content="Păstrăm tradiţia de a produce natural.
+    Livrăm săptămânal la Soroca torturi, checuri și pirogurii până la uşa ta.
+    Deliciu la preţ rezonabil."
+    />
+    <meta name="author" content="Cujba Ruxanda" />
+    <meta name="robots" content="index,follow" />
+
+    <!-- stiluri -->
+    <link rel="stylesheet" href="../stiluri/style.css" />
+    <link rel="stylesheet" href="../stiluri/media.css" />
+
+    <!-- scripturi -->
+    <script src="../scripts/stats.js" defer></script>
+    <script src="../scripts/index.js" defer></script>
+    <script type="module" src="../scripts/firebase.js"></script>
+    <script src="../scripts/main.js" defer></script>
+    <script src="../scripts/hamburger.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/8a1f01fb65.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <div class="linkuri">
+          <a href="../index.html" data-i18n="nav.home">Acasă</a>
+          <a href="despre.html" data-i18n="nav.about">Despre</a>
+          <a href="produse.html" data-i18n="nav.catalog">Catalog</a>
+          <a href="craft.html" data-i18n="nav.craft">Creează</a>
+          <a href="galerie.html" data-i18n="nav.gallery">Galerie</a>
+        </div>
+        <img class="logo" src="../imagini/logo.png" alt="logo" />
+        <div class="inf">
+          <a class="nr" href="contacte.html">
+            <i class="fa-solid fa-phone-volume"></i>
+          </a>
+          <a href="noutati.html">
+            <i class="fa-solid fa-newspaper"></i>
+          </a>
+          <a class="cos" href="cos.html">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <div class="stat-value" id="cartCount">0</div>
+          </a>
+
+          <a class="salv" href="salvari.html">
+            <i class="fa-solid fa-heart"></i>
+            <div class="stat-value" id="savedCount">0</div>
+          </a>
+
+          <button class="logoogle" id="googleLogin">
+            <i class="fa-brands fa-google"></i>
+          </button>
+          <a id="userLink" href="#" style="display: none"
+            ><i class="fa-regular fa-user"></i
+          ></a>
+        </div>
+      </nav>
+
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars hamburger-icon"></i>
+        <i
+          class="fa-solid fa-xmark hamburger-icon-close"
+          style="display: none"
+        ></i>
+      </button>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <div
+          class="mobile-user-section"
+          id="mobileUserSection"
+          style="display: none"
+        >
+          <div class="mobile-user-info">
+            <img id="mobileUserAvatar" src="" alt="User" class="user-avatar" />
+            <div class="user-details">
+              <p id="mobileUserName">Utilizator</p>
+            </div>
+          </div>
+          <a href="pagini/user.html" class="mobile-menu-link">
+            <i class="fa-regular fa-user"></i> Contul Meu
+          </a>
+          <button id="mobileLogoutBtn" class="mobile-logout-btn">
+            <i class="fa-solid fa-sign-out-alt"></i> Deconectare
+          </button>
+        </div>
+
+        <div class="mobile-login-section" id="mobileLoginSection">
+          <button class="mobile-google-btn" id="mobileGoogleLogin">
+            <i class="fa-brands fa-google"></i> Logare cu Google
+          </button>
+        </div>
+
+        <nav class="mobile-nav">
+          <a href="../index.html" class="mobile-menu-link">
+            <i class="fa-solid fa-house"></i> Acasă
+          </a>
+          <a href="despre.html" class="mobile-menu-link">
+            <i class="fa-solid fa-info-circle"></i> Despre
+          </a>
+          <a href="noutati.html" class="mobile-menu-link">
+            <i class="fa-solid fa-newspaper"></i> Noutăți
+          </a>
+          <a href="produse.html" class="mobile-menu-link">
+            <i class="fa-solid fa-box-open"></i> Catalog
+          </a>
+          <a href="cos.html" class="mobile-menu-link">
+            <i class="fa-solid fa-basket-shopping"></i> Coș
+          </a>
+          <a href="salvari.html" class="mobile-menu-link">
+            <i class="fa-solid fa-heart"></i> Salvări
+          </a>
+          <a href="craft.html" class="mobile-menu-link">
+            <i class="fa-solid fa-paint-brush"></i> Creează
+          </a>
+          <a href="galerie.html" class="mobile-menu-link">
+            <i class="fa-solid fa-images"></i> Galerie
+          </a>
+          <a href="contacte.html" class="mobile-menu-link">
+            <i class="fa-solid fa-phone-volume"></i> Contacte
+          </a>
+        </nav>
+      </div>
+
+      <div class="infic">
+        <h2>Despre Noi</h2>
+        <p>
+          Descoperiți povestea mea, dedicată creării de deserturi unice și
+          delicioase, cu pasiune și atenție la detalii.
+        </p>
+        <div class="imagini">
+          <img src="../imagini/tarte.jpg" />
+          <img src="../imagini/tort.jpg" />
+          <img src="../imagini/chec.png" />
+          <img src="../imagini/produse/tort 7.jpg" />
+        </div>
+      </div>
+    </header>
+
+    <!-- cine suntem -->
+    <section class="cine">
+      <div class="text">
+        <h2>Cine sunt?</h2>
+        <p>
+          Mă numesc <span>Marina Labliuc</span> și Deliciu este mica mea afacere
+          de suflet. Fac torturi, checuri și diverse dulciuri acasă, în
+          bucătăria mea, în condiții simple, dar curate, folosind ingrediente
+          naturale și rețete cunoscute. Nu am laborator mare și nici producție
+          în serie. Tot ce vezi la Deliciu este făcut manual, cu răbdare și
+          atenție la detalii.
+        </p>
+      </div>
+      <img src="../imagini/marina.jpg" />
+    </section>
+
+    <!-- istoria afacerii -->
+    <section class="istoria">
+      <h2>Istoria Afacerii</h2>
+      <hr class="linie" />
+      <p>
+        Pasiunea pentru dulciuri a început de mult, din dorința de a face
+        prăjituri bune pentru familie și prieteni. Îmi plăcea să testez rețete,
+        să combin creme și blaturi, să văd ce gusturi se potrivesc cel mai bine.
+        Cu timpul, tot mai mulți oameni au început să mă întrebe dacă pot face
+        torturi și pentru ei. Așa au apărut primele comenzi, apoi recomandările,
+        iar Deliciu a crescut încet, natural, fără grabă.
+      </p>
+    </section>
+
+    <section class="secrete">
+      <img src="../imagini/decor 2.jpg" />
+      <div class="info">
+        <h2>Secretele unui tort perfect</h2>
+        <p>
+          Prepararea unui tort este mai mult decât o rețetă – este un echilibru
+          perfect între creativitate, ingrediente de calitate și experiență. În
+          fiecare produs se regăsește atenția la detalii, dragostea pentru arta
+          culinară și dorința de a oferi un desert care să bucure nu doar
+          privirea, ci și gustul. De la alegerea ingredientelor proaspete până
+          la decorul final, fiecare etapă este realizat cu grijă pentru a aduce
+          pe masă un desert care să impresioneze la fiecare ocazie.
+        </p>
+        <p class="citata">
+          „Gătitul este ca pictura sau scrierea unui cântec. Așa cum sunt multe
+          note de pus într-o melodie, la fel sunt și multe arome și combinații
+          de gusturi pe care să le poată explora.”
+        </p>
+        <div class="cine">
+          <span>—Wolfgang Puck</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- cum lucrez -->
+    <section class="lucru">
+      <h2>Cum lucrez</h2>
+      <p>Creez un tort unic, făcut special pentru tine</p>
+      <div class="detalii">
+        <div class="din">
+          <div class="un">
+            <img src="../imagini/booking.png" />
+          </div>
+          <h3>Lucrez doar la comandă</h3>
+          <p>
+            Pregătesc fiecare comandă doar la cerere, astfel încât produsele să
+            fie proaspete și făcute special pentru fiecare client. Nu fac
+            stocuri și nu refolosesc produse.
+          </p>
+        </div>
+        <div class="din">
+          <div class="un">
+            <img src="../imagini/herb.png" />
+          </div>
+          <h3>Ingrediente simple, de casă</h3>
+          <p>
+            Folosesc ingrediente obișnuite, de calitate — ouă, lapte, făină,
+            unt, cacao, fructe — fără aditivi, coloranți sau arome artificiale.
+          </p>
+        </div>
+        <div class="din">
+          <div class="un">
+            <img src="../imagini/cake.png" />
+          </div>
+          <h3>Accent pe gust</h3>
+          <p>
+            Îmi doresc ca dulciurile mele să fie gustoase, nu doar frumoase. Pun
+            accent pe echilibrul dintre blat și cremă, astfel încât gustul final
+            să fie plăcut și bine echilibrat.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- servicii -->
+    <section class="section servicii">
+      <h2>Produse</h2>
+      <div class="card-group">
+        <a href="produse.html">
+          <div class="card">
+            <img src="../imagini/tort.jpg" />
+            <div class="layer"></div>
+            <div class="info">
+              <h3>Torturi</h3>
+              <p>
+                Torturile sunt făcute la comandă, în funcție de preferințele
+                fiecăruia. Încerc mereu să păstrez un gust echilibrat și o
+                textură plăcută, astfel încât tortul să fie bun până la ultima
+                felie.
+              </p>
+            </div>
+          </div>
+        </a>
+        <a href="produse.html">
+          <div class="card">
+            <img src="../imagini/chec.png" />
+            <div class="layer"></div>
+            <div class="info">
+              <h3>Checuri</h3>
+              <p>
+                Checurile sunt pufoase, făcute după rețete de casă. Pot fi
+                simple sau cu cacao, fructe sau alte combinații. Sunt potrivite
+                atât pentru familie, cât și pentru ocazii mai speciale.
+              </p>
+            </div>
+          </div>
+        </a>
+        <a href="produse.html">
+          <div class="card">
+            <img src="../imagini/tarte.jpg" />
+            <div class="layer"></div>
+            <div class="info">
+              <h3>Tarte</h3>
+              <p>
+                Tarte­le sunt făcute cu aluat fraged și umpluturi simple, în
+                principal cu fructe. Sunt deserturi ușoare, potrivite pentru cei
+                care preferă ceva mai puțin dulce, dar la fel de gustos.
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+      <div class="footer-container">
+        <!-- Informații despre companie -->
+        <div class="footer-section">
+          <h3>Despre Noi</h3>
+          <p>
+            Deliciu este o mică afacere dedicată creării torturilor artizanale,
+            realizate cu grijă, ingrediente de calitate și multă pasiune.
+          </p>
+        </div>
+
+        <!-- Link-uri utile -->
+        <div class="footer-section">
+          <h3>Link-uri utile</h3>
+          <ul>
+            <li><a href="index.html">Acasă</a></li>
+            <li><a href="despre.html">Despre Noi</a></li>
+            <li><a href="produse.html">Catalog</a></li>
+            <li><a href="craft.html">Creează</a></li>
+            <li><a href="galerie.html">Galerie</a></li>
+            <li><a href="contacte.html">Contacte</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <a href="tel:+37367287004">Telefon: +37367287004</a><br />
+          <a href="mailto:marinalabliuc@mail.com"
+            >Email: marinalabliuc@mail.com</a
+          >
+          <p>Adresă: Tătărăuca Nouă, Moldova</p>
+          <a href="https://maps.app.goo.gl/3ERSc52ZgkMVsj8w7" target="_blank"
+            >Vezi pe hartă</a
+          >
+        </div>
+
+        <!-- Rețele sociale -->
+        <div class="footer-section">
+          <h3>Urmărește-ne</h3>
+          <div class="social-icons">
+            <a
+              href="https://www.facebook.com/marina.ursu.262841"
+              target="_blank"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/marinaursu916?igsh=czIxNnI5aTlhZGNx"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          &copy; <span id="ani-container"></span> Deliciu. Acest website a fost
+          realizat în cadrul competiției ”Tekwill Junior Ambassadors” organizată
+          de proiectul ”Tekwill în Fiecare Școală” și nu reflectă neapărat
+          opinia proiectului.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galerie</title>
+
+    <link rel="icon" href="../imagini/logo.png" type="image/png" />
+
+    <meta
+      name="keywords"
+      content="Deliciu,web developer,proiecte,website,website de prezentare, aplicatie"
+    />
+    <meta
+      name="description"
+      content="Păstrăm tradiţia de a produce natural.
+    Livrăm săptămânal la Soroca torturi, checuri și pirogurii până la uşa ta.
+    Deliciu la preţ rezonabil."
+    />
+    <meta name="author" content="Cujba Ruxanda" />
+    <meta name="robots" content="index,follow" />
+
+    <!-- stiluri -->
+    <link rel="stylesheet" href="../stiluri/style.css" />
+    <link rel="stylesheet" href="../stiluri/media.css" />
+
+    <!-- scripturi -->
+    <script
+      src="https://kit.fontawesome.com/8a1f01fb65.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../scripts/index.js" defer></script>
+    <script src="../scripts/stats.js" defer></script>
+    <script src="../scripts/main.js" defer></script>
+    <script src="../scripts/hamburger.js" defer></script>
+    <script type="module" src="../scripts/firebase.js"></script>
+    <script src="../scripts/galerie.js" defer></script>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <div class="linkuri">
+          <a href="../index.html" data-i18n="nav.home">Acasă</a>
+          <a href="despre.html" data-i18n="nav.about">Despre</a>
+          <a href="produse.html" data-i18n="nav.catalog">Catalog</a>
+          <a href="craft.html" data-i18n="nav.craft">Creează</a>
+          <a href="galerie.html" data-i18n="nav.gallery">Galerie</a>
+        </div>
+        <img class="logo" src="../imagini/logo.png" alt="logo" />
+        <div class="inf">
+          <a class="nr" href="contacte.html">
+            <i class="fa-solid fa-phone-volume"></i>
+          </a>
+          <a href="noutati.html">
+            <i class="fa-solid fa-newspaper"></i>
+          </a>
+          <a class="cos" href="cos.html">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <div class="stat-value" id="cartCount">0</div>
+          </a>
+
+          <a class="salv" href="salvari.html">
+            <i class="fa-solid fa-heart"></i>
+            <div class="stat-value" id="savedCount">0</div>
+          </a>
+
+          <button class="logoogle" id="googleLogin">
+            <i class="fa-brands fa-google"></i>
+          </button>
+          <a id="userLink" href="#" style="display: none"
+            ><i class="fa-regular fa-user"></i
+          ></a>
+        </div>
+      </nav>
+
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars hamburger-icon"></i>
+        <i
+          class="fa-solid fa-xmark hamburger-icon-close"
+          style="display: none"
+        ></i>
+      </button>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <div
+          class="mobile-user-section"
+          id="mobileUserSection"
+          style="display: none"
+        >
+          <div class="mobile-user-info">
+            <img id="mobileUserAvatar" src="" alt="User" class="user-avatar" />
+            <div class="user-details">
+              <p id="mobileUserName">Utilizator</p>
+            </div>
+          </div>
+          <a href="/Deliciu/pagini/user.html" class="mobile-menu-link">
+            <i class="fa-regular fa-user"></i> Contul Meu
+          </a>
+          <button id="mobileLogoutBtn" class="mobile-logout-btn">
+            <i class="fa-solid fa-sign-out-alt"></i> Deconectare
+          </button>
+        </div>
+
+        <div class="mobile-login-section" id="mobileLoginSection">
+          <button class="mobile-google-btn" id="mobileGoogleLogin">
+            <i class="fa-brands fa-google"></i> Logare cu Google
+          </button>
+        </div>
+
+        <nav class="mobile-nav">
+          <a href="../index.html" class="mobile-menu-link">
+            <i class="fa-solid fa-house"></i> Acasă
+          </a>
+          <a href="despre.html" class="mobile-menu-link">
+            <i class="fa-solid fa-info-circle"></i> Despre
+          </a>
+          <a href="noutati.html" class="mobile-menu-link">
+            <i class="fa-solid fa-newspaper"></i> Noutăți
+          </a>
+          <a href="produse.html" class="mobile-menu-link">
+            <i class="fa-solid fa-box-open"></i> Catalog
+          </a>
+          <a href="cos.html" class="mobile-menu-link">
+            <i class="fa-solid fa-basket-shopping"></i> Coș
+          </a>
+          <a href="salvari.html" class="mobile-menu-link">
+            <i class="fa-solid fa-heart"></i> Salvări
+          </a>
+          <a href="craft.html" class="mobile-menu-link">
+            <i class="fa-solid fa-paint-brush"></i> Creează
+          </a>
+          <a href="galerie.html" class="mobile-menu-link">
+            <i class="fa-solid fa-images"></i> Galerie
+          </a>
+          <a href="contacte.html" class="mobile-menu-link">
+            <i class="fa-solid fa-phone-volume"></i> Contacte
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="galerie">
+      <h2>Galerie</h2>
+      <div class="imeg" id="galerieContainer">
+        <img
+          src="../imagini/galerie/galerie 1.jpg"
+          alt="Tort 1"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 2.jpg"
+          alt="Tort 2"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 3.jpg"
+          alt="Tort 3"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 4.jpg"
+          alt="Tort 4"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 5.jpg"
+          alt="Tort 5"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 6.jpg"
+          alt="Tort 6"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 7.jpg"
+          alt="Tort 7"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 8.png"
+          alt="Tort 8"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 9.png"
+          alt="Tort 9"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 10.jpg"
+          alt="Tort 10"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 11.jpg"
+          alt="Tort 11"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 12.jpg"
+          alt="Tort 12"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 13.jpg"
+          alt="Tort 13"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 14.jpg"
+          alt="Tort 14"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 15.jpg"
+          alt="Tort 15"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 16.jpg"
+          alt="Tort 16"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 17.jpg"
+          alt="Tort 17"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 18.jpg"
+          alt="Tort 18"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 19.jpg"
+          alt="Tort 19"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 20.jpg"
+          alt="Tort 20"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 21.jpg"
+          alt="Tort 21"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 22.jpg"
+          alt="Tort 22"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 23.jpg"
+          alt="Tort 23"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 24.jpg"
+          alt="Tort 24"
+          class="galerie-image"
+        />
+        <img
+          src="../imagini/galerie/galerie 25.jpg"
+          alt="Tort 17"
+          class="galerie-image"
+        />
+      </div>
+    </section>
+
+    <!-- Lightbox Model -->
+    <div id="lightbox" class="lightbox">
+      <div class="lightbox-content">
+        <img id="lightbox-image" src="" alt="Fullscreen image" />
+      </div>
+      <button class="lightbox-nav lightbox-prev" id="prevBtn">
+        <i class="fa-solid fa-caret-left"></i>
+      </button>
+      <button class="lightbox-nav lightbox-next" id="nextBtn">
+        <i class="fa-solid fa-caret-right"></i>
+      </button>
+      <button class="lightbox-close" id="closeLightbox">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="lightbox-counter" id="imageCounter"></div>
+    </div>
+
+    <footer>
+      <div class="footer-container">
+        <!-- Informații despre companie -->
+        <div class="footer-section">
+          <h3>Despre Noi</h3>
+          <p>
+            Deliciu este o mică afacere dedicată creării torturilor artizanale,
+            realizate cu grijă, ingrediente de calitate și multă pasiune.
+          </p>
+        </div>
+
+        <!-- Link-uri utile -->
+        <div class="footer-section">
+          <h3>Link-uri utile</h3>
+          <ul>
+            <li><a href="index.html">Acasă</a></li>
+            <li><a href="despre.html">Despre Noi</a></li>
+            <li><a href="produse.html">Catalog</a></li>
+            <li><a href="craft.html">Creează</a></li>
+            <li><a href="galerie.html">Galerie</a></li>
+            <li><a href="contacte.html">Contacte</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <a href="tel:+37367287004">Telefon: +37367287004</a><br />
+          <a href="mailto:marinalabliuc@mail.com"
+            >Email: marinalabliuc@mail.com</a
+          >
+          <p>Adresă: Tătărăuca Nouă, Moldova</p>
+          <a href="https://maps.app.goo.gl/3ERSc52ZgkMVsj8w7" target="_blank"
+            >Vezi pe hartă</a
+          >
+        </div>
+
+        <!-- Rețele sociale -->
+        <div class="footer-section">
+          <h3>Urmărește-ne</h3>
+          <div class="social-icons">
+            <a
+              href="https://www.facebook.com/marina.ursu.262841"
+              target="_blank"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/marinaursu916?igsh=czIxNnI5aTlhZGNx"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          &copy; <span id="ani-container"></span> Deliciu. Acest website a fost
+          realizat în cadrul competiției ”Tekwill Junior Ambassadors” organizată
+          de proiectul ”Tekwill în Fiecare Școală” și nu reflectă neapărat
+          opinia proiectului.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
