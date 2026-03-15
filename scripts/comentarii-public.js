@@ -1,46 +1,6 @@
 let comentariiData = [];
 let currentIndex = 0;
-
 const commentsPerPage = 3;
-
-
-
-/* =========================
-   Așteaptă Firestore
-========================= */
-
-function waitForFirestore(timeout = 4000, interval = 200) {
-
-  return new Promise(resolve => {
-
-    if (window.firestore?.fetchAllComments)
-      return resolve(true);
-
-    const start = Date.now();
-
-    const t = setInterval(() => {
-
-      if (window.firestore?.fetchAllComments) {
-        clearInterval(t);
-        resolve(true);
-      }
-
-      if (Date.now() - start > timeout) {
-        clearInterval(t);
-        resolve(false);
-      }
-
-    }, interval);
-
-  });
-
-}
-
-
-
-/* =========================
-   Încarcă comentarii
-========================= */
 
 async function incarcaComentariiPublice() {
 
