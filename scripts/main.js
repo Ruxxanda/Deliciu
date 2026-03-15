@@ -1,14 +1,4 @@
-const firebaseConfig = {
-  apiKey: "AIzaSyBQtcHQ3ZO524Q7Ce0PX5jrRFMMHoMNfTE",
-  authDomain: "deliciu1.firebaseapp.com",
-  projectId: "deliciu1",
-  storageBucket: "deliciu1.firebasestorage.app",
-  messagingSenderId: "280654887359",
-  appId: "1:280654887359:web:ef7dd2cb3ccdbe7e7d890a",
-  measurementId: "G-PYS5CQ9ZNH"
-};
-
-firebase.initializeApp(firebaseConfig);
+// ...existing code...
 
 const loginBtn = document.getElementById("loginGoogle");
 const link = document.getElementById("linkUser");
@@ -27,22 +17,20 @@ async function loadComentariiPublice() {
 loadComentariiPublice();
 
 // logare cu Google
-loginBtn.onclick = () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider)
-    .then(result => {
-      const user = result.user;
-      localStorage.setItem("uid", user.uid);
-      localStorage.setItem("email", user.email);
-      // dacă e admin
-      if (user.email === "ruxanda.cujba07@gmail.com") {
-        localStorage.setItem("isAdmin", "true");
-        location.href = "../pagini/admin.html";
-      } else {
-        localStorage.setItem("isAdmin", "false");
-        location.href = "../pagini/user.html";
-      }
-    }).catch(err => console.log(err));
+loginBtn.onclick = async () => {
+  try {
+    const result = await window.firestore.auth.signInWithPopup(window.firestore.provider);
+    const user = result.user;
+    localStorage.setItem("uid", user.uid);
+    localStorage.setItem("email", user.email);
+    // dacă e admin
+    if (user.email === "ruxanda.cujba07@gmail.com") {
+      localStorage.setItem("isAdmin", "true");
+      location.href = "../pagini/admin.html";
+    }
+  } catch (err) {
+    console.error("Eroare la autentificare Google", err);
+  }
 }
 
 // afișare link user/admin
