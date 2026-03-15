@@ -9,31 +9,33 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-const ADMINS = ['ruxanda.cujba07@gmail.com', 'tauleanema@gmail.com'];
 
 const loginBtn = document.getElementById("loginGoogle");
 const link = document.getElementById("linkUser");
 
+// afișare comentarii publice
 async function loadComentariiPublice() {
   const coms = JSON.parse(localStorage.getItem('comentarii') || '[]');
-      const div = document.getElementById("comentariiPublice");
+  const div = document.getElementById("comentariiPublice");
   div.innerHTML = coms.map(c => `
     <div>
       <img src="${c.poza && c.poza.startsWith('data:') ? c.poza : (c.poza || '/imagini/poza.png')}" width="40" style="border-radius:50%">
-<b>${c.nume}</b>: ${c.text}
-</div>
+      <b>${c.nume}</b>: ${c.text}
+    </div>
   `).join("");
-    }
+}
 loadComentariiPublice();
 
+// logare cu Google
 loginBtn.onclick = () => {
-      const provider = new firebase.auth.GoogleAuthProvider();
+  const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider)
     .then(result => {
       const user = result.user;
       localStorage.setItem("uid", user.uid);
       localStorage.setItem("email", user.email);
-      if (ADMINS.includes(user.email)) {
+      // dacă e admin
+      if (user.email === "ruxanda.cujba07@gmail.com") {
         localStorage.setItem("isAdmin", "true");
         location.href = "../pagini/admin.html";
       } else {
@@ -43,9 +45,10 @@ loginBtn.onclick = () => {
     }).catch(err => console.log(err));
 }
 
+// afișare link user/admin
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
-    if (ADMINS.includes(user.email)) {
+    if (user.email === "ruxanda.cujba07@gmail.com") {
       link.href = "../pagini/admin.html";
     } else {
       link.href = "../pagini/user.html";
