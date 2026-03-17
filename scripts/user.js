@@ -228,8 +228,12 @@ function getTotalQty(descriere) {
 }
 
 async function generateOrderHTMLUser(o, produse, isCompleted = false) {
-  const user = o.user || { uid: o.uid, nume: o.user && o.user.nume ? o.user.nume : (o.email || o.uid), email: o.user && o.user.email ? o.user.email : (o.email || '') };
-  user.nume = user.nume || user.email || user.uid || 'Utilizator';
+  const user = o.user || {
+    uid: o.uid,
+    nume: o.nume || (o.user && o.user.nume) || o.email || o.uid,
+    email: o.email || (o.user && o.user.email) || ''
+  };
+  user.nume = user.nume && user.nume.trim() ? user.nume : 'Nume necunoscut';
   user.email = user.email || '';
   const cart = Array.isArray(o.cart) ? o.cart : (o.cartData ? JSON.parse(o.cartData) : []);
   const productItems = cart.map((c, index) => {
