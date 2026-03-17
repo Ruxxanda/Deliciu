@@ -247,12 +247,12 @@ async function generateOrderHTMLUser(o, produse, isCompleted = false) {
     } else {
       pretHTML = `\n        <div style="display: flex; align-items: center; gap: 10px;">\n            <div class="pret-vechi">${prod.pret} Lei</div>\n            <div class="pret-redus">${prod.pretRedus} Lei</div>\n        </div>\n        <div class="badge-reducere">-${prod.reducere}% reducere</div>\n`;
     }
-    const descriereHTML = prod ? `<p>${prod.descriere}</p>` : '';
+    const descriereHTML = '';
     const detailsHTML = '';
     let imgPath = (imagine || '').replace(/^\\/, '').replace(/^\.\//, '').replace(/^\//, '');
     if (imgPath && !imgPath.startsWith('http')) imgPath = `../${imgPath}`;
     const imgTagSrc = imgPath || '/Deliciu/imagini/craft/craft.png';
-    return `\n        <div style="border:1px solid #eee; padding:5px; margin:5px; cursor:pointer;" class="produs" onclick="openProductPage('${encodeURIComponent(c.nume || '')}')">\n          <img src="${imgTagSrc}" width="100" alt="produs">\n          <b>${c.nume}</b>\n          ${descriereHTML}\n          ${pretHTML}\n          Cantitate: ${isCustom ? (getTotalQty(c.descriere) / 1000) + ' kg' : c.cantitate}\n        </div>\n      `;
+    return `\n        <div style="border:1px solid #eee; padding:5px; margin:5px; cursor:pointer;" class="produs" onclick=\"window.location.href='../pagini/tort.html?nume=${encodeURIComponent(c.nume || '')}'\">\n          <img src=\"${imgTagSrc}\" width=\"100\" alt=\"produs\">\n          <b>${c.nume}</b>\n          ${pretHTML}\n          Cantitate: ${isCustom ? (getTotalQty(c.descriere) / 1000) + ' kg' : c.cantitate}\n        </div>\n      `;
   });
   const visibleProducts = productItems.slice(0, 3).join('');
   const extraProducts = productItems.slice(3).join('');
@@ -287,13 +287,7 @@ async function generateOrderHTMLUser(o, produse, isCompleted = false) {
 window.toggleUserOrderDetails = function (key) {
   const detailsDiv = document.getElementById(`details-user-${key}`);
   const btn = document.getElementById(`btn-user-${key}`);
-  if (detailsDiv.style.display === 'none') {
-    detailsDiv.style.display = 'block';
-    btn.innerHTML = 'Detalii ▼';
-  } else {
-    detailsDiv.style.display = 'none';
-    btn.innerHTML = 'Detalii ▶';
-  }
+    // Detalii section removed
 }
 window.cancelOrder = async (id) => {
   try {

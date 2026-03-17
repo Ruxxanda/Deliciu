@@ -222,29 +222,15 @@ async function generateOrderHTML(o, produse, isCompleted = false) {
         <div class="badge-reducere">-${prod.reducere}% reducere</div>
 `;
     }
-    const descriereHTML = prod ? `<p>${prod.descriere}</p>` : '';
-    let detailsHTML = '';
-    if (isCustom) {
-      detailsHTML = `
-      <button onclick="toggleOrderDetails('${o.id}-${index}')" id="btn-${o.id}-${index}">Detalii ▶</button>
-      <div id="details-${o.id}-${index}" style="display: none; margin-top: 5px;">${c.descriere}</div>
-    `;
-    } else if (prod && prod.detalii) {
-      detailsHTML = `
-      <button onclick="toggleOrderDetails('${o.id}-${index}')" id="btn-${o.id}-${index}">Detalii ▶</button>
-      <div class="detaliii" id="details-${o.id}-${index}" style="display: none; margin-top: 5px;">${Array.isArray(prod.detalii) ? prod.detalii.map(detail => `<li>${detail}</li>`).join('') : prod.detalii.split('\n').map(line => line.trim()).filter(line => line).map(line => `<li>${line}</li>`).join('')}</div>
-    `;
-    }
+    const descriereHTML = '';
 return `
-<div class="produs">
-        <img src="../${(imagine||'').replace(/^\//,'').replace(/^\.\//,'')}" width="100" alt="produs">
+<div class="produs" style="cursor:pointer;" onclick="window.location.href='../pagini/tort.html?nume=${encodeURIComponent(c.nume || '')}'">
+  <img src="../${(imagine||'').replace(/^\//,'').replace(/^\.\//,'')}" width="100" alt="produs">
 <div class="infor">
 <p class="nume">${c.nume}</p>
-            <p>${descriereHTML}</p>
-            <p>${pretHTML}</p>
-            <p>Cantitate: ${isCustom ? (getTotalQty(c.descriere) / 1000) + ' kg' : c.cantitate}</p>
+      <p>${pretHTML}</p>
+      <p>Cantitate: ${isCustom ? (getTotalQty(c.descriere) / 1000) + ' kg' : c.cantitate}</p>
 </div>
-        ${detailsHTML}
 </div>
 `;
   });
