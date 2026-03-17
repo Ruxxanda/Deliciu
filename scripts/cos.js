@@ -60,8 +60,6 @@ async function afiseazaCos() {
       // Asigură calea corectă pentru imagine
       let img = prod.imagine || prod.linkImagine || "/Deliciu/imagini/craft/craft.png";
       if (img.startsWith("./")) img = img.replace("./", "/Deliciu/");
-      // Dacă e produs craft, folosește PNG, nu JPG
-      if (img.includes('craft.jpg')) img = '/Deliciu/imagini/craft/craft.png';
       return { ...prod, imagine: img, cantitate: item.cantitate, isCraft: !!item.isCraft };
     } else {
 
