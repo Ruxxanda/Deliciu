@@ -27,8 +27,8 @@ async function incarcaDate() {
   if (!user) {
     user = { uid, nume: localStorage.getItem('email') || uid, email: localStorage.getItem('email') || '' };
   }
-  const poza = user.poza || user.photoURL || "../imagini/poza.png";
-  const imgSrc = (poza && poza.startsWith('http')) ? poza : (poza || "../imagini/poza.png");
+  const poza = user.poza || user.photoURL || "/Deliciu/imagini/craft/craft.png";
+  const imgSrc = (poza && poza.startsWith('http')) ? poza : (poza || "/Deliciu/imagini/craft/craft.png");
   const infoEl = document.getElementById("info");
   console.log('incarcaDate:', { uid, user });
   if (infoEl) {
@@ -235,7 +235,7 @@ async function generateOrderHTMLUser(o, produse, isCompleted = false) {
   const productItems = cart.map((c, index) => {
     const prod = produse.find(p => p.nume === c.nume);
     const isCustom = c.descriere && c.descriere.includes('<ul>');
-    const imagine = prod ? (prod.imagine || prod.linkImagine) : '/Deliciu/imagini/produse/craft.jpg';
+    const imagine = prod ? (prod.imagine || prod.linkImagine) : '/imagini/craft/craft.png';
     const areReducere = prod && prod.reducere != null && prod.reducere !== "" && prod.pretRedus != null && prod.pretRedus !== "";
     let pretHTML = "";
     if (!areReducere) {
@@ -247,7 +247,7 @@ async function generateOrderHTMLUser(o, produse, isCompleted = false) {
     const detailsHTML = '';
     let imgPath = (imagine || '').replace(/^\\/, '').replace(/^\.\//, '').replace(/^\//, '');
     if (imgPath && !imgPath.startsWith('http')) imgPath = `../${imgPath}`;
-    const imgTagSrc = imgPath || '../imagini/craft/craft.png';
+    const imgTagSrc = imgPath || '/Deliciu/imagini/craft/craft.png';
     return `\n        <div style="border:1px solid #eee; padding:5px; margin:5px; cursor:pointer;" class="produs" onclick="openProductPage('${encodeURIComponent(c.nume || '')}')">\n          <img src="${imgTagSrc}" width="100" alt="produs">\n          <b>${c.nume}</b>\n          ${descriereHTML}\n          ${pretHTML}\n          Cantitate: ${isCustom ? (getTotalQty(c.descriere) / 1000) + ' kg' : c.cantitate}\n        </div>\n      `;
   });
   const visibleProducts = productItems.slice(0, 3).join('');

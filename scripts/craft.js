@@ -62,7 +62,7 @@ const layerData = {
 let selected = [];
 
 function getImagePath(item) {
-    return item.image || 'imagini/produse/craft.jpg';
+    return item.image || '/Deliciu/imagini/craft/craft.png';
 }
 
 function updatePreview() {
@@ -85,7 +85,7 @@ function updatePreview() {
             img.onerror = function() {
                 if (!this.dataset.fallback) {
                     this.dataset.fallback = '1';
-                    this.src = 'imagini/produse/craft.jpg';
+                    this.src = '/Deliciu/imagini/craft/craft.png';
                     this.alt = `Imagine implicită: ${item.name}`;
                     return;
                 }

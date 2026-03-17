@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 nume: item.nume,
                 descriere: item.descriere || 'Produs personalizat',
                 pret: item.pret || 0,
-                imagine: "/Deliciu/imagini/produse/craft.jpg",
+                imagine: "/Deliciu/imagini/craft/craft.png",
                 cantitate: item.cantitate ,
                 fullDescriere: item.descriere || ''
             };

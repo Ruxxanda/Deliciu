@@ -37,8 +37,8 @@ try {
     const stored = localStorage.getItem(`user_${uid}`) || localStorage.getItem(`profile_${uid}`) || null;
 let user = null;
     if (stored) { try { user = JSON.parse(stored); } catch (e) { user = null; } }
-    const poza = (user && (user.poza || user.photoURL)) || "../imagini/poza.png";
-    const imgSrc = poza && poza.startsWith('http') ? poza : (poza || '../imagini/poza.png');
+    const poza = (user && (user.poza || user.photoURL)) || "/Deliciu/imagini/craft/craft.png";
+    const imgSrc = poza && poza.startsWith('http') ? poza : (poza || '/Deliciu/imagini/craft/craft.png');
 document.getElementById("adminInfo").innerHTML = `
       <img class="poza" src="${imgSrc}"><br>
 <b>${(user && (user.nume || user.email)) || uid}</b>
@@ -208,7 +208,7 @@ async function generateOrderHTML(o, produse, isCompleted = false) {
   const productItems = cart.map((c, index) => {
     const prod = produse.find(p => p.nume === c.nume);
     const isCustom = c.descriere && c.descriere.includes('<ul>');
-    const imagine = prod ? (prod.imagine || prod.linkImagine) : './imagini/produse/craft.jpg';
+    const imagine = prod ? (prod.imagine || prod.linkImagine) : '/Deliciu/imagini/craft/craft.png';
     const areReducere = prod && prod.reducere != null && prod.reducere !== "" && prod.pretRedus != null && prod.pretRedus !== "";
     let pretHTML = "";
     if (!areReducere) {
