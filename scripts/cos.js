@@ -57,9 +57,10 @@ async function afiseazaCos() {
     }
 
     if (prod) {
-
-      return { ...prod, cantitate: item.cantitate, isCraft: !!item.isCraft };
-
+      // Asigură calea corectă pentru imagine
+      let img = prod.imagine || prod.linkImagine || "/imagini/craft/craft.png";
+      if (img.startsWith("./")) img = img.replace("./", "/Deliciu/");
+      return { ...prod, imagine: img, cantitate: item.cantitate, isCraft: !!item.isCraft };
     } else {
 
       return {

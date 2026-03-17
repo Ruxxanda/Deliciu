@@ -1,8 +1,8 @@
 async function incarcaComentarii() {
   const data = JSON.parse(localStorage.getItem('comentarii') || '[]');
-  const cont = document.getElementById("comentarii");
-  if (!cont) return;
-  cont.innerHTML = data.map(c => {
+  const div = document.getElementById("comentarii");
+  if (!div) return;
+  div.innerHTML = data.map(c => {
     const imgSrc = c.poza && c.poza.startsWith('http') ? c.poza : (c.poza && c.poza.startsWith('data:') ? c.poza : (c.poza ? c.poza : 'imagini/poza.png'));
     return `
   <div class="com">
@@ -49,9 +49,9 @@ async function incarcaReducereActiva() {
     if (activeReduction) {
       const allProducts = await (async () => {
         const candidates = [
+          '/Deliciu/data/products.json',
           'data/products.json',
           '../data/products.json',
-          '/Deliciu/data/products.json',
           window.location.origin + '/Deliciu/data/products.json'
         ];
         for (const url of candidates) {
@@ -189,7 +189,12 @@ function startCountdown(endDateStr, reductionId) {
 
 async function incarcaTorturiPopulare() {
   try {
-    const candidates = ['data/products.json', '../data/products.json', '/Deliciu/data/products.json', window.location.origin + '/Deliciu/data/products.json'];
+    const candidates = [
+      '/Deliciu/data/products.json',
+      'data/products.json',
+      '../data/products.json',
+      window.location.origin + '/Deliciu/data/products.json'
+    ];
     let produse = [];
     for (const url of candidates) {
       try {
