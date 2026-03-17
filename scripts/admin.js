@@ -208,7 +208,7 @@ async function generateOrderHTML(o, produse, isCompleted = false) {
   const productItems = cart.map((c, index) => {
     const prod = produse.find(p => p.nume === c.nume);
     const isCustom = c.descriere && c.descriere.includes('<ul>');
-    const imagine = prod ? (prod.imagine || prod.linkImagine) : './imagini/craft/craft.png';
+    const imagine = prod ? (prod.imagine || prod.linkImagine) : './imagini/produse/craft.jpg';
     const areReducere = prod && prod.reducere != null && prod.reducere !== "" && prod.pretRedus != null && prod.pretRedus !== "";
     let pretHTML = "";
     if (!areReducere) {
