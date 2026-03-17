@@ -82,7 +82,7 @@ async function incarcaReducereActiva() {
           </div>
         `;
         return `
-          <div class="produs">
+          <div class="produs" style="cursor:pointer;" onclick="window.location.href='pagini/tort.html?nume=${encodeURIComponent(p.nume || '')}'">
             <img src="${p.imagine || p.linkImagine}" width="100" alt="${p.nume}">
             <p class="nume"><strong>${p.nume}</strong></p>
             <p class="pret">${pretHTML}</p>

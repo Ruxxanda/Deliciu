@@ -353,7 +353,7 @@ async function loadProductsForReduction() {
       const displayName = p[`nume_${lang}`] || p.nume || p[`nume_ro`] || p.nume;
       const value = p.nume || displayName;
       return `
-      <div class="product-card">
+      <div class="product-card" tabindex="0">
         <input type="checkbox" value="${value}" title="Selectează ${displayName}">
         <img src="../${(p.imagine || p.linkImagine || '').replace(/^\//,'').replace(/^\.\//,'')}" alt="${displayName}">
         <div class="product-name">${displayName}</div>
@@ -361,6 +361,15 @@ async function loadProductsForReduction() {
       </div>
     `}).join("");
     document.getElementById("productsCheckboxes").innerHTML = checkboxes;
+    // Add click event to select checkbox when clicking product-card
+    document.querySelectorAll('#productsCheckboxes .product-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        // Prevent double toggle if clicking directly on checkbox
+        if (e.target.tagName.toLowerCase() === 'input') return;
+        const checkbox = this.querySelector('input[type="checkbox"]');
+        if (checkbox) checkbox.checked = !checkbox.checked;
+      });
+    });
   } catch (error) {
     console.error("Error loading products for reduction:", error);
   }

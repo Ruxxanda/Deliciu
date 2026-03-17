@@ -89,25 +89,26 @@ async function afiseazaCos() {
 
     const card = document.createElement("div");
     card.classList.add("produs", "cos-item");
-
     const imagePath = p.imagine || "/Deliciu/imagini/craft/craft.png";
-
     card.innerHTML = `
     <div class="img-wrapper">
       <img src="${imagePath}" alt="produs">
       <p class="cantitate">x${p.cantitate}</p>
     </div>
-
     <h3>${p.nume}</h3>
-
     <div class="pret-info">${formatPrice(p.pret)} Lei</div>
-
     <div class="actiuni">
       <button class="sterge-cos" onclick="toggleCos('${p.nume}', ${p.cantitate})">
       <i class="fa fa-trash"></i> Șterge
       </button>
     </div>
     `;
+    card.style.cursor = "pointer";
+    card.onclick = function(e) {
+      // Prevent click if trash button is pressed
+      if (e.target.closest('.sterge-cos')) return;
+      window.location.href = `../pagini/tort.html?nume=${encodeURIComponent(p.nume || '')}`;
+    };
 
     div.appendChild(card);
 
