@@ -53,6 +53,32 @@ document.getElementById("adminInfo").innerHTML = `
 }
 loadAdminInfo();
 
+const logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+  logoutBtn.onclick = async () => {
+    if (typeof window.logout === 'function') {
+      await window.logout();
+    } else {
+      localStorage.removeItem("uid");
+      localStorage.removeItem("email");
+      window.location.href = "../index.html";
+    }
+  };
+}
+
+const mobileLogoutBtn = document.getElementById("mobileLogoutBtn");
+if (mobileLogoutBtn) {
+  mobileLogoutBtn.onclick = async () => {
+    if (typeof window.logout === 'function') {
+      await window.logout();
+    } else {
+      localStorage.removeItem("uid");
+      localStorage.removeItem("email");
+      window.location.href = "../index.html";
+    }
+  };
+}
+
 document.getElementById("logoutBtn").onclick = () => {
 localStorage.removeItem("uid");
 localStorage.removeItem("email");

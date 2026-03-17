@@ -50,7 +50,16 @@ waitForUid(2500).then(found => {
 
 const logoutBtn = document.getElementById("logoutBtn");
 if (logoutBtn) {
-  logoutBtn.onclick = async () => {
+  logoutBtn.onclick = () => {
+    localStorage.removeItem("uid");
+    localStorage.removeItem("email");
+    window.location.href = "../index.html";
+  };
+}
+
+const mobileLogoutBtn = document.getElementById("mobileLogoutBtn");
+if (mobileLogoutBtn) {
+  mobileLogoutBtn.onclick = () => {
     localStorage.removeItem("uid");
     localStorage.removeItem("email");
     window.location.href = "../index.html";

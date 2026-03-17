@@ -92,10 +92,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up logout button
     if (mobileLogoutBtn) {
         mobileLogoutBtn.addEventListener('click', function() {
-            if (typeof logout === 'function') {
-                logout();
+            if (typeof window.logout === 'function') {
+                window.logout();
             } else {
-                // Fallback logout
                 const uid = localStorage.getItem('uid');
                 localStorage.removeItem('uid');
                 localStorage.removeItem('email');
@@ -104,11 +103,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     localStorage.removeItem(`profile_${uid}`);
                 }
                 updateUserProfile();
-                location.reload();
+                window.location.href = '../index.html';
             }
-            mobileMenu.classList.remove('active');
-            hamburgerBtn.classList.remove('active');
-            body.classList.remove('menu-open');
         });
     }
 
