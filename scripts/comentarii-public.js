@@ -2,6 +2,19 @@ let comentariiData = [];
 let currentIndex = 0;
 const commentsPerPage = 3;
 
+// =========================
+// Firestore helper
+// =========================
+function waitForFirestore() {
+  return new Promise(resolve => {
+    if (window.firestore && window.firestore.fetchAllComments) {
+      resolve(true);
+    } else {
+      resolve(false);
+    }
+  });
+}
+
 async function incarcaComentariiPublice() {
 
   const track = document.getElementById("comentarii");
@@ -251,9 +264,10 @@ function updateCarouselPosition(animate = true) {
 
 function nextComment() {
 
-  internalIndex++;
-
-  updateCarouselPosition(true);
+  if (internalIndex < comentariiData.length + visibleCount - 1) {
+    internalIndex++;
+    updateCarouselPosition(true);
+  }
 
 }
 
@@ -261,9 +275,10 @@ function nextComment() {
 
 function prevComment() {
 
-  internalIndex--;
-
-  updateCarouselPosition(true);
+  if (internalIndex > 0) {
+    internalIndex--;
+    updateCarouselPosition(true);
+  }
 
 }
 
@@ -296,6 +311,68 @@ function stopAutoplay() {
 }
 
 
+
+/* =========================
+   Drag/Swipe support
+========================= */
+
+function addDragListeners() {
+  const track = document.getElementById("comentarii");
+  if (!track) return;
+
+  let startX = 0;
+  let currentX = 0;
+  let dragging = false;
+
+  track.addEventListener("mousedown", (e) => {
+    dragging = true;
+    startX = e.pageX;
+    track.style.cursor = "grabbing";
+  });
+
+  track.addEventListener("mousemove", (e) => {
+    if (!dragging) return;
+    currentX = e.pageX;
+    const diff = currentX - startX;
+    if (Math.abs(diff) > 40) {
+      if (diff < 0) nextComment();
+      else prevComment();
+      dragging = false;
+      track.style.cursor = "grab";
+    }
+  });
+
+  track.addEventListener("mouseup", () => {
+    dragging = false;
+    track.style.cursor = "grab";
+  });
+
+  track.addEventListener("mouseleave", () => {
+    dragging = false;
+    track.style.cursor = "grab";
+  });
+
+  // Touch events for mobile
+  track.addEventListener("touchstart", (e) => {
+    dragging = true;
+    startX = e.touches[0].pageX;
+  });
+
+  track.addEventListener("touchmove", (e) => {
+    if (!dragging) return;
+    currentX = e.touches[0].pageX;
+    const diff = currentX - startX;
+    if (Math.abs(diff) > 40) {
+      if (diff < 0) nextComment();
+      else prevComment();
+      dragging = false;
+    }
+  });
+
+  track.addEventListener("touchend", () => {
+    dragging = false;
+  });
+}
 
 /* =========================
    Event listeners
@@ -344,6 +421,7 @@ function addCarouselListeners() {
   });
 
   startAutoplay();
+  addDragListeners();
 
 }
 
