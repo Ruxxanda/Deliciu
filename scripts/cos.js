@@ -146,16 +146,21 @@ function toggleCos(nume, currentCantitate) {
 async function placeOrder() {
 
   const uid = getStorageUid();
+  const email = localStorage.getItem("email") || "";
+  let nume = "";
+  let poza = "";
+  try {
+    const userData = JSON.parse(localStorage.getItem(`user_${uid}`) || '{}');
+    nume = userData.nume || "";
+    poza = userData.poza || userData.photoURL || "";
+  } catch (e) {}
 
-  if (!uid || uid === "guest") {
-
+  // Dacă nu există uid sau email, nu ești logat(ă)
+  if (!uid || uid === "guest" || !email) {
     const errEl = document.getElementById("error");
-
     if (errEl)
       errEl.textContent = "Trebuie să vă logați pentru a realiza comanda.";
-
     return;
-
   }
 
   const cartKey = `cart_${uid}`;
@@ -189,41 +194,18 @@ async function placeOrder() {
 
   }
 
-  const email = localStorage.getItem("email") || "";
-
-  if (
-    email !== "ruxanda.cujba07@gmail.com" &&
-    email !== "ursumarina@gmail.com"
-  ) {
-
-    if (errEl)
-      errEl.textContent =
-        "Doar utilizatorii autorizați pot plasa comenzi.";
-
-    return;
-
-  }
-
   const orderPayload = {
-
     id: Date.now().toString(),
-
     uid,
-
+    nume,
     email,
-
+    poza,
     cart,
-
     phone,
-
     address,
-
     message,
-
     status: "În desfășurare",
-
     createdAt: new Date().toISOString(),
-
   };
 
   try {

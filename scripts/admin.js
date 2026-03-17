@@ -257,7 +257,7 @@ return `
 <div class="order-item" data-id="${o.id}">
 <div class="info">
           <img class="user"
-            src="${(o.poza && o.poza.startsWith('http')) ? o.poza : (o.user.poza && o.user.poza.startsWith('http') ? o.user.poza : '')}">
+            src="${(o.poza && o.poza.startsWith('http')) ? o.poza : (o.poza ? o.poza : (o.user && o.user.poza ? o.user.poza : ''))}">
 <div class="date">
 <p>${user.nume}</p>
             <p>Email: ${user.email || ''}</p>
