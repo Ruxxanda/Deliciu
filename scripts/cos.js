@@ -58,14 +58,14 @@ async function afiseazaCos() {
 
     if (prod) {
       // Asigură calea corectă pentru imagine
-      let img = prod.imagine || prod.linkImagine || "/imagini/craft/craft.png";
+      let img = prod.imagine || prod.linkImagine || "/Deliciu/imagini/craft/craft.png";
       if (img.startsWith("./")) img = img.replace("./", "/Deliciu/");
       return { ...prod, imagine: img, cantitate: item.cantitate, isCraft: !!item.isCraft };
     } else {
 
       return {
         nume: item.nume,
-        imagine: "/imagini/craft/craft.png",
+        imagine: "/Deliciu/imagini/craft/craft.png",
         descriere: "Produs personalizat",
         pret: item.pret,
         cantitate: item.cantitate,
@@ -90,7 +90,7 @@ async function afiseazaCos() {
     const card = document.createElement("div");
     card.classList.add("produs", "cos-item");
 
-    const imagePath = p.imagine || "/imagini/craft/craft.png";
+    const imagePath = p.imagine || "/Deliciu/imagini/craft/craft.png";
 
     card.innerHTML = `
     <div class="img-wrapper">
