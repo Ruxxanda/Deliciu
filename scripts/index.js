@@ -253,4 +253,21 @@ async function incarcaTorturiPopulare() {
   }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  const userLink = document.getElementById('userLink');
+  if (userLink) {
+    userLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      // Decide JS dacă e admin sau user
+      // Exemplu: dacă email-ul este admin, trimite la admin.html, altfel la user.html
+      const email = localStorage.getItem('email');
+      if (email === 'ruxanda.cujba07@gmail.com') {
+        window.location.href = '/Deliciu/pagini/admin.html';
+      } else {
+        window.location.href = '/Deliciu/pagini/user.html';
+      }
+    });
+  }
+});
+
 document.addEventListener('DOMContentLoaded', incarcaTorturiPopulare);
