@@ -241,7 +241,7 @@ async function generateOrderHTML(o, produse, isCompleted = false) {
     const descriereHTML = '';
 return `
 <div class="produs" style="cursor:pointer;" onclick="window.location.href='../pagini/tort.html?nume=${encodeURIComponent(c.nume || '')}'">
-  <img src="${imagine.startsWith('/Deliciu/imagini/craft/') ? imagine : '../' + (imagine||'').replace(/^\//,'').replace(/^\.\//,'')}" width="100" alt="produs">
+  <img src="${imagine.startsWith('/Deliciu/imagini/craft/') ? imagine : (imagine||'').replace(/^\//,'').replace(/^\.\//,'')}" width="100" alt="produs">
 <div class="infor">
 <p class="nume">${c.nume}</p>
       <p>${pretHTML}</p>
