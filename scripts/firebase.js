@@ -202,8 +202,8 @@ onAuthStateChanged(auth, (user) => {
       console.warn('Could not persist auth user to localStorage', err);
     }
     if (ul) ul.style.display = "inline";
-    if(user.email === "ruxanda.cujba07@gmail.com") { if (ul) ul.href="../pagini/admin.html"; }
-    else { if (ul) ul.href="../pagini/user.html"; }
+    if(user.email === "ruxanda.cujba07@gmail.com") { if (ul) ul.href="Deliciu/pagini/admin.html"; }
+    else { if (ul) ul.href="Deliciu/pagini/user.html"; }
   } else {
     localStorage.removeItem("uid");
     localStorage.removeItem("email");
