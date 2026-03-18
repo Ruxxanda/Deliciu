@@ -178,19 +178,35 @@ orders = result.orders;
     const produse = Array.isArray(data) ? data : [];
     const activeOrders = orders.filter(o => (o.status || '').toString().toLowerCase() !== 'efectuat');
     const completedOrders = orders.filter(o => (o.status || '').toString().toLowerCase() === 'efectuat');
-    const activeHTML = await Promise.all(activeOrders.map(o => generateOrderHTML(o, produse)));
-    const completedHTML = await Promise.all(completedOrders.map(o => generateOrderHTML(o, produse, true)));
+    const activeHTML = await Promise.all(activeOrders.map(o => {
+      if (!o.user) {
+        o.user = {
+          nume: o.nume || o.name || o.uid,
+          email: o.email || ''
+        };
+      }
+      return generateOrderHTML(o, produse);
+    }));
+    const completedHTML = await Promise.all(completedOrders.map(o => {
+      if (!o.user) {
+        o.user = {
+          nume: o.nume || o.name || o.uid,
+          email: o.email || ''
+        };
+      }
+      return generateOrderHTML(o, produse, true);
+    }));
     document.getElementById("orders").innerHTML = activeHTML.length > 0 ? activeHTML.join("") : '<div style="padding:20px; text-align:center; color:#999;">Nu există comenzi active.</div>';
     document.getElementById("completedOrders").innerHTML = completedHTML.length > 0 ? completedHTML.join("") : '<div style="padding:20px; text-align:center; color:#999;">Nu există comenzi efectuate.</div>';
     document.querySelectorAll('[id^="toggleProducts-"]').forEach(btn => {
       btn.addEventListener('click', function () {
         const id = this.id.substring('toggleProducts-'.length);
-        const extraDiv = document.getElementById(`extraProducts-${id}`);
+        const extraProducts = document.querySelectorAll(`.order-item[data-id="${id}"] .produs.prod-ascuns`);
         if (this.textContent === 'Ascunde') {
-          extraDiv.style.display = 'none';
+          extraProducts.forEach(el => el.style.display = 'none');
           this.textContent = 'Mai multe';
         } else {
-          extraDiv.style.display = 'block';
+          extraProducts.forEach(el => el.style.display = '');
           this.textContent = 'Ascunde';
         }
       });
@@ -235,29 +251,29 @@ return `
 `;
   });
   const visibleProducts = productItems.slice(0, 3).join('');
-  const extraProducts = productItems.slice(3).join('');
+  const extraProductsArr = productItems.slice(3).map(p => p.replace('class="produs"', 'class="produs prod-ascuns" style="display:none"'));
+  const extraProducts = extraProductsArr.join('');
   const toggleHTML = extraProducts ? `<button id="toggleProducts-${o.id}" class="extra">Mai multe</button>` : '';
-  const extraHTML = extraProducts ? `<div id="extraProducts-${o.id}" style="display:none">${extraProducts}</div>` : '';
   const cancelHTML = isCompleted ? '' : `<button class="delete" onclick="deleteOrder('${o.id}')">Anulează</button>`;
-return `
+  return `
 <div class="order-item" data-id="${o.id}">
-<div class="info">
-          <img class="user"
-            src="${(o.poza && o.poza.startsWith('http')) ? o.poza : (o.poza ? o.poza : (o.user && o.user.poza ? o.user.poza : ''))}">
-<div class="date">
-<p>${user.nume}</p>
-            <p>Email: ${user.email || ''}</p>
-            ${o.phone ? `<p>Telefon: ${o.phone}</p>` : ''}
-            ${o.address ? `<p>Adresa: ${o.address}</p>` : ''}
-            ${o.message ? `<p>Mesaj: ${o.message}</p>` : ''}
-<select onchange="updateStatus('${o.id}', this.value)">
-              <option value="În desfășurare" ${o.status === 'În desfășurare' ? 'selected' : ''}>În desfășurare</option>
-              <option value="Pe drum" ${o.status === 'Pe drum' ? 'selected' : ''}>Pe drum</option>
-              <option value="Efectuat" ${o.status === 'Efectuat' ? 'selected' : ''}>Efectuat</option>
-</select>
+  <div class="info">
+      <img class="user"
+        src="${(o.poza && o.poza.startsWith('http')) ? o.poza : (o.poza ? o.poza : (o.user && o.user.poza ? o.user.poza : ''))}">
+      <div class="date">
+      <p>${user.nume}</p>
+      <p>Email: ${user.email || ''}</p>
+      ${o.phone ? `<p>Telefon: ${o.phone}</p>` : ''}
+      ${o.address ? `<p>Adresa: ${o.address}</p>` : ''}
+      ${o.message ? `<p>Mesaj: ${o.message}</p>` : ''}
+      <select onchange="updateStatus('${o.id}', this.value)">
+        <option value="În desfășurare" ${o.status === 'În desfășurare' ? 'selected' : ''}>În desfășurare</option>
+        <option value="Pe drum" ${o.status === 'Pe drum' ? 'selected' : ''}>Pe drum</option>
+        <option value="Efectuat" ${o.status === 'Efectuat' ? 'selected' : ''}>Efectuat</option>
+      </select>
+  </div>
 </div>
-</div>
-        <div class="prod">${visibleProducts}${extraHTML}</div>
+        <div class="prod">${visibleProducts}${extraProducts}</div>
         <div class="toggle">${toggleHTML}   ${cancelHTML}</div>
 </div>
   `;

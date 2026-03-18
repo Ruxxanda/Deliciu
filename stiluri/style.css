@@ -1431,6 +1431,11 @@ section.com-efect #completedOrders .order-item .prod {
   margin-bottom: 12px;
 }
 
+section.comenzi #orders .order-item .prod-ascuns,
+section.com-efect #completedOrders .order-item .prod-ascuns {
+  background-color: #4caf50;
+}
+
 section.comenzi #orders .order-item .prod .produs,
 section.com-efect #completedOrders .order-item .prod .produs {
   background: #f8f9fa;

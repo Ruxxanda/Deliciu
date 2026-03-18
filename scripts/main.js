@@ -26,7 +26,7 @@ if (loginBtn) {
       // dacă e admin
       if (user.email === "ruxanda.cujba07@gmail.com") {
         localStorage.setItem("isAdmin", "true");
-        location.href = "../pagini/admin.html";
+        location.href = "/Deliciu/pagini/admin.html";
       }
     } catch (err) {
       console.error("Eroare la autentificare Google", err);
