@@ -260,9 +260,9 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
       const email = localStorage.getItem('email');
       if (email === 'ruxanda.cujba07@gmail.com') {
-        window.location.href = './pagini/admin.html';
+        window.location.href = './pagini/admin.html' || 'pagini/admin.html';
       } else {
-        window.location.href = './pagini/user.html';
+        window.location.href = './pagini/user.html' || 'pagini/user.html';
       }
     });
   }
