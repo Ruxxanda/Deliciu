@@ -241,12 +241,7 @@ async function generateOrderHTML(o, produse, isCompleted = false) {
     const descriereHTML = '';
 return `
 <div class="produs" style="cursor:pointer;" onclick="window.location.href='../pagini/tort.html?nume=${encodeURIComponent(c.nume || '')}'">
-  <img src="${(() => {
-  let img = c.poza || c.linkImagine || '';
-  img = img.replace(/^\.+\//, ''); // elimină ../ sau ./ din față
-  if (!img.startsWith('/')) img = '/' + img;
-  return img;
-})()}" width="100" alt="produs">
+  <img src="${imagine.startsWith('/Deliciu/imagini/craft/') ? imagine : (imagine.startsWith('Deliciu/imagini/craft/') ? '/' + imagine : '../' + (imagine||'').replace(/^\//,'').replace(/^\.\//,''))}" width="100" alt="produs">
 <div class="infor">
 <p class="nume">${c.nume}</p>
       <p>${pretHTML}</p>
@@ -376,12 +371,7 @@ async function loadProductsForReduction() {
       return `
       <div class="product-card" tabindex="0">
         <input type="checkbox" value="${value}" title="Selectează ${displayName}">
-        <img src="${(() => {
-  let img = p.imagine || p.linkImagine || '';
-  img = img.replace(/^\.+\//, ''); // elimină ../ sau ./ din față
-  if (!img.startsWith('/')) img = '/' + img;
-  return img;
-})()}" alt="${displayName}">
+        <img src="${(p.imagine || p.linkImagine || '').startsWith('Deliciu/imagini/craft/') ? '/' + (p.imagine || p.linkImagine || '') : '../imagini/produse/' + (p.imagine || p.linkImagine || '').replace(/^.*[\\\/]/, '')}" alt="${displayName}">
         <div class="product-name">${displayName}</div>
         <div class="product-price">${parseFloat(p.pret || 0).toFixed(2)} Lei</div>
       </div>
