@@ -253,19 +253,4 @@ async function incarcaTorturiPopulare() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  const userLink = document.getElementById('userLink');
-  if (userLink) {
-    userLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      const email = localStorage.getItem('email');
-      if (email === 'ruxanda.cujba07@gmail.com') {
-        window.location.href = './pagini/admin.html' || 'admin.html';
-      } else {
-        window.location.href = './pagini/user.html' || 'user.html';
-      }
-    });
-  }
-});
-
 document.addEventListener('DOMContentLoaded', incarcaTorturiPopulare);
