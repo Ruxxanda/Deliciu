@@ -165,35 +165,16 @@ function renderCarousel() {
 
   visibleCount = calculateVisibleCount();
 
+  // Dacă sunt puține comentarii, afișează doar acele comentarii
   if (comentariiData.length <= visibleCount) {
-
-    track.innerHTML =
-      comentariiData.map(buildItemHTML).join("");
-
+    track.innerHTML = comentariiData.map(buildItemHTML).join("");
     hideArrows();
     return;
-
   }
 
-  const items =
-    comentariiData.map(buildItemHTML).join("");
-
-  const pre =
-    comentariiData
-      .slice(-visibleCount)
-      .map(buildItemHTML)
-      .join("");
-
-  const post =
-    comentariiData
-      .slice(0, visibleCount)
-      .map(buildItemHTML)
-      .join("");
-
-  track.innerHTML = pre + items + post;
-
-  internalIndex = visibleCount;
-
+  // Nu mai repeta comentariile la capete
+  track.innerHTML = comentariiData.map(buildItemHTML).join("");
+  internalIndex = 0;
   updateCarouselPosition(false);
 
 }
@@ -264,9 +245,19 @@ function updateCarouselPosition(animate = true) {
 
 function nextComment() {
 
-  if (internalIndex < comentariiData.length + visibleCount - 1) {
+  // Nu permite next dacă suntem la capăt
+  const maxIndex = comentariiData.length + visibleCount - 1;
+  if (internalIndex < maxIndex) {
     internalIndex++;
     updateCarouselPosition(true);
+    // Dacă suntem la capăt, ascunde butonul next
+    if (internalIndex === maxIndex && document.getElementById("nextBtn")) {
+      document.getElementById("nextBtn").style.display = "none";
+    }
+    // Arată butonul prev dacă nu suntem la început
+    if (internalIndex > visibleCount && document.getElementById("prevBtn")) {
+      document.getElementById("prevBtn").style.display = "inline-block";
+    }
   }
 
 }
@@ -275,9 +266,19 @@ function nextComment() {
 
 function prevComment() {
 
+  // Nu permite prev dacă suntem la început
   if (internalIndex > 0) {
     internalIndex--;
     updateCarouselPosition(true);
+    // Dacă suntem la început, ascunde butonul prev
+    if (internalIndex === 0 && document.getElementById("prevBtn")) {
+      document.getElementById("prevBtn").style.display = "none";
+    }
+    // Arată butonul next dacă nu suntem la capăt
+    const maxIndex = comentariiData.length + visibleCount - 1;
+    if (internalIndex < maxIndex && document.getElementById("nextBtn")) {
+      document.getElementById("nextBtn").style.display = "inline-block";
+    }
   }
 
 }
@@ -390,8 +391,6 @@ function addCarouselListeners() {
     prev.addEventListener("click", () => {
 
       prevComment();
-      stopAutoplay();
-      setTimeout(startAutoplay, 3000);
 
     });
 
@@ -399,8 +398,7 @@ function addCarouselListeners() {
     next.addEventListener("click", () => {
 
       nextComment();
-      stopAutoplay();
-      setTimeout(startAutoplay, 3000);
+      // stopAutoplay(); // Nu repornim autoplay
 
     });
 
@@ -420,7 +418,7 @@ function addCarouselListeners() {
 
   });
 
-  startAutoplay();
+  // startAutoplay(); // Dezactivat autoplay
   addDragListeners();
 
 }
