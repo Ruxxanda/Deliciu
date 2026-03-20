@@ -115,14 +115,15 @@ async function afiseazaCos() {
     total += (parseFloat(p.pret) || 0) * (parseInt(p.cantitate) || 1);
   });
 
-  // Creează și afișează elementul pentru total
-  const totalDiv = document.createElement("div");
-  totalDiv.className = "cos-total";
-  totalDiv.style.marginTop = "20px";
-  totalDiv.style.fontWeight = "bold";
-  totalDiv.style.fontSize = "1.2em";
-  totalDiv.textContent = `Total: ${formatPrice(total)} Lei`;
-  div.appendChild(totalDiv);
+  // Afișează totalul în afara #cosDisplay
+  const totalDiv = document.getElementById("cosTotal");
+  if (totalDiv) {
+    totalDiv.className = "cos-total";
+    totalDiv.style.marginTop = "20px";
+    totalDiv.style.fontWeight = "bold";
+    totalDiv.style.fontSize = "1.2em";
+    totalDiv.textContent = `Total: ${formatPrice(total)} Lei`;
+  }
 }
 
 function toggleCos(nume, currentCantitate) {

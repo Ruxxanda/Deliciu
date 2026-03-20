@@ -216,19 +216,19 @@ if (loginBtn) {
 
       if (path.endsWith("index.html") || path === "/") {
         if (user.email === "ruxanda.cujba07@gmail.com") {
-          if (userLink) userLink.href = "pagini/admin.html";
-          window.location.href = "pagini/admin.html";
+          if (userLink) userLink.href = "https://ruxxanda.github.io/Deliciu/pagini/admin.html";
+          window.location.href = "https://ruxxanda.github.io/Deliciu/pagini/admin.html";
         } else {
-          if (userLink) userLink.href = "pagini/user.html";
-          window.location.href = "pagini/user.html";
+          if (userLink) userLink.href = "https://ruxxanda.github.io/Deliciu/pagini/user.html";
+          window.location.href = "https://ruxxanda.github.io/Deliciu/pagini/user.html";
         }
       } else if (path.includes("/pagini/")) {
         if (user.email === "ruxanda.cujba07@gmail.com") {
-          if (userLink) userLink.href = "admin.html";
-          window.location.href = "admin.html";
+          if (userLink) userLink.href = "https://ruxxanda.github.io/Deliciu/pagini/admin.html";
+          window.location.href = "https://ruxxanda.github.io/Deliciu/pagini/admin.html";
         } else {
-          if (userLink) userLink.href = "user.html";
-          window.location.href = "user.html";
+          if (userLink) userLink.href = "https://ruxxanda.github.io/Deliciu/pagini/user.html";
+          window.location.href = "https://ruxxanda.github.io/Deliciu/pagini/user.html";
         }
       }
     } catch (err) {
@@ -255,9 +255,9 @@ onAuthStateChanged(auth, (user) => {
     }
     if (ul) ul.style.display = "inline";
     if (user.email === "ruxanda.cujba07@gmail.com") {
-      if (ul) ul.href = "Deliciu/pagini/admin.html";
+      if (ul) ul.href = "https://ruxxanda.github.io/Deliciu/pagini/admin.html";
     } else {
-      if (ul) ul.href = "Deliciu/pagini/user.html";
+      if (ul) ul.href = "https://ruxxanda.github.io/Deliciu/pagini/user.html";
     }
   } else {
     localStorage.removeItem("uid");
