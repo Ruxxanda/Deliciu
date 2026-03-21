@@ -191,6 +191,8 @@ async function placeOrder() {
   const messageEl = document.getElementById("messageInput");
 
   const phone = phoneEl ? phoneEl.value.trim() : "";
+  // Validare număr moldovenesc: exact 9 cifre, fără prefix
+  const mdPhoneRegex = /^\d{9}$/;
   const address = addressEl ? addressEl.value.trim() : "";
   const message = messageEl ? messageEl.value.trim() : "";
 
@@ -200,7 +202,11 @@ async function placeOrder() {
   if (!phone || !address) {
 
     if (errEl) errEl.textContent = "Completează telefon și adresă.";
+    return;
+  }
 
+  if (!mdPhoneRegex.test(phone)) {
+    if (errEl) errEl.textContent = "Numărul de telefon trebuie să fie moldovenesc (exact 9 cifre, fără prefix).";
     return;
 
   }

@@ -68,38 +68,41 @@ function getImagePath(item) {
 function updatePreview() {
     const rightPanel = document.querySelector('.right');
     rightPanel.innerHTML = '';
-    selected.forEach((item, index) => {
-        if (['base', 'cream', 'filling'].includes(item.type)) {
-            const imagePath = getImagePath(item);
-            const img = document.createElement('img');
-            img.src = imagePath;
-            img.alt = item.name;
-            img.classList.add(item.type);
-            if (index === 0) {
-                img.style.marginBottom = '0';
-            } else {
-                img.style.marginTop = '-80px';
-                img.style.marginBottom = '0';
-            }
-            img.style.zIndex = selected.length - index;
-            img.onerror = function() {
-                if (!this.dataset.fallback) {
-                    this.dataset.fallback = '1';
-                    this.src = '/Deliciu/imagini/craft/craft.png';
-                    this.alt = `Imagine implicită: ${item.name}`;
-                    return;
-                }
-                console.error(`Imagine not found: ${this.src}`);
-                this.style.border = '2px solid #ff6666';
-                this.style.padding = '10px';
-                this.style.background = '#ffe6e6';
-                this.alt = `Imagine indisponibilă: ${item.name}`;
-            };
-            img.onload = function() {
-                console.log(`Imagine loaded successfully: ${this.src}`);
-            };
-            rightPanel.appendChild(img);
+    // Adaugă imaginile de jos în sus (prima adăugată jos, ultimele deasupra)
+    const stack = selected.filter(item => ['base', 'cream', 'filling'].includes(item.type));
+    stack.forEach((item, i) => {
+        const index = stack.length - 1 - i; // inversăm ordinea pentru afișare vizuală
+        const realItem = stack[index];
+        const imagePath = getImagePath(realItem);
+        const img = document.createElement('img');
+        img.src = imagePath;
+        img.alt = realItem.name;
+        img.classList.add(realItem.type);
+        if (i === 0) {
+            img.style.marginBottom = '0';
+        } else {
+            img.style.marginTop = '-80px';
+            img.style.marginBottom = '0';
         }
+        // z-index crește pentru cele adăugate mai târziu (mai sus)
+        img.style.zIndex = 100 + (stack.length - 1 - i);
+        img.onerror = function() {
+            if (!this.dataset.fallback) {
+                this.dataset.fallback = '1';
+                this.src = '/Deliciu/imagini/craft/craft.png';
+                this.alt = `Imagine implicită: ${realItem.name}`;
+                return;
+            }
+            console.error(`Imagine not found: ${this.src}`);
+            this.style.border = '2px solid #ff6666';
+            this.style.padding = '10px';
+            this.style.background = '#ffe6e6';
+            this.alt = `Imagine indisponibilă: ${realItem.name}`;
+        };
+        img.onload = function() {
+            console.log(`Imagine loaded successfully: ${this.src}`);
+        };
+        rightPanel.appendChild(img);
     });
 }
 
