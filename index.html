@@ -25,6 +25,7 @@
   <script src="scripts/index.js" defer></script>
   <script src="scripts/stats.js" defer></script>
   <script src="scripts/comentarii-public.js" defer></script>
+  <script src="scripts/main.js" defer></script>
   <script src="scripts/hamburger.js" defer></script>
   <script src="https://kit.fontawesome.com/8a1f01fb65.js" crossorigin="anonymous"></script>
 </head>
@@ -238,6 +239,16 @@
   <button id="loginGoogle" style="display:none"></button>
   <a id="linkUser" style="display:none"></a> -->
 
+  <script>
+    // Ascunde butonul Google dacă link-ul user e vizibil
+    setInterval(() => {
+      const ul = document.getElementById("userLink");
+      const gb = document.getElementById("googleLogin");
+      if (ul && gb) {
+        gb.style.display = ul.style.display === "none" ? "inline-block" : "none";
+      }
+    }, 100);
+  </script>
 </body>
 
 </html>

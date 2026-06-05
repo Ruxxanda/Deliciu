@@ -183,6 +183,9 @@ window.firestore = {
       throw err;
     }
   },
+  // Expun auth și provider pentru a fi folosite în alte scripturi
+  auth,
+  provider,
 };
 
 const loginBtn = document.getElementById("googleLogin");
@@ -263,6 +266,20 @@ onAuthStateChanged(auth, (user) => {
     localStorage.removeItem("uid");
     localStorage.removeItem("email");
     if (ul) ul.style.display = "none";
+  }
+  // Apez updateAuthButtons din main.js daca exista
+  if (typeof window.updateAuthButtons === "function") {
+    console.log("[firebase.js] Calling updateAuthButtons");
+    window.updateAuthButtons();
+  } else {
+    console.warn("[firebase.js] updateAuthButtons not yet available, retrying...");
+    // Retry cu delay dacă functia nu e disponibilă încă
+    setTimeout(() => {
+      if (typeof window.updateAuthButtons === "function") {
+        console.log("[firebase.js] Calling updateAuthButtons (retry)");
+        window.updateAuthButtons();
+      }
+    }, 100);
   }
 });
 

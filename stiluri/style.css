@@ -2149,6 +2149,26 @@ section.produse .produse-category .produs .detalii {
 /* COS */
 section.cos {
   margin: 120px 13% 50px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+section.cos .date {
+  margin: 40px 0;
+  padding: 30px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 154, 139, 0.05) 0%,
+    rgba(255, 106, 136, 0.05) 100%
+  );
+  border-radius: 20px;
+  border: 2px solid rgba(255, 154, 139, 0.1);
+  width: 50%;
+}
+
+section.cos .order-section {
+  width: 50%;
 }
 
 section.cos h2 {
@@ -2165,7 +2185,7 @@ section.cos h2 {
 
 section.cos #cosDisplay {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   max-width: 1200px;
   margin: 0 auto;

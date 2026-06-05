@@ -1,5 +1,62 @@
-const loginBtn = document.getElementById("loginGoogle");
-const link = document.getElementById("linkUser");
+// Cod scurt: Verifica daca link-ul user e vizibil, atunci ascunde butonul Google
+// Folosim MutationObserver pentru a monitoriza orice schimbare la display-ul butoanelor
+
+function checkAndFixAuthButtons() {
+  const userLink = document.getElementById("userLink");
+  const googleBtn = document.getElementById("googleLogin");
+  const mobileGoogleBtn = document.getElementById("mobileGoogleLogin");
+  
+  if (userLink) {
+    const isUserLinkVisible = userLink.style.display !== "none" && userLink.offsetParent !== null;
+    
+    if (googleBtn) {
+      googleBtn.style.display = isUserLinkVisible ? "none" : "inline-block";
+      googleBtn.style.visibility = isUserLinkVisible ? "hidden" : "visible";
+    }
+    if (mobileGoogleBtn) {
+      mobileGoogleBtn.style.display = isUserLinkVisible ? "none" : "block";
+      mobileGoogleBtn.style.visibility = isUserLinkVisible ? "hidden" : "visible";
+    }
+  }
+}
+
+// Apelează imediat
+checkAndFixAuthButtons();
+
+// Monitorizează orice schimbare pe acele butoane
+const observer = new MutationObserver((mutations) => {
+  let needsCheck = false;
+  mutations.forEach((mutation) => {
+    if (mutation.type === 'attributes' && (
+      mutation.target.id === "googleLogin" || 
+      mutation.target.id === "mobileGoogleLogin" || 
+      mutation.target.id === "userLink"
+    )) {
+      needsCheck = true;
+    }
+  });
+  if (needsCheck) {
+    checkAndFixAuthButtons();
+  }
+});
+
+// Incepe observarea
+const userLink = document.getElementById("userLink");
+const googleBtn = document.getElementById("googleLogin");
+const mobileGoogleBtn = document.getElementById("mobileGoogleLogin");
+
+if (googleBtn) observer.observe(googleBtn, { attributes: true, attributeFilter: ['style', 'display'] });
+if (mobileGoogleBtn) observer.observe(mobileGoogleBtn, { attributes: true, attributeFilter: ['style', 'display'] });
+if (userLink) observer.observe(userLink, { attributes: true, attributeFilter: ['style', 'display'] });
+
+// Apelează și periodic ca backup
+setInterval(checkAndFixAuthButtons, 200);
+
+
+
+
+const loginBtn = document.getElementById("googleLogin");
+const link = document.getElementById("userLink");
 
 // afișare comentarii publice
 async function loadComentariiPublice() {
@@ -15,37 +72,3 @@ async function loadComentariiPublice() {
 }
 loadComentariiPublice();
 
-// logare cu Google
-if (loginBtn) {
-  loginBtn.onclick = async () => {
-    try {
-      const result = await window.firestore.auth.signInWithPopup(window.firestore.provider);
-      const user = result.user;
-      localStorage.setItem("uid", user.uid);
-      localStorage.setItem("email", user.email);
-      // dacă e admin
-      if (user.email === "ruxanda.cujba07@gmail.com") {
-        localStorage.setItem("isAdmin", "true");
-        location.href = "/Deliciu/pagini/admin.html";
-      }
-    } catch (err) {
-      console.error("Eroare la autentificare Google", err);
-    }
-  }
-}
-
-// afișare link user/admin
-if (window.firebase && window.firebase.auth && link) {
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      if (user.email === "ruxanda.cujba07@gmail.com") {
-        link.href = "../pagini/admin.html";
-      } else {
-        link.href = "../pagini/user.html";
-      }
-      link.style.display = "inline";
-    } else {
-      link.style.display = "none";
-    }
-  });
-}

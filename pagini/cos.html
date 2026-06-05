@@ -146,10 +146,12 @@
     </header>
 
     <section class="cos">
-      <h2>Coșul Meu</h2>
-      <p id="error"></p>
-      <div id="cosDisplay"></div>
-      <div id="cosTotal"></div>
+      <div class="date">
+        <h2>Coșul Meu</h2>
+        <p id="error"></p>
+        <div id="cosDisplay"></div>
+        <div id="cosTotal"></div>
+      </div>
       <div class="order-section">
         <div class="order-form">
           <h3>Date de livrare</h3>
@@ -251,5 +253,15 @@
         </p>
       </div>
     </footer>
+    <script>
+      // Ascunde butonul Google dacă link-ul user e vizibil
+      setInterval(() => {
+        const ul = document.getElementById("userLink");
+        const gb = document.getElementById("googleLogin");
+        if (ul && gb) {
+          gb.style.display = ul.style.display === "none" ? "inline-block" : "none";
+        }
+      }, 100);
+    </script>
   </body>
 </html>

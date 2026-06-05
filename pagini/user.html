@@ -46,6 +46,7 @@
           <a href="produse.html">Catalog</a>
           <a href="craft.html">Creează</a>
           <a href="galerie.html">Galerie</a>
+          <a href="contacte.html">Contacte</a>
         </div>
         <img class="logo" src="../imagini/logo.png" alt="logo" />
         <div class="inf">
@@ -245,5 +246,15 @@
         </p>
       </div>
     </footer>
+    <script>
+      // Ascunde butonul Google dacă link-ul user e vizibil
+      setInterval(() => {
+        const ul = document.getElementById("userLink");
+        const gb = document.getElementById("googleLogin");
+        if (ul && gb) {
+          gb.style.display = ul.style.display === "none" ? "inline-block" : "none";
+        }
+      }, 100);
+    </script>
   </body>
 </html>
