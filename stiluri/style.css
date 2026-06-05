@@ -222,7 +222,7 @@ header nav .linkuri {
   flex-direction: row;
   gap: 5px;
   align-items: center;
-  width: 50%;
+  width: auto;
 }
 
 header nav .linkuri a {
@@ -266,6 +266,14 @@ header nav img.logo {
   filter: drop-shadow(0 2px 8px rgba(255, 154, 139, 0.2));
 }
 
+header nav .nav-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  justify-content: flex-end;
+}
+
 header nav .inf {
   display: flex;
   flex-direction: row;
@@ -273,7 +281,7 @@ header nav .inf {
   align-items: center;
   justify-content: flex-end;
   position: relative;
-  width: 50%;
+  width: auto;
 }
 
 header nav .inf .limba {
