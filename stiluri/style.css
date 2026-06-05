@@ -236,6 +236,11 @@ header nav .linkuri a {
   border-radius: 25px;
 }
 
+div.nav-right {
+  display: flex;
+  flex-direction: row;
+}
+
 header nav .linkuri a:hover {
   color: #ff6a88;
   background: rgba(255, 154, 139, 0.1);
