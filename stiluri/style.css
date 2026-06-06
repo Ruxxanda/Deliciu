@@ -354,6 +354,15 @@ header nav .inf button.logoogle:hover {
   color: #ff6a88;
 }
 
+header nav .inf #navUserAvatar,
+header nav .inf .nav-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-block;
+}
+
 header nav .inf .cos #cartCount,
 header nav .inf .salv #savedCount {
   position: absolute;
