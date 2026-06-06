@@ -54,7 +54,9 @@
             <div class="stat-value" id="savedCount">0</div>
           </a>
           <button class="logoogle" id="googleLogin"><i class="fa-brands fa-google"></i></button>
-          <a id="userLink" href="#" style="display:none;"><i class="fa-regular fa-user"></i></a>
+          <a id="userLink" href="#" style="display:none;">
+            <img id="navUserAvatar" src="imagini/poza.png" alt="User" class="nav-avatar" style="display:none">
+          </a>
         </div>
       </div>
     </nav>
@@ -235,16 +237,7 @@
   <button id="loginGoogle" style="display:none"></button>
   <a id="linkUser" style="display:none"></a> -->
 
-  <script>
-    // Ascunde butonul Google dacă link-ul user e vizibil
-    setInterval(() => {
-      const ul = document.getElementById("userLink");
-      const gb = document.getElementById("googleLogin");
-      if (ul && gb) {
-        gb.style.display = ul.style.display === "none" ? "inline-block" : "none";
-      }
-    }, 100);
-  </script>
+  <!-- Google login and user link are shown by scripts; keep both visible -->
 </body>
 
 </html>

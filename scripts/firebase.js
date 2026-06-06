@@ -257,6 +257,14 @@ onAuthStateChanged(auth, (user) => {
       console.warn("Could not persist auth user to localStorage", err);
     }
     if (ul) ul.style.display = "inline";
+    // Update nav and mobile avatars
+    const navAvatar = document.getElementById('navUserAvatar');
+    const mobileAvatar = document.getElementById('mobileUserAvatar');
+    const mobileName = document.getElementById('mobileUserName');
+    const avatarSrc = user.photoURL || '../imagini/poza.png';
+    if (navAvatar) { navAvatar.src = avatarSrc; navAvatar.style.display = 'inline-block'; }
+    if (mobileAvatar) { mobileAvatar.src = avatarSrc; mobileAvatar.style.display = 'block'; }
+    if (mobileName) mobileName.textContent = user.displayName || 'Utilizator';
     if (user.email === "ruxanda.cujba07@gmail.com") {
       if (ul) ul.href = "https://ruxxanda.github.io/Deliciu/pagini/admin.html";
     } else {
@@ -266,6 +274,10 @@ onAuthStateChanged(auth, (user) => {
     localStorage.removeItem("uid");
     localStorage.removeItem("email");
     if (ul) ul.style.display = "none";
+    const navAvatar = document.getElementById('navUserAvatar');
+    const mobileAvatar = document.getElementById('mobileUserAvatar');
+    if (navAvatar) { navAvatar.style.display = 'none'; }
+    if (mobileAvatar) { mobileAvatar.style.display = 'none'; }
   }
   // Apez updateAuthButtons din main.js daca exista
   if (typeof window.updateAuthButtons === "function") {
@@ -289,4 +301,8 @@ window.logout = async () => {
   localStorage.removeItem("email");
   const ul = document.getElementById("userLink");
   if (ul) ul.style.display = "none";
+  const navAvatar = document.getElementById('navUserAvatar');
+  const mobileAvatar = document.getElementById('mobileUserAvatar');
+  if (navAvatar) { navAvatar.style.display = 'none'; }
+  if (mobileAvatar) { mobileAvatar.style.display = 'none'; }
 };

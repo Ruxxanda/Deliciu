@@ -7,15 +7,14 @@ function checkAndFixAuthButtons() {
   const mobileGoogleBtn = document.getElementById("mobileGoogleLogin");
   
   if (userLink) {
-    const isUserLinkVisible = userLink.style.display !== "none" && userLink.offsetParent !== null;
-    
+    // Always keep Google login visible; userLink visibility is controlled by auth state.
     if (googleBtn) {
-      googleBtn.style.display = isUserLinkVisible ? "none" : "inline-block";
-      googleBtn.style.visibility = isUserLinkVisible ? "hidden" : "visible";
+      googleBtn.style.display = "inline-block";
+      googleBtn.style.visibility = "visible";
     }
     if (mobileGoogleBtn) {
-      mobileGoogleBtn.style.display = isUserLinkVisible ? "none" : "block";
-      mobileGoogleBtn.style.visibility = isUserLinkVisible ? "hidden" : "visible";
+      mobileGoogleBtn.style.display = "block";
+      mobileGoogleBtn.style.visibility = "visible";
     }
   }
 }

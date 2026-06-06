@@ -3630,7 +3630,7 @@ section.prod .detalii-produse .info ul {
   max-height: 3.6em;
 }
 
-nav.mobile-nav {
+.mobile-nav {
   display: none;
 }
 

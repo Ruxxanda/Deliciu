@@ -1,6 +1,6 @@
 [
   {
-    "nume": "Tort Safeu cu Bani",
+    "nume": "Tort Safeu",
     "descriere": "Tort aniversar spectaculos, decorat cu elemente inspirate din tematica financiară, accente aurii şi detalii elegante. Ideal pentru aniversări cu mesaj de succes şi prosperitate.",
     "categoria": "tort",
     "linkImagine": "./imagini/produse/tort 1.jpg",
@@ -16,7 +16,7 @@
     ]
   },
   {
-    "nume": "Tort alb aniversar",
+    "nume": "Tort aniversar",
     "descriere": "Tort elegant, complet alb, cu design rafinat şi flori decorative. Potrivit pentru aniversări rotunde sau evenimente speciale. Gust delicat, fin şi aerat.",
     "categoria": "tort",
     "linkImagine": "./imagini/produse/tort 2.jpg",
@@ -48,7 +48,7 @@
     ]
   },
   {
-    "nume": "Chec cu caramel şi alune",
+    "nume": "Chec cu caramel",
     "descriere": "Chec cremos cu aromă intensă de caramel şi textură crocantă de alune prăjite. Ideal pentru iubitorii de deserturi dulci şi consistente.",
     "categoria": "chec",
     "linkImagine": "./imagini/produse/tort 4.jpg",
@@ -63,7 +63,7 @@
     ]
   },
   {
-    "nume": "Mini prăjituri glazurate",
+    "nume": "Mini prăjituri",
     "descriere": "Deserturi individuale acoperite cu glazură fină de ciocolată, perfecte pentru candy bar sau evenimente. Interior moale și cremos.",
     "categoria": "chec",
     "linkImagine": "./imagini/produse/tort 5.jpg",
@@ -93,7 +93,7 @@
     ]
   },
   {
-    "nume": "Tarte cu morcov și nucă",
+    "nume": "Tarte cu morcov",
     "descriere": "Tarte rustic, aromat, cu blat umed de morcov și nucă. Gust echilibrat, cu note ușoare de scorțișoară și cremă fină de brânză.",
     "categoria": "tarte",
     "linkImagine": "./imagini/produse/tort 7.jpg",
@@ -106,7 +106,7 @@
     ]
   },
   {
-    "nume": "Tort aniversar colorat",
+    "nume": "Tort aniversar",
     "descriere": "Tort vesel, cu decor colorat și elemente festive. Ideal pentru aniversări de copii sau petreceri tematice.",
     "categoria": "tort",
     "linkImagine": "./imagini/produse/tort 8.jpg",
@@ -135,7 +135,7 @@
     ]
   },
   {
-    "nume": "Tort roz cu flori",
+    "nume": "Tort cu flori",
     "descriere": "Tort delicat, în nuanțe de roz pastel, decorat cu flori decorative. Gust fin, cremos și ușor fructat.",
     "categoria": "tort",
     "linkImagine": "./imagini/produse/tort 10.jpg",
@@ -151,7 +151,7 @@
     ]
   },
   {
-    "nume": "Tort tematic pentru copii",
+    "nume": "Tort pentru copii",
     "descriere": "Tort vesel și colorat, decorat cu figurine tematice pentru copii. Perfect pentru zile de naștere. Gust bogat de ciocolată, cu combinație echilibrată de cremă fină și fructe.",
     "categoria": "tort",
     "linkImagine": "./imagini/produse/tort 11.jpg",
@@ -167,7 +167,7 @@
     ]
   },
   {
-    "nume": "Tort cu tematică fotbal",
+    "nume": "Tort fotbal",
     "descriere": "Tort dedicat pasionaților de fotbal, decorat cu minge și elemente sportive. Ideal pentru aniversări de copii sau adolescenți.",
     "categoria": "tort",
     "linkImagine": "./imagini/produse/tort 12.jpg",
@@ -199,7 +199,7 @@
     ]
   },
   {
-    "nume": "Tort cu migdale și caramel",
+    "nume": "Tort cu migdale",
     "descriere": "Tort rafinat, cu gust intens de caramel și migdale crocante. Textură echilibrată între cremos și crocant.",
     "categoria": "tort",
     "linkImagine": "./imagini/produse/tort 14.jpg",
@@ -214,7 +214,7 @@
     ]
   },
   {
-    "nume": "Tort pastel aniversar",
+    "nume": "Tort pastel",
     "descriere": "Tort delicat, în culori pastelate, potrivit pentru aniversări elegante. Gust proaspăt și fin.",
     "categoria": "tort",
     "linkImagine": "./imagini/produse/tort 15.jpg",
@@ -229,7 +229,7 @@
     ]
   },
   {
-    "nume": "Tort aniversar pentru bărbați",
+    "nume": "Tort bărbați",
     "descriere": "Tort cu design sobru și elegant, potrivit pentru aniversări masculine. Gust intens de ciocolată, ușor fructat.",
     "categoria": "tort",
     "linkImagine": "./imagini/produse/tort 16.jpg",
@@ -245,7 +245,7 @@
     ]
   },
   {
-    "nume": "Tort Red Velvet",
+    "nume": "Red Velvet",
     "descriere": "Tort clasic Red Velvet, cu blat roșu catifelat și cremă fină de brânză. Gust delicat, ușor aromat de cacao.",
     "categoria": "tort",
     "linkImagine": "./imagini/produse/tort 17.jpg",
@@ -258,7 +258,7 @@
     ]
   },
   {
-    "nume": "Tort alb cu trandafiri",
+    "nume": "Tort alb",
     "descriere": "Tort elegant, decorat cu trandafiri și accente delicate. Gust proaspăt, ușor fructat.",
     "categoria": "tort",
     "linkImagine": "./imagini/produse/tort 18.jpg",
@@ -289,7 +289,7 @@
     ]
   },
   {
-    "nume": "Tort roz cu căpșuni",
+    "nume": "Tort cu căpșuni",
     "descriere": "Tort delicat, cu aspect feminin și gust proaspăt de căpșuni.",
     "categoria": "tort",
     "linkImagine": "./imagini/produse/tort 20.jpg",
@@ -304,7 +304,7 @@
     ]
   },
   {
-    "nume": "Tort cu fructe de pădure",
+    "nume": "Tort cu fructe",
     "descriere": "Tort cu gust echilibrat între dulce și acrișor, decorat generos cu fructe proaspete.",
     "categoria": "tort",
     "linkImagine": "./imagini/produse/tort 21.jpg",

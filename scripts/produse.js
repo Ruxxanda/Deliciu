@@ -53,6 +53,8 @@ async function afiseazaProduse(itemsToShow = null) {
             const qtyId = `qty-${safeKey}`;
             const detailsId = `details-${safeKey}`;
             const buttonId = `btn-${safeKey}-details`;
+            const initialQty = getProductQty(p.nume);
+            cos[p.nume] = initialQty;
             const detailsHTML = detailsArr ? `
                 <button class="detalii" onclick="toggleDetails('${detailsId}', '${buttonId}')" id="${buttonId}">` + (lang === 'ru' ? 'Детали ▶' : (lang === 'en' ? 'Details ▶' : 'Detalii ▶')) + `</button>
                 <div id="${detailsId}" style="display: none; margin-top: 10px; list-style: disc; padding-left: 20px;">${Array.isArray(detailsArr) ? detailsArr.map(detail => `<li>${detail}</li>`).join('') : detailsArr.split('\n').map(line => line.trim()).filter(line => line).map(line => `<li>${line}</li>`).join('')}</div>
@@ -77,13 +79,21 @@ async function afiseazaProduse(itemsToShow = null) {
                                     <button class="minus" onclick="changeQty('${p.nume}', -1)">
                                         <i class="fa-solid fa-minus"></i>
                                     </button>
-                                      <span id="${qtyId}">${cos[p.nume] || 0}</span>
+                                      <span id="${qtyId}">${getProductQty(p.nume)}</span>
                                     <button class="plus" onclick="changeQty('${p.nume}', 1)">
                                         <i class="fa-solid fa-plus"></i>
                                     </button>
                               </div>
                               <button onclick="adaugaInCos('${p.nume}')">` + (lang === 'ru' ? 'Добавить в корзину' : (lang === 'en' ? 'Add to cart' : 'Adauga in cos')) + `</button>
                         </div>`;
+                const qtyElInCard = card.querySelector(`#${qtyId}`);
+                if (qtyElInCard) {
+                    const qtyValue = parseInt(qtyElInCard.textContent, 10);
+                    if (!Number.isFinite(qtyValue) || qtyValue < 1) {
+                        qtyElInCard.textContent = '1';
+                        cos[p.nume] = 1;
+                    }
+                }
                 // navigate to tort.html when clicking the produit card (but ignore clicks on img-wrapper and interactive elements)
                 card.addEventListener('click', function(e) {
                     if (e.target.closest('.img-wrapper') || e.target.closest('.canti') || e.target.closest('.detalii') || e.target.closest('.heart-icon') || e.target.closest('button')) return;
@@ -110,10 +120,21 @@ async function afiseazaProduse(itemsToShow = null) {
     }
 }
 
+function getProductQty(nume) {
+    const rawQty = cos[nume];
+    const parsedQty = parseInt(rawQty, 10);
+    if (!Number.isFinite(parsedQty) || parsedQty < 1) {
+        return 1;
+    }
+    return parsedQty;
+}
+
 function changeQty(nume, delta) {
     const qtyEl = document.getElementById(`qty-${nume.replace(/\s/g, '-')}`);
-    let currentQty = parseInt(qtyEl.textContent);
-    currentQty = Math.max(0, currentQty + delta);
+    if (!qtyEl) return;
+    let currentQty = parseInt(qtyEl.textContent, 10);
+    if (!Number.isFinite(currentQty) || currentQty < 1) currentQty = 1;
+    currentQty = Math.max(1, currentQty + delta);
     qtyEl.textContent = currentQty;
     cos[nume] = currentQty;
 }
@@ -140,7 +161,8 @@ async function adaugaInCos(nume) {
     function getStorageUid() { return localStorage.getItem('uid') || 'guest'; }
     const uid = getStorageUid();
     const qtyEl = document.getElementById(`qty-${nume.replace(/\s/g, '-')}`);
-    const cantitate = parseInt(qtyEl.textContent);
+    let cantitate = parseInt(qtyEl.textContent, 10);
+    if (!Number.isFinite(cantitate) || cantitate < 1) cantitate = 1;
     const product = produse.find(p => p.nume === nume);
     const pret = product ? (product.pretRedus || product.pret) : 0;
     const descriere = product ? product.descriere : '';
@@ -187,7 +209,10 @@ async function loadUserData() {
         salvari = JSON.parse(localStorage.getItem(`salvari_${uid}`) || '[]');
         const cartArr = JSON.parse(localStorage.getItem(`cart_${uid}`) || '[]');
         cos = {};
-        cartArr.forEach(item => { cos[item.nume] = item.cantitate; });
+        cartArr.forEach(item => {
+            const parsedQty = parseInt(item.cantitate, 10);
+            cos[item.nume] = Number.isFinite(parsedQty) && parsedQty > 0 ? parsedQty : 1;
+        });
     } catch (error) {
         console.error('Error loading user data:', error);
     }
